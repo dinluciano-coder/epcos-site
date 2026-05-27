@@ -9,7 +9,7 @@ interface MagneticButtonProps {
   className?: string;
   onClick?: () => void;
   href?: string;
-  theme?: "light" | "dark";
+  theme?: "light" | "dark" | "red";
   target?: string;
   rel?: string;
   type?: "button" | "submit" | "reset";
@@ -56,14 +56,19 @@ export default function MagneticButton({ children, className = "", onClick, href
   }, []);
 
   const isDark = theme === "dark";
+  const isRed = theme === "red";
+
+  const dotBg = isDark ? "rgba(255, 255, 255, 0.4)" : isRed ? "rgba(255, 255, 255, 0.4)" : "rgba(123, 45, 59, 0.4)";
+  const dotSolid = isDark ? "#FFFFFF" : isRed ? "#FFFFFF" : "#7B2D3B";
+  const dotShadow = isDark ? "0 0 6px rgba(255, 255, 255, 0.6)" : isRed ? "0 0 6px rgba(255, 255, 255, 0.6)" : "0 0 6px rgba(123, 45, 59, 0.6)";
 
   const innerContent = (
     <span ref={contentRef} className="relative z-10 inline-flex items-center gap-2.5" style={{ willChange: "transform" }}>
       <span className="relative flex-shrink-0" style={{ width: 8, height: 8 }}>
-        <span className="absolute inset-0 rounded-full" style={{ backgroundColor: isDark ? "rgba(255, 255, 255, 0.4)" : "rgba(123, 45, 59, 0.4)", animation: "ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite" }} />
-        <span className="relative block w-full h-full rounded-full" style={{ backgroundColor: isDark ? "#FFFFFF" : "#7B2D3B", boxShadow: isDark ? "0 0 6px rgba(255, 255, 255, 0.6)" : "0 0 6px rgba(123, 45, 59, 0.6)" }} />
+        <span className="absolute inset-0 rounded-full" style={{ backgroundColor: dotBg, animation: "ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite" }} />
+        <span className="relative block w-full h-full rounded-full" style={{ backgroundColor: dotSolid, boxShadow: dotShadow }} />
       </span>
-      <span style={{ fontWeight: 600, fontSize: "14px", textTransform: "uppercase", letterSpacing: "2px", color: isDark ? "#FFFFFF" : "#1A1A1A" }}>
+      <span style={{ fontWeight: 600, fontSize: "14px", textTransform: "uppercase", letterSpacing: "2px", color: (isDark || isRed) ? "#FFFFFF" : "#1A1A1A" }}>
         {children}
       </span>
     </span>
@@ -71,21 +76,22 @@ export default function MagneticButton({ children, className = "", onClick, href
 
   const buttonStyles: React.CSSProperties = {
     borderRadius: "50px", 
-    border: isDark ? "1px solid rgba(255, 255, 255, 0.2)" : "1px solid rgba(123, 45, 59, 0.3)", 
-    background: isDark ? "rgba(255, 255, 255, 0.05)" : "rgba(123, 45, 59, 0.06)",
-    backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)", cursor: "pointer", willChange: "transform",
+    border: isDark ? "1px solid rgba(255, 255, 255, 0.2)" : isRed ? "1px solid #7B2D3B" : "1px solid rgba(123, 45, 59, 0.3)", 
+    background: isDark ? "rgba(255, 255, 255, 0.05)" : isRed ? "#7B2D3B" : "rgba(123, 45, 59, 0.06)",
+    backdropFilter: isRed ? "none" : "blur(12px)", WebkitBackdropFilter: isRed ? "none" : "blur(12px)", cursor: "pointer", willChange: "transform",
     textDecoration: "none", position: "relative", overflow: "hidden",
   };
 
   const Tag = href ? "a" : "button";
+  const themeClass = isDark ? 'dark-btn' : isRed ? 'red-btn' : 'light-btn';
 
   return (
     <>
-      <Tag ref={buttonRef as React.Ref<HTMLButtonElement & HTMLAnchorElement>} data-magnetic className={`magnetic-btn group ${isDark ? 'dark-btn' : 'light-btn'} px-10 py-4 inline-flex items-center justify-center ${disabled ? 'opacity-50 cursor-not-allowed pointer-events-none' : ''} ${className}`}
+      <Tag ref={buttonRef as React.Ref<HTMLButtonElement & HTMLAnchorElement>} data-magnetic className={`magnetic-btn group ${themeClass} px-10 py-4 inline-flex items-center justify-center ${disabled ? 'opacity-50 cursor-not-allowed pointer-events-none' : ''} ${className}`}
         onMouseMove={!disabled ? handleMouseMove : undefined} onMouseLeave={!disabled ? handleMouseLeave : undefined} onClick={!disabled ? onClick : undefined} href={!disabled ? href : undefined} target={target} rel={rel} type={!href ? type : undefined} disabled={disabled} style={buttonStyles}>
         <span className="pointer-events-none absolute inset-0 rounded-[50px] opacity-0 group-hover:opacity-100 transition-opacity duration-500"
           style={{
-            background: isDark ? "linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.1))" : "linear-gradient(135deg, rgba(123, 45, 59, 0.15), rgba(123, 45, 59, 0.02), rgba(123, 45, 59, 0.15))",
+            background: isDark ? "linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.1))" : isRed ? "linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2))" : "linear-gradient(135deg, rgba(123, 45, 59, 0.15), rgba(123, 45, 59, 0.02), rgba(123, 45, 59, 0.15))",
             backgroundSize: "200% 200%", animation: "gradientShift 3s ease infinite",
           }}
         />
@@ -101,6 +107,11 @@ export default function MagneticButton({ children, className = "", onClick, href
           background: rgba(255, 255, 255, 0.1) !important;
           border-color: rgba(255, 255, 255, 0.4) !important;
           box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1), inset 0 0 30px rgba(255, 255, 255, 0.05) !important;
+        }
+        .red-btn:hover {
+          background: #662531 !important; /* Lighter/darker red on hover */
+          border-color: #662531 !important;
+          box-shadow: 0 4px 25px rgba(123, 45, 59, 0.4) !important;
         }
         @keyframes ping { 75%, 100% { transform: scale(2.5); opacity: 0; } }
       `}</style>

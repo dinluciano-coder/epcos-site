@@ -58,7 +58,7 @@ export default function Header() {
             href="https://wa.me/5531992825058"
             target="_blank"
             rel="noopener noreferrer"
-            theme="dark"
+            theme="red"
             className="ml-2 !px-6 !py-2.5"
           >
             Fale Conosco

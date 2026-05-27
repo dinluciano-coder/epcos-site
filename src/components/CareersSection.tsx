@@ -97,6 +97,12 @@ export default function CareersSection() {
               >
                 Gerar E-mail de Candidatura
               </button>
+
+              {/* Fallback Text for users without Mail Client */}
+              <p className="text-xs text-[#9A9A9A] text-center mt-2">
+                Se o seu aplicativo de e-mail não abrir, envie seu currículo diretamente para <br />
+                <strong className="text-[#1A1A1A]">dinluciano@gmail.com</strong> com o assunto da vaga.
+              </p>
             </form>
           </div>
         </TiltWrapper>

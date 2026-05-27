@@ -4,7 +4,7 @@ import { list, del } from "@vercel/blob";
 import { cookies } from "next/headers";
 
 export async function login(password: string) {
-  const adminPassword = process.env.ADMIN_PASSWORD || "EpcosAdmin2026!";
+  const adminPassword = process.env.ADMIN_PASSWORD || "Epcos327905";
   
   if (password === adminPassword) {
     (await cookies()).set("epcos_admin_session", "true", {

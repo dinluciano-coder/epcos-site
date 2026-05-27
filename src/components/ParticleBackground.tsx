@@ -25,8 +25,8 @@ export default function ParticleBackground() {
 
   const createParticles = useCallback((width: number, height: number) => {
     const isMobile = width < 768;
-    // More particles and slightly larger for better visibility
-    const count = isMobile ? 40 : 80;
+    // Aumentando a quantidade de partículas para um visual mais rico, mantendo a performance
+    const count = isMobile ? 60 : 120;
     const particles: Particle[] = [];
 
     for (let i = 0; i < count; i++) {
@@ -63,8 +63,8 @@ export default function ParticleBackground() {
 
       if (
         particlesRef.current.length === 0 ||
-        (w < 768 && particlesRef.current.length > 40) ||
-        (w >= 768 && particlesRef.current.length <= 40)
+        (w < 768 && particlesRef.current.length > 60) ||
+        (w >= 768 && particlesRef.current.length <= 60)
       ) {
         particlesRef.current = createParticles(w, h);
       }

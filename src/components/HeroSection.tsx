@@ -172,7 +172,7 @@ export default function HeroSection() {
             <span className="text-xs font-semibold uppercase tracking-widest text-[#6B6B6B]">Engenharia & Automação Industrial</span>
           </div>
 
-          <h1 className="text-5xl md:text-7xl lg:text-[5.5rem] font-black leading-[1.05] tracking-tight mb-8 text-[#1A1A1A] perspective-1000" style={{ transformStyle: "preserve-3d" }}>
+          <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-[5.5rem] font-black leading-[1.05] tracking-tight mb-8 text-[#1A1A1A] perspective-1000" style={{ transformStyle: "preserve-3d" }}>
             <div className="block">
               <SplitText text="AUTOMAÇÃO QUE" />
             </div>

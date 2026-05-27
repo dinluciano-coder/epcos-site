@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useMemo } from "react";
+import { useRef, useMemo, useState, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Environment, Float, ContactShadows } from "@react-three/drei";
 import * as THREE from "three";
@@ -145,24 +145,42 @@ function MachineGeometry({ type, containerRef }: ThreeDMachineProps) {
 }
 
 export default function ThreeDMachine({ containerRef, type }: ThreeDMachineProps) {
+  const [isVisible, setIsVisible] = useState(false);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { rootMargin: "400px" } // Mount well before it comes into view to prevent pop-in
+    );
+    if (wrapperRef.current) {
+      observer.observe(wrapperRef.current);
+    }
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div className="w-full h-full absolute inset-0">
-      <Canvas camera={{ position: [0, 0, 6], fov: 45 }} dpr={[1, 2]}>
-        {/* Iluminação de Estúdio Industrial */}
-        <ambientLight intensity={0.5} />
-        <directionalLight position={[10, 10, 5]} intensity={1.5} color="#ffffff" />
-        <directionalLight position={[-10, 10, -5]} intensity={1} color="#7B2D3B" />
-        <spotLight position={[0, 5, 0]} intensity={2} angle={0.6} penumbra={0.5} color="#ffffff" />
-        
-        {/* Reflexos HDRI */}
-        <Environment preset="city" />
+    <div ref={wrapperRef} className="w-full h-full absolute inset-0">
+      {isVisible && (
+        <Canvas camera={{ position: [0, 0, 6], fov: 45 }} dpr={[1, 2]}>
+          {/* Iluminação de Estúdio Industrial */}
+          <ambientLight intensity={0.5} />
+          <directionalLight position={[10, 10, 5]} intensity={1.5} color="#ffffff" />
+          <directionalLight position={[-10, 10, -5]} intensity={1} color="#7B2D3B" />
+          <spotLight position={[0, 5, 0]} intensity={2} angle={0.6} penumbra={0.5} color="#ffffff" />
+          
+          {/* Reflexos HDRI */}
+          <Environment preset="city" />
 
-        {/* Modelo 3D */}
-        <MachineGeometry type={type} containerRef={containerRef} />
+          {/* Modelo 3D */}
+          <MachineGeometry type={type} containerRef={containerRef} />
 
-        {/* Sombra de Contato para ancorar no chão */}
-        <ContactShadows position={[0, -2, 0]} opacity={0.5} scale={10} blur={2} far={4} />
-      </Canvas>
+          {/* Sombra de Contato para ancorar no chão */}
+          <ContactShadows position={[0, -2, 0]} opacity={0.5} scale={10} blur={2} far={4} />
+        </Canvas>
+      )}
     </div>
   );
 }

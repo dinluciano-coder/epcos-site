@@ -78,9 +78,9 @@ function TiltCard({ title, description, delay = 0 }: TiltCardProps) {
         ref={cardRef}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        className="relative overflow-hidden rounded-3xl p-8 md:p-12 h-full flex flex-col justify-end min-h-[320px] transition-all duration-300 transform-gpu"
+        className="relative overflow-hidden rounded-3xl p-8 md:p-10 flex flex-col justify-start transition-all duration-300 transform-gpu"
         style={{
-          background: "rgba(255, 255, 255, 0.4)",
+          background: "rgba(255, 255, 255, 0.45)",
           backdropFilter: "blur(40px)",
           WebkitBackdropFilter: "blur(40px)",
           border: "1px solid rgba(255, 255, 255, 0.8)",
@@ -169,9 +169,9 @@ export default function GlassCardsSection() {
   return (
     <section ref={sectionRef} className="py-20 relative overflow-x-clip bg-[#F0F0F2]">
       
-      {/* Decorative background blobs to enhance glass effect */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#7B2D3B]/10 rounded-full blur-[100px] pointer-events-none"></div>
-      <div className="absolute bottom-1/4 right-1/4 w-[30rem] h-[30rem] bg-white/60 rounded-full blur-[80px] pointer-events-none"></div>
+      {/* Decorative background blobs to enhance glass effect on mobile and desktop */}
+      <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-br from-[#7B2D3B]/10 to-transparent blur-[80px] pointer-events-none"></div>
+      <div className="absolute bottom-0 right-0 w-full md:w-[40rem] h-[500px] bg-white/80 rounded-full blur-[80px] pointer-events-none transform translate-y-1/4"></div>
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="text-center mb-24 glass-3d-title">

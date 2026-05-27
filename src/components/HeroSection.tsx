@@ -167,14 +167,16 @@ export default function HeroSection() {
 
         <div ref={titleGroupRef} className="flex flex-col items-center transform-gpu z-10" style={{ transformStyle: "preserve-3d" }}>
           
-          <div ref={badgeRef} className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-white rounded-full border border-[rgba(0,0,0,0.06)] shadow-sm" style={{ opacity: 0, transform: "translateY(20px)" }}>
-            <span className="w-2 h-2 rounded-full bg-[#7B2D3B]"></span>
-            <span className="text-xs font-semibold uppercase tracking-widest text-[#6B6B6B]">Engenharia & Automação Industrial</span>
+          <div ref={badgeRef} className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-black/10 bg-white/50 backdrop-blur-md mb-8 shadow-sm" style={{ opacity: 0, transform: "translateY(20px)" }}>
+            <span className="w-2 h-2 rounded-full bg-[#7B2D3B] animate-pulse"></span>
+            <span className="text-xs font-bold tracking-[0.2em] text-[#1A1A1A] uppercase">
+              ENGENHARIA QUE TRANSFORMA A INDÚSTRIA
+            </span>
           </div>
 
           <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-[5rem] font-black leading-[1.05] tracking-tight mb-6 text-[#1A1A1A] perspective-1000" style={{ transformStyle: "preserve-3d" }}>
             <div className="block">
-              <SplitText text="AUTOMAÇÃO QUE" />
+              <SplitText text="ENGENHARIA QUE" />
             </div>
             <div className="block text-[#7B2D3B]">
               <SplitText text="TRANSFORMA" />

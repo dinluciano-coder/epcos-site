@@ -21,8 +21,8 @@ export default function ProjectsSection() {
         scale: 1,
         y: 0,
         stagger: 0.2,
-        duration: 1,
-        ease: "power3.out",
+        duration: 1.5,
+        ease: "power2.inOut",
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 70%",

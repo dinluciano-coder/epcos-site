@@ -142,8 +142,8 @@ export default function GlassCardsSection() {
         opacity: 1,
         y: 0,
         stagger: 0.2,
-        duration: 1.2,
-        ease: "power4.out",
+        duration: 1.5,
+        ease: "power2.inOut",
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 60%",

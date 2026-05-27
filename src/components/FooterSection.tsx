@@ -6,6 +6,7 @@ import { gsap } from "@/lib/gsapConfig";
 import { useGSAP } from "@gsap/react";
 import MagneticButton from "./MagneticButton";
 import Link from "next/link";
+import { Settings } from "lucide-react";
 
 export default function FooterSection() {
   const footerRef = useRef<HTMLElement>(null);
@@ -62,6 +63,9 @@ export default function FooterSection() {
           {/* Brand Col */}
           <div>
             <div className="mb-6 flex items-baseline gap-1.5">
+              <Link href="/admin" className="text-[#333333] hover:text-[#7B2D3B] transition-colors duration-300 self-center">
+                <Settings size={20} strokeWidth={1.5} />
+              </Link>
               <span className="text-3xl font-black tracking-tighter text-white">EPCOS</span>
               <span className="text-xl font-light tracking-[0.2em] text-[#7B2D3B]">ENGENHARIA</span>
             </div>

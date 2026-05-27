@@ -146,25 +146,31 @@ function MachineGeometry({ type, containerRef }: ThreeDMachineProps) {
 
 export default function ThreeDMachine({ containerRef, type }: ThreeDMachineProps) {
   const [isVisible, setIsVisible] = useState(false);
+  const [dpr, setDpr] = useState<[number, number]>([1, 2]);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const isMobile = window.innerWidth < 768;
+    setDpr(isMobile ? [1, 1] : [1, 2]); // Force DPR=1 on mobile to prevent crashes
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         setIsVisible(entry.isIntersecting);
       },
-      { rootMargin: "400px" } // Mount well before it comes into view to prevent pop-in
+      { rootMargin: isMobile ? "0px" : "400px" } // Strict 0px margin on mobile so only 1 machine renders at a time
     );
+    
     if (wrapperRef.current) {
       observer.observe(wrapperRef.current);
     }
+    
     return () => observer.disconnect();
   }, []);
 
   return (
     <div ref={wrapperRef} className="w-full h-full absolute inset-0">
       {isVisible && (
-        <Canvas camera={{ position: [0, 0, 6], fov: 45 }} dpr={[1, 2]}>
+        <Canvas camera={{ position: [0, 0, 6], fov: 45 }} dpr={dpr}>
           {/* Iluminação de Estúdio Industrial */}
           <ambientLight intensity={0.5} />
           <directionalLight position={[10, 10, 5]} intensity={1.5} color="#ffffff" />

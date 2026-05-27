@@ -46,6 +46,15 @@ export default function AboutSection() {
             trigger: sectionRef.current,
             start: "top 75%",
             toggleActions: "play none none reverse"
+          },
+          onComplete: () => {
+            gsap.to(card, {
+              y: "-=8",
+              duration: 2 + i * 0.5,
+              yoyo: true,
+              repeat: -1,
+              ease: "sine.inOut"
+            });
           }
         }
       );

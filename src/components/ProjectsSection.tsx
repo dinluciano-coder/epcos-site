@@ -26,6 +26,19 @@ export default function ProjectsSection() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 70%",
+        },
+        onComplete: () => {
+          gsap.to(".project-card-anim", {
+            y: -10,
+            duration: 2.5,
+            yoyo: true,
+            repeat: -1,
+            ease: "sine.inOut",
+            stagger: {
+              each: 0.3,
+              from: "start"
+            }
+          });
         }
       }
     );

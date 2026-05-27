@@ -5,10 +5,13 @@ import { cookies } from 'next/headers';
 export async function POST(request: Request): Promise<NextResponse> {
   const body = (await request.json()) as HandleUploadBody;
   
-  // Security Check: Only allow uploads if admin is logged in
-  const session = (await cookies()).get("epcos_admin_session");
-  if (session?.value !== "true") {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  // Security Check: Only check auth when the client is requesting a token.
+  // The 'blob.upload-completed' webhook comes from Vercel servers, so it has no cookies.
+  if (body.type === 'blob.generate-client-token') {
+    const session = (await cookies()).get("epcos_admin_session");
+    if (session?.value !== "true") {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
   }
 
   try {

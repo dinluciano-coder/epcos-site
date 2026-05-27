@@ -13,7 +13,7 @@ const projects = [
     desc: "Automação completa da linha de montagem com braços robóticos de 6 eixos. Integração de sensores de visão computacional para correção de trajetória em tempo real. Aumento de 40% na velocidade de produção e eliminação de falhas de solda.",
     images: [
       "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1620022718585-78351543763c?auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80",
       "https://images.unsplash.com/photo-1537462715879-360eeb61a0ad?auto=format&fit=crop&q=80"
     ]
   },

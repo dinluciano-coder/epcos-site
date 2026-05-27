@@ -61,7 +61,12 @@ export default function AdminClient({ initialAuth }: { initialAuth: boolean }) {
       const formData = new FormData();
       formData.append("file", file);
 
-      const res = await uploadFileAction(formData);
+      // Timeout de 15 segundos para evitar travamento se a Vercel demorar
+      const timeout = new Promise((_, reject) => 
+        setTimeout(() => reject(new Error("Timeout: O servidor demorou muito para responder.")), 15000)
+      );
+
+      const res = await Promise.race([uploadFileAction(formData), timeout]) as any;
       
       if (res.success) {
         await loadFiles();
@@ -155,7 +160,7 @@ export default function AdminClient({ initialAuth }: { initialAuth: boolean }) {
             disabled={uploading}
             className={`px-8 py-4 rounded-xl font-bold text-sm uppercase tracking-wider transition-all duration-300 ${uploading ? "bg-[#7B2D3B]/50 text-white/50 cursor-not-allowed" : "bg-[#7B2D3B] text-white hover:bg-[#9A3A4A] shadow-lg shadow-[#7B2D3B]/20"}`}
           >
-            {uploading ? "Enviando para nuvem..." : "Fazer Upload"}
+            {uploading ? "Processando..." : "Fazer Upload"}
           </button>
         </div>
       </div>

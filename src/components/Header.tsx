@@ -44,7 +44,9 @@ export default function Header() {
             </a>
           ))}
           <a 
-            href="#contato"
+            href="https://wa.me/5531992825058"
+            target="_blank"
+            rel="noopener noreferrer"
             data-magnetic
             className="ml-4 px-6 py-2.5 rounded-full bg-[#1A1A1A] text-white text-sm font-semibold tracking-wide hover:bg-[#7B2D3B] hover:shadow-[0_4px_20px_rgba(123,45,59,0.3)] transition-all duration-300"
           >
@@ -85,7 +87,9 @@ export default function Header() {
             </a>
           ))}
           <a 
-            href="#contato"
+            href="https://wa.me/5531992825058"
+            target="_blank"
+            rel="noopener noreferrer"
             className="mt-2 px-6 py-3 rounded-full bg-[#7B2D3B] text-white text-center font-semibold text-lg"
             onClick={() => setIsMobileMenuOpen(false)}
           >

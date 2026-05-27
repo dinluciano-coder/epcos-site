@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { gsap } from "@/lib/gsapConfig";
 import { useGSAP } from "@gsap/react";
 import MagneticButton from "./MagneticButton";
@@ -8,6 +8,43 @@ import TiltWrapper from "./TiltWrapper";
 
 export default function ContactSection() {
   const sectionRef = useRef<HTMLElement>(null);
+  
+  // Form States
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [isError, setIsError] = useState(false);
+
+  // Web3Forms Submit Handler
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setIsError(false);
+
+    const formData = new FormData(e.currentTarget);
+    // Adiciona a chave de acesso do Web3Forms
+    formData.append("access_key", "24e58fe8-93ff-4d00-a653-6fb5b75d5d58");
+    // Assunto personalizado do e-mail
+    formData.append("subject", "Novo Contato pelo Site da EPCOS");
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setIsSuccess(true);
+      } else {
+        setIsError(true);
+      }
+    } catch (error) {
+      setIsError(true);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   
   useGSAP(() => {
     if (!sectionRef.current) return;
@@ -52,8 +89,8 @@ export default function ContactSection() {
                 <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
               </div>
               <div>
-                <div className="text-sm text-[#9A9A9A]">E-mail</div>
-                <div className="font-semibold text-[#1A1A1A]">contato@epcos.com.br</div>
+                <div className="text-sm text-[#9A9A9A]">E-mail Oficial (Temporário Teste)</div>
+                <div className="font-semibold text-[#1A1A1A]">dinluciano@gmail.com</div>
               </div>
             </div>
           </div>
@@ -62,28 +99,60 @@ export default function ContactSection() {
         {/* Form */}
         <div className="contact-stagger">
           <TiltWrapper maxTilt={5}>
-            <form className="glass-card p-8 md:p-12 flex flex-col gap-6" onSubmit={(e) => e.preventDefault()}>
-              <div className="flex flex-col gap-2 transform-gpu" style={{ transform: "translateZ(10px)" }}>
-                <label className="text-sm font-semibold text-[#1A1A1A] ml-1">Nome</label>
-                <input type="text" placeholder="Seu nome completo" className="w-full bg-white/50 border border-black/10 rounded-xl px-5 py-3 focus:outline-none focus:border-[#7B2D3B] focus:ring-1 focus:ring-[#7B2D3B] transition-all" />
+            {isSuccess ? (
+              <div className="glass-card p-8 md:p-12 flex flex-col items-center justify-center text-center gap-4 min-h-[400px]">
+                <div className="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center text-green-600 mb-4">
+                  <svg width="40" height="40" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                </div>
+                <h3 className="text-2xl font-bold text-[#1A1A1A]">Mensagem Enviada!</h3>
+                <p className="text-[#6B6B6B]">Recebemos seu contato com sucesso. Nossa equipe de engenharia retornará em breve.</p>
+                <button 
+                  onClick={() => setIsSuccess(false)}
+                  className="mt-6 text-[#7B2D3B] font-semibold hover:underline"
+                >
+                  Enviar outra mensagem
+                </button>
               </div>
-              
-              <div className="flex flex-col gap-2 transform-gpu" style={{ transform: "translateZ(15px)" }}>
-                <label className="text-sm font-semibold text-[#1A1A1A] ml-1">Empresa</label>
-                <input type="text" placeholder="Nome da sua empresa" className="w-full bg-white/50 border border-black/10 rounded-xl px-5 py-3 focus:outline-none focus:border-[#7B2D3B] focus:ring-1 focus:ring-[#7B2D3B] transition-all" />
-              </div>
+            ) : (
+              <form className="glass-card p-8 md:p-12 flex flex-col gap-6" onSubmit={handleSubmit}>
+                
+                {isError && (
+                  <div className="bg-red-50 text-red-600 p-4 rounded-xl text-sm border border-red-100">
+                    Ocorreu um erro ao enviar. Por favor, tente novamente.
+                  </div>
+                )}
 
-              <div className="flex flex-col gap-2 transform-gpu" style={{ transform: "translateZ(20px)" }}>
-                <label className="text-sm font-semibold text-[#1A1A1A] ml-1">Mensagem</label>
-                <textarea placeholder="Como podemos ajudar?" rows={4} className="w-full bg-white/50 border border-black/10 rounded-xl px-5 py-3 focus:outline-none focus:border-[#7B2D3B] focus:ring-1 focus:ring-[#7B2D3B] transition-all resize-none"></textarea>
-              </div>
+                <div className="flex flex-col gap-2 transform-gpu" style={{ transform: "translateZ(10px)" }}>
+                  <label className="text-sm font-semibold text-[#1A1A1A] ml-1">Nome</label>
+                  <input type="text" name="name" required placeholder="Seu nome completo" className="w-full bg-white/50 border border-black/10 rounded-xl px-5 py-3 focus:outline-none focus:border-[#7B2D3B] focus:ring-1 focus:ring-[#7B2D3B] transition-all" />
+                </div>
+                
+                <div className="flex flex-col gap-2 transform-gpu" style={{ transform: "translateZ(15px)" }}>
+                  <label className="text-sm font-semibold text-[#1A1A1A] ml-1">Empresa / E-mail</label>
+                  <input type="email" name="email" required placeholder="seu@email.com" className="w-full bg-white/50 border border-black/10 rounded-xl px-5 py-3 focus:outline-none focus:border-[#7B2D3B] focus:ring-1 focus:ring-[#7B2D3B] transition-all" />
+                </div>
 
-              <div className="mt-4 transform-gpu" style={{ transform: "translateZ(30px)" }}>
-                <MagneticButton className="w-full">
-                  Enviar Mensagem
-                </MagneticButton>
-              </div>
-            </form>
+                <div className="flex flex-col gap-2 transform-gpu" style={{ transform: "translateZ(20px)" }}>
+                  <label className="text-sm font-semibold text-[#1A1A1A] ml-1">Mensagem</label>
+                  <textarea name="message" required placeholder="Como podemos ajudar?" rows={4} className="w-full bg-white/50 border border-black/10 rounded-xl px-5 py-3 focus:outline-none focus:border-[#7B2D3B] focus:ring-1 focus:ring-[#7B2D3B] transition-all resize-none"></textarea>
+                </div>
+
+                {/* Proteção Anti-Spam (Honeypot) exigida pelo Web3Forms */}
+                <input type="checkbox" name="botcheck" className="hidden" style={{ display: 'none' }} />
+
+                <div className="mt-4 transform-gpu" style={{ transform: "translateZ(30px)" }}>
+                  <button 
+                    type="submit" 
+                    disabled={isSubmitting}
+                    className="w-full inline-flex items-center justify-center px-10 py-4 rounded-full text-white text-sm font-semibold tracking-[2px] uppercase bg-[#1A1A1A] transition-all duration-300 disabled:opacity-50"
+                  >
+                    {isSubmitting ? "Enviando..." : "Enviar Mensagem"}
+                  </button>
+                </div>
+              </form>
+            )}
           </TiltWrapper>
         </div>
 

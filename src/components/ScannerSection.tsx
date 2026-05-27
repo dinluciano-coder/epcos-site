@@ -96,10 +96,12 @@ export default function ScannerSection() {
 
           <div className="grid grid-cols-2 gap-4">
             {specs.map((spec, i) => (
-              <div key={i} className="spec-item bg-white p-5 rounded-2xl border border-[rgba(0,0,0,0.04)] shadow-sm hover:shadow-md transition-shadow">
-                <div className="text-sm font-semibold text-[#6B6B6B] mb-1">{spec.label}</div>
-                <div className="text-2xl font-bold text-[#1A1A1A]">{spec.value}</div>
-              </div>
+              <TiltWrapper key={i} maxTilt={15} className="spec-item">
+                <div className="glass-card p-5 rounded-2xl border border-[rgba(255,255,255,0.6)] shadow-sm hover:shadow-md h-full flex flex-col justify-center">
+                  <div className="text-sm font-semibold text-[#6B6B6B] mb-1 transform-gpu" style={{ transform: "translateZ(15px)" }}>{spec.label}</div>
+                  <div className="text-2xl font-bold text-[#1A1A1A] transform-gpu" style={{ transform: "translateZ(25px)" }}>{spec.value}</div>
+                </div>
+              </TiltWrapper>
             ))}
           </div>
         </div>

@@ -113,15 +113,17 @@ export default function FooterSection() {
         </div>
 
         {/* Bottom */}
-        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-[#6B6B6B]">
-          <div className="flex flex-col md:flex-row gap-2 md:gap-8 items-center text-center md:text-left">
-            <p>© 2026 EPCOS Engenharia. Todos os direitos reservados.</p>
-            <p className="text-[#9A9A9A]">Desenvolvido por <strong className="text-white font-medium">Luciano Diniz</strong></p>
+        <div className="pt-8 border-t border-white/10 flex flex-col items-center gap-6 text-sm text-[#6B6B6B]">
+          <div className="w-full flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-center md:text-left">© 2026 EPCOS Engenharia. Todos os direitos reservados.</p>
+            <div className="flex gap-6">
+              <a href="https://www.linkedin.com/company/epcos-engenharia-ltda/posts/?feedView=all" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">LinkedIn</a>
+              <a href="https://www.instagram.com/epcos.engenharia/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Instagram</a>
+            </div>
           </div>
-          <div className="flex gap-6">
-            <a href="https://www.linkedin.com/company/epcos-engenharia-ltda/posts/?feedView=all" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">LinkedIn</a>
-            <a href="https://www.instagram.com/epcos.engenharia/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Instagram</a>
-          </div>
+          <p className="text-[#9A9A9A] text-center w-full pb-4">
+            Desenvolvido por <strong className="text-white font-medium">Luciano Diniz</strong>
+          </p>
         </div>
         
       </div>

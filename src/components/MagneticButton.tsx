@@ -10,9 +10,13 @@ interface MagneticButtonProps {
   onClick?: () => void;
   href?: string;
   theme?: "light" | "dark";
+  target?: string;
+  rel?: string;
+  type?: "button" | "submit" | "reset";
+  disabled?: boolean;
 }
 
-export default function MagneticButton({ children, className = "", onClick, href, theme = "light" }: MagneticButtonProps) {
+export default function MagneticButton({ children, className = "", onClick, href, theme = "light", target, rel, type = "button", disabled }: MagneticButtonProps) {
   const buttonRef = useRef<HTMLButtonElement | HTMLAnchorElement>(null);
   const contentRef = useRef<HTMLSpanElement>(null);
 
@@ -66,19 +70,19 @@ export default function MagneticButton({ children, className = "", onClick, href
   );
 
   const buttonStyles: React.CSSProperties = {
-    padding: "16px 40px", borderRadius: "50px", 
+    borderRadius: "50px", 
     border: isDark ? "1px solid rgba(255, 255, 255, 0.2)" : "1px solid rgba(123, 45, 59, 0.3)", 
     background: isDark ? "rgba(255, 255, 255, 0.05)" : "rgba(123, 45, 59, 0.06)",
     backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)", cursor: "pointer", willChange: "transform",
-    textDecoration: "none", display: "inline-flex", alignItems: "center", justifyContent: "center", position: "relative", overflow: "hidden",
+    textDecoration: "none", position: "relative", overflow: "hidden",
   };
 
   const Tag = href ? "a" : "button";
 
   return (
     <>
-      <Tag ref={buttonRef as React.Ref<HTMLButtonElement & HTMLAnchorElement>} data-magnetic className={`magnetic-btn group ${isDark ? 'dark-btn' : 'light-btn'} ${className}`}
-        onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} onClick={onClick} href={href} style={buttonStyles}>
+      <Tag ref={buttonRef as React.Ref<HTMLButtonElement & HTMLAnchorElement>} data-magnetic className={`magnetic-btn group ${isDark ? 'dark-btn' : 'light-btn'} px-10 py-4 inline-flex items-center justify-center ${disabled ? 'opacity-50 cursor-not-allowed pointer-events-none' : ''} ${className}`}
+        onMouseMove={!disabled ? handleMouseMove : undefined} onMouseLeave={!disabled ? handleMouseLeave : undefined} onClick={!disabled ? onClick : undefined} href={!disabled ? href : undefined} target={target} rel={rel} type={!href ? type : undefined} disabled={disabled} style={buttonStyles}>
         <span className="pointer-events-none absolute inset-0 rounded-[50px] opacity-0 group-hover:opacity-100 transition-opacity duration-500"
           style={{
             background: isDark ? "linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.1))" : "linear-gradient(135deg, rgba(123, 45, 59, 0.15), rgba(123, 45, 59, 0.02), rgba(123, 45, 59, 0.15))",

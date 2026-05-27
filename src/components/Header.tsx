@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import Image from "next/image";
+import MagneticButton from "./MagneticButton";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -53,15 +54,15 @@ export default function Header() {
             </a>
           </div>
 
-          <a 
+          <MagneticButton 
             href="https://wa.me/5531992825058"
             target="_blank"
             rel="noopener noreferrer"
-            data-magnetic
-            className="ml-2 px-6 py-2.5 rounded-full bg-[#1A1A1A] text-white text-sm font-semibold tracking-wide hover:bg-[#7B2D3B] hover:shadow-[0_4px_20px_rgba(123,45,59,0.3)] transition-all duration-300"
+            theme="dark"
+            className="ml-2 !px-6 !py-2.5"
           >
             Fale Conosco
-          </a>
+          </MagneticButton>
         </nav>
 
         {/* Mobile Toggle */}

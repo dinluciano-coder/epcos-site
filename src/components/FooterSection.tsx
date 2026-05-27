@@ -4,6 +4,7 @@ import { useRef } from "react";
 import Image from "next/image";
 import { gsap } from "@/lib/gsapConfig";
 import { useGSAP } from "@gsap/react";
+import MagneticButton from "./MagneticButton";
 
 export default function FooterSection() {
   const footerRef = useRef<HTMLElement>(null);
@@ -43,28 +44,14 @@ export default function FooterSection() {
             Pronto para <span className="text-[#7B2D3B]">transformar</span><br />sua produção?
           </h2>
           
-          <a 
+          <MagneticButton 
             href="https://wa.me/5531992825058"
             target="_blank"
             rel="noopener noreferrer"
-            data-magnetic
-            className="inline-flex items-center justify-center px-10 py-4 rounded-full text-sm font-semibold tracking-[2px] uppercase transition-all duration-300"
-            style={{
-              background: "rgba(255, 255, 255, 0.08)",
-              border: "1px solid rgba(255, 255, 255, 0.15)",
-              backdropFilter: "blur(12px)",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = "rgba(255, 255, 255, 0.15)";
-              e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.3)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = "rgba(255, 255, 255, 0.08)";
-              e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.15)";
-            }}
+            theme="dark"
           >
             Fale com um Engenheiro
-          </a>
+          </MagneticButton>
         </div>
 
         {/* Middle Grid */}

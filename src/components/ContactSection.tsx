@@ -143,13 +143,14 @@ export default function ContactSection() {
                 <input type="checkbox" name="botcheck" className="hidden" style={{ display: 'none' }} />
 
                 <div className="mt-4 transform-gpu" style={{ transform: "translateZ(30px)" }}>
-                  <button 
+                  <MagneticButton 
                     type="submit" 
+                    theme="dark"
                     disabled={isSubmitting}
-                    className="w-full inline-flex items-center justify-center px-10 py-4 rounded-full text-white text-sm font-semibold tracking-[2px] uppercase bg-[#1A1A1A] transition-all duration-300 disabled:opacity-50"
+                    className="w-full !px-10 !py-4 uppercase text-sm font-semibold tracking-[2px]"
                   >
                     {isSubmitting ? "Enviando..." : "Enviar Mensagem"}
-                  </button>
+                  </MagneticButton>
                 </div>
               </form>
             )}

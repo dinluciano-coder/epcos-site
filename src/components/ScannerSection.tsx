@@ -78,7 +78,7 @@ export default function ScannerSection() {
   ];
 
   return (
-    <section ref={sectionRef} id="scanner" className="py-16 md:py-24 relative overflow-x-clip bg-[#F8F8FA] z-10 min-h-screen flex items-center">
+    <section ref={sectionRef} id="scanner" className="py-16 md:py-24 relative overflow-x-clip bg-transparent z-10 min-h-screen flex items-center">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center w-full">
         
         {/* Left Side: Text and Specs */}

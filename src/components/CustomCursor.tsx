@@ -137,32 +137,31 @@ export default function CustomCursor() {
     <>
       <div ref={glowRef} className="cursor-glow" style={{ position: "fixed", pointerEvents: "none", zIndex: 9997, willChange: "transform" }} />
       <div ref={ringRef} className="cursor-ring" style={{ position: "fixed", pointerEvents: "none", zIndex: 9998, willChange: "transform" }}>
-        {Array.from({ length: 15 }).map((_, i) => {
-          const tx = (Math.random() - 0.5) * 30;
-          const ty = (Math.random() - 0.5) * 30;
+        {Array.from({ length: 30 }).map((_, i) => {
+          // Espalha partículas além do anel (raio do anel é 16px no click, vamos até 40px)
+          const tx = (Math.random() - 0.5) * 80;
+          const ty = (Math.random() - 0.5) * 80;
+          
+          // Calcula a distância do centro (Teorema de Pitágoras)
+          const dist = Math.sqrt(tx * tx + ty * ty);
+          
+          // Lógica de difusão: quanto mais perto do centro (0), mais opaco. Quanto mais longe (40), mais transparente.
+          const maxDist = 40;
+          let baseOpacity = 1 - (dist / maxDist);
+          if (baseOpacity < 0) baseOpacity = 0; // Evita partículas negativas/invisíveis muito longe
+          
           const s = Math.random() * 1.5 + 0.5;
-          const o = Math.random() * 0.7 + 0.3;
-          const dur = Math.random() * 0.4 + 0.2;
-          const del = Math.random() * 0.5;
+          // Multiplica a opacidade base por um valor aleatório para não ficar tudo uniforme
+          const o = baseOpacity * (Math.random() * 0.6 + 0.4); 
+          
+          const dur = Math.random() * 0.5 + 0.4;
+          const del = Math.random() * 0.8;
+          
           return (
             <div 
               key={`p-${i}`} 
-              className="scan-particle w-[3px] h-[3px] rounded-full" 
+              className="scan-particle w-[4px] h-[4px] rounded-full" 
               style={{ '--tx': `${tx}px`, '--ty': `${ty}px`, '--s': s, '--o': o, '--dur': `${dur}s`, '--del': `${del}s` } as any} 
-            />
-          );
-        })}
-        {Array.from({ length: 4 }).map((_, i) => {
-          const tx = (Math.random() - 0.5) * 20;
-          const s = Math.random() * 2 + 0.5;
-          const o = Math.random() * 0.5 + 0.2;
-          const dur = Math.random() * 0.5 + 0.2;
-          const del = Math.random() * 0.5;
-          return (
-            <div 
-              key={`b-${i}`} 
-              className="scan-beam w-[1px] h-6" 
-              style={{ '--tx': `${tx}px`, '--s': s, '--o': o, '--dur': `${dur}s`, '--del': `${del}s` } as any} 
             />
           );
         })}

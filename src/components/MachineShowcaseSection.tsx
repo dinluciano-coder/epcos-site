@@ -3,26 +3,38 @@
 import { useRef } from "react";
 import { gsap } from "@/lib/gsapConfig";
 import { useGSAP } from "@gsap/react";
-import ThreeDMachine from "./ThreeDMachine";
+import ImageShowcase from "./ImageShowcase";
 
 const projects = [
   {
-    type: "A" as const,
     title: "Célula Robótica de Soldagem Automotiva",
     category: "Automação Industrial",
     desc: "Automação completa da linha de montagem com braços robóticos de 6 eixos. Integração de sensores de visão computacional para correção de trajetória em tempo real. Aumento de 40% na velocidade de produção e eliminação de falhas de solda.",
+    images: [
+      "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1620022718585-78351543763c?auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1537462715879-360eeb61a0ad?auto=format&fit=crop&q=80"
+    ]
   },
   {
-    type: "B" as const,
     title: "Retrofit e Nacionalização de Turbina",
     category: "Engenharia Reversa",
     desc: "Escaneamento 3D metrológico de uma turbina importada danificada. Realizamos o projeto mecânico completo e adequação de materiais para nacionalização da peça, reduzindo o tempo e custo de manutenção da usina em 60%.",
+    images: [
+      "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1581092335397-9583eb92d232?auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&q=80"
+    ]
   },
   {
-    type: "C" as const,
     title: "Linha de Envase de Alta Performance",
     category: "Projetos Mecânicos",
     desc: "Projeto 3D completo de uma linha de envase asséptica para a indústria farmacêutica. Estrutura 100% em aço inox com esterilização UV integrada. Capacidade projetada e validada virtualmente para 12.000 frascos por hora.",
+    images: [
+      "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?auto=format&fit=crop&q=80"
+    ]
   }
 ];
 
@@ -58,10 +70,10 @@ export default function MachineShowcaseSection() {
     <section ref={containerRef} id="vitrine-3d" className="relative bg-[#050505] text-white py-12 z-20">
       <div className="max-w-7xl mx-auto px-6 mb-20 text-center">
         <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight">
-          Vitrine de <span className="text-[#7B2D3B]">Engenharia 3D.</span>
+          Vitrine de <span className="text-[#7B2D3B]">Projetos.</span>
         </h2>
         <p className="text-[#9A9A9A] text-lg max-w-2xl mx-auto">
-          Projetos gigantes exigem planejamento milimétrico. Visualize nossos modelos de maquinário renderizados em tempo real, exatamente como entregamos nos projetos finais.
+          Projetos gigantes exigem planejamento milimétrico. Explore nossa galeria de execuções reais, onde a alta engenharia encontra a precisão.
         </p>
       </div>
 
@@ -93,12 +105,12 @@ export default function MachineShowcaseSection() {
                   </p>
                 </div>
 
-                {/* 3D Model Container */}
-                <div className="flex-1 w-full h-[400px] md:h-[500px] lg:h-[600px] relative pointer-events-none">
+                {/* Animated Image Gallery Container */}
+                <div className="flex-1 w-full h-[400px] md:h-[500px] lg:h-[600px] relative px-4 md:px-0">
                   {/* Decorative background glow */}
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2/3 h-2/3 bg-[#7B2D3B]/10 blur-[100px] rounded-full" />
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2/3 h-2/3 bg-[#7B2D3B]/20 blur-[120px] rounded-full pointer-events-none" />
                   
-                  <ThreeDMachine containerRef={sectionRef} type={proj.type} />
+                  <ImageShowcase images={proj.images} />
                 </div>
                 
               </div>

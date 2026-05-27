@@ -136,7 +136,37 @@ export default function CustomCursor() {
   return (
     <>
       <div ref={glowRef} className="cursor-glow" style={{ position: "fixed", pointerEvents: "none", zIndex: 9997, willChange: "transform" }} />
-      <div ref={ringRef} className="cursor-ring" style={{ position: "fixed", pointerEvents: "none", zIndex: 9998, willChange: "transform" }} />
+      <div ref={ringRef} className="cursor-ring" style={{ position: "fixed", pointerEvents: "none", zIndex: 9998, willChange: "transform" }}>
+        {Array.from({ length: 15 }).map((_, i) => {
+          const tx = (Math.random() - 0.5) * 30;
+          const ty = (Math.random() - 0.5) * 30;
+          const s = Math.random() * 1.5 + 0.5;
+          const o = Math.random() * 0.7 + 0.3;
+          const dur = Math.random() * 0.4 + 0.2;
+          const del = Math.random() * 0.5;
+          return (
+            <div 
+              key={`p-${i}`} 
+              className="scan-particle w-[3px] h-[3px] rounded-full" 
+              style={{ '--tx': `${tx}px`, '--ty': `${ty}px`, '--s': s, '--o': o, '--dur': `${dur}s`, '--del': `${del}s` } as any} 
+            />
+          );
+        })}
+        {Array.from({ length: 4 }).map((_, i) => {
+          const tx = (Math.random() - 0.5) * 20;
+          const s = Math.random() * 2 + 0.5;
+          const o = Math.random() * 0.5 + 0.2;
+          const dur = Math.random() * 0.5 + 0.2;
+          const del = Math.random() * 0.5;
+          return (
+            <div 
+              key={`b-${i}`} 
+              className="scan-beam w-[1px] h-6" 
+              style={{ '--tx': `${tx}px`, '--s': s, '--o': o, '--dur': `${dur}s`, '--del': `${del}s` } as any} 
+            />
+          );
+        })}
+      </div>
       <div ref={dotRef} className="cursor-dot" style={{ position: "fixed", pointerEvents: "none", zIndex: 9999, willChange: "transform" }} />
     </>
   );

@@ -164,6 +164,10 @@ body {
               height 0.4s cubic-bezier(0.23, 1, 0.32, 1),
               border-color 0.3s ease,
               background 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
 .cursor-ring.hovering {
@@ -192,6 +196,43 @@ body {
 .cursor-ring.cursor-light.clicking {
   border-color: rgba(255, 255, 255, 0.8);
   background: rgba(255, 255, 255, 0.2);
+}
+
+/* === Scanning Beams inside Cursor === */
+@keyframes scan-flash {
+  0% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
+  50% { transform: translate(var(--tx), var(--ty)) scale(var(--s)); opacity: var(--o); }
+  100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
+}
+
+@keyframes scan-sweep {
+  0% { transform: translate(var(--tx), -25px) scaleY(var(--s)); opacity: 0; }
+  50% { opacity: var(--o); }
+  100% { transform: translate(var(--tx), 25px) scaleY(var(--s)); opacity: 0; }
+}
+
+.scan-particle,
+.scan-beam {
+  position: absolute;
+  background-color: #7B2D3B;
+  opacity: 0;
+  pointer-events: none;
+  transition: background-color 0.3s ease;
+}
+
+.cursor-ring.cursor-light .scan-particle,
+.cursor-ring.cursor-light .scan-beam {
+  background-color: #FFFFFF;
+}
+
+.cursor-ring.clicking .scan-particle {
+  animation: scan-flash var(--dur) ease-in-out infinite;
+  animation-delay: var(--del);
+}
+
+.cursor-ring.clicking .scan-beam {
+  animation: scan-sweep var(--dur) linear infinite;
+  animation-delay: var(--del);
 }
 
 .cursor-glow {

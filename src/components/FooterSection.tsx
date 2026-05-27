@@ -5,6 +5,7 @@ import Image from "next/image";
 import { gsap } from "@/lib/gsapConfig";
 import { useGSAP } from "@gsap/react";
 import MagneticButton from "./MagneticButton";
+import Link from "next/link";
 
 export default function FooterSection() {
   const footerRef = useRef<HTMLElement>(null);
@@ -72,11 +73,12 @@ export default function FooterSection() {
           {/* Links Col */}
           <div>
             <h4 className="text-lg font-semibold mb-6">Navegação</h4>
-            <ul className="space-y-4 text-[#9A9A9A]">
-              <li><a href="#hero" className="hover:text-white transition-colors">Início</a></li>
-              <li><a href="#scanner" className="hover:text-white transition-colors">Tecnologias</a></li>
-              <li><a href="#servicos" className="hover:text-white transition-colors">Serviços</a></li>
-              <li><a href="#projetos" className="hover:text-white transition-colors">Projetos</a></li>
+            <ul className="space-y-4">
+              <li><a href="#hero" className="text-sm text-[#9A9A9A] hover:text-white transition-colors">Início</a></li>
+              <li><a href="#scanner" className="text-sm text-[#9A9A9A] hover:text-white transition-colors">Tecnologias</a></li>
+              <li><a href="#servicos" className="text-sm text-[#9A9A9A] hover:text-white transition-colors">Serviços</a></li>
+              <li><a href="#projetos" className="text-sm text-[#9A9A9A] hover:text-white transition-colors">Projetos</a></li>
+              <li><Link href="/downloads" className="text-sm text-[#7B2D3B] hover:text-white transition-colors font-semibold">Portal de Downloads</Link></li>
             </ul>
           </div>
 
@@ -105,7 +107,10 @@ export default function FooterSection() {
         {/* Bottom */}
         <div className="pt-8 border-t border-white/10 flex flex-col items-center gap-6 text-sm text-[#6B6B6B]">
           <div className="w-full flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-center md:text-left">© 2026 EPCOS Engenharia. Todos os direitos reservados.</p>
+            <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6">
+              <p className="text-center md:text-left">© {new Date().getFullYear()} EPCOS Engenharia. Todos os direitos reservados.</p>
+              <Link href="/privacidade" className="text-xs text-[#9A9A9A] hover:text-white transition-colors underline underline-offset-4">Política de Privacidade (LGPD)</Link>
+            </div>
             <div className="flex gap-6">
               <a href="https://www.linkedin.com/company/epcos-engenharia-ltda/posts/?feedView=all" target="_blank" rel="noopener noreferrer" className="text-[#7B2D3B] hover:scale-125 hover:-translate-y-1 transition-transform duration-300">
                 <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>

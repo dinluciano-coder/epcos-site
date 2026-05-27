@@ -8,12 +8,12 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navLinks = [
-    { name: "Início", href: "#hero" },
-    { name: "Sobre", href: "#sobre" },
-    { name: "Projetos", href: "#projetos" },
-    { name: "Tecnologia", href: "#scanner" },
-    { name: "Serviços", href: "#servicos" },
-    { name: "Carreiras", href: "#carreiras" },
+    { name: "Início", href: "/#hero" },
+    { name: "Sobre", href: "/#sobre" },
+    { name: "Tecnologia", href: "/#scanner" },
+    { name: "Projetos", href: "/#projetos" },
+    { name: "Serviços", href: "/#servicos" },
+    { name: "Carreiras", href: "/#carreiras" },
   ];
 
   return (
@@ -21,7 +21,7 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         
         {/* Logo */}
-        <a href="#hero" data-magnetic className="relative flex items-center h-full">
+        <a href="/#hero" data-magnetic className="relative flex items-center h-full">
           <Image
             src="/logo-epcos.png"
             alt="EPCOS"

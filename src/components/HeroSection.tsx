@@ -133,6 +133,7 @@ export default function HeroSection() {
 
   return (
     <section 
+      id="hero"
       ref={sectionRef} 
       className="relative min-h-[100svh] flex flex-col items-center justify-center pt-20 pb-16 overflow-hidden"
     >
@@ -201,12 +202,6 @@ export default function HeroSection() {
         </div>
       </div>
 
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center text-[#9A9A9A] scroll-bounce z-20 pointer-events-none">
-        <span className="text-xs font-semibold tracking-widest uppercase mb-2">Scroll para explorar</span>
-        <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
-          <path d="M6 9l6 6 6-6" />
-        </svg>
-      </div>
     </section>
   );
 }

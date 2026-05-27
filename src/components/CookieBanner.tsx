@@ -58,21 +58,26 @@ export default function CookieBanner() {
             </Link>.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-3 mt-2">
-            <button 
-              onClick={declineCookies}
-              className="px-6 py-3 rounded-full border border-black/10 text-[#6B6B6B] text-sm font-semibold hover:bg-black/5 transition-colors w-full sm:w-auto text-center"
+          <div className="flex flex-col sm:flex-row gap-3 mt-4 items-center">
+            <Link 
+              href="/privacidade" 
+              className="text-[#6B6B6B] text-xs font-semibold hover:text-[#1A1A1A] underline underline-offset-4 mr-auto"
             >
-              Recusar
-            </button>
-            <div className="w-full">
-              <MagneticButton 
-                theme="dark" 
+              Ler Política (LGPD)
+            </Link>
+            <div className="flex gap-2 w-full sm:w-auto">
+              <button 
+                onClick={declineCookies}
+                className="px-6 py-2.5 rounded-full border border-black/10 text-[#6B6B6B] text-xs font-semibold hover:bg-black/5 transition-colors w-full sm:w-auto text-center"
+              >
+                Recusar
+              </button>
+              <button 
                 onClick={acceptCookies} 
-                className="w-full !px-6 !py-3 text-sm font-semibold tracking-wider uppercase"
+                className="px-6 py-2.5 rounded-full bg-[#7B2D3B] text-white text-xs font-bold uppercase tracking-wider hover:bg-[#662531] transition-colors w-full sm:w-auto text-center shadow-md"
               >
                 Aceitar Cookies
-              </MagneticButton>
+              </button>
             </div>
           </div>
         </div>

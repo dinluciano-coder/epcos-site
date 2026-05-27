@@ -102,17 +102,17 @@ export default function DownloadsPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {files.map((file) => (
-            <div key={file.id} className="glass-card p-8 flex flex-col justify-between h-full bg-[#1A1A1A]/80 border border-white/10 hover:border-white/30 transition-colors group">
+            <div key={file.id} className="glass-card-dark p-8 flex flex-col justify-between h-full bg-[#1A1A1A]/80 border border-white/10 hover:border-[#7B2D3B]/50 transition-colors group">
               <div>
                 <div className="flex justify-between items-start mb-6">
-                  <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-white">
+                  <div className="w-12 h-12 rounded-xl bg-[#7B2D3B]/20 flex items-center justify-center text-[#7B2D3B]">
                     <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                     </svg>
                   </div>
                   <div className="flex gap-2">
-                    <span className="text-xs font-bold px-2 py-1 bg-white/10 text-[#9A9A9A] rounded-md">{file.type}</span>
-                    <span className="text-xs font-bold px-2 py-1 bg-white/10 text-[#9A9A9A] rounded-md">{file.size}</span>
+                    <span className="text-xs font-bold px-2 py-1 bg-white/10 text-white rounded-md">{file.type}</span>
+                    <span className="text-xs font-bold px-2 py-1 bg-white/10 text-white rounded-md">{file.size}</span>
                   </div>
                 </div>
                 

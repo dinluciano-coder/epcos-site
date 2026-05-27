@@ -45,10 +45,10 @@ export default function LeadCaptureModal({ isOpen, onClose, onSuccess }: LeadCap
   };
 
   return (
-    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+    <div className="fixed inset-0 z-[5000] flex items-center justify-center p-4 bg-black/70 backdrop-blur-md">
       <div className="absolute inset-0" onClick={onClose}></div>
       <TiltWrapper maxTilt={5} className="relative z-10 w-full max-w-md">
-        <div className="glass-card p-8 bg-[#1A1A1A]/90 border border-white/10 rounded-3xl w-full">
+        <div className="glass-card-dark p-8 bg-[#0A0A0A] border border-[#7B2D3B]/30 rounded-3xl w-full shadow-2xl">
           
           <div className="flex justify-between items-start mb-6">
             <div>
@@ -62,21 +62,21 @@ export default function LeadCaptureModal({ isOpen, onClose, onSuccess }: LeadCap
             </button>
           </div>
 
-          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-5">
             {isError && (
               <div className="bg-red-500/10 text-red-400 p-3 rounded-lg text-sm border border-red-500/20">
                 Erro ao liberar acesso. Tente novamente.
               </div>
             )}
             
-            <div className="flex flex-col gap-1">
-              <label className="text-xs font-semibold text-[#9A9A9A] ml-1 uppercase tracking-wider">Nome Completo</label>
-              <input type="text" name="name" required placeholder="João Silva" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#00D4FF] focus:ring-1 focus:ring-[#00D4FF] transition-all" />
+            <div className="flex flex-col gap-1.5">
+              <label className="text-xs font-bold text-white uppercase tracking-wider">Nome Completo</label>
+              <input type="text" name="name" required placeholder="João Silva" className="w-full bg-[#1A1A1A] border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-white/30 focus:outline-none focus:border-[#7B2D3B] focus:ring-1 focus:ring-[#7B2D3B] transition-all" />
             </div>
 
-            <div className="flex flex-col gap-1">
-              <label className="text-xs font-semibold text-[#9A9A9A] ml-1 uppercase tracking-wider">E-mail Profissional</label>
-              <input type="email" name="email" required placeholder="joao@empresa.com.br" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#00D4FF] focus:ring-1 focus:ring-[#00D4FF] transition-all" />
+            <div className="flex flex-col gap-1.5">
+              <label className="text-xs font-bold text-white uppercase tracking-wider">E-mail Profissional</label>
+              <input type="email" name="email" required placeholder="joao@empresa.com.br" className="w-full bg-[#1A1A1A] border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-white/30 focus:outline-none focus:border-[#7B2D3B] focus:ring-1 focus:ring-[#7B2D3B] transition-all" />
             </div>
 
             <input type="checkbox" name="botcheck" className="hidden" style={{ display: 'none' }} />
@@ -84,9 +84,9 @@ export default function LeadCaptureModal({ isOpen, onClose, onSuccess }: LeadCap
             <div className="mt-4">
               <MagneticButton 
                 type="submit" 
-                theme="dark"
+                theme="red"
                 disabled={isSubmitting}
-                className="w-full !px-6 !py-3 uppercase text-sm font-semibold tracking-wider"
+                className="w-full !px-6 !py-3.5 uppercase text-sm font-bold tracking-wider"
               >
                 {isSubmitting ? "Liberando..." : "Liberar Download"}
               </MagneticButton>

@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import CustomCursor from "@/components/CustomCursor";
+import ScrollIndicator from "@/components/ScrollIndicator";
+import CookieBanner from "@/components/CookieBanner";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -74,7 +77,10 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className={`${inter.variable} dark`}>
       <body className="min-h-screen bg-bg-primary text-text font-sans antialiased">
+        <CustomCursor />
         {children}
+        <ScrollIndicator />
+        <CookieBanner />
       </body>
     </html>
   );

@@ -157,11 +157,11 @@ export default function HeroSection() {
             <Image
               src="/logo-epcos.png"
               alt="EPCOS Engenharia"
-              width={320}
-              height={110}
+              width={640}
+              height={220}
               priority
               className="object-contain drop-shadow-[0_15px_30px_rgba(123,45,59,0.1)]"
-              style={{ width: "100%", height: "auto", maxWidth: 320, mixBlendMode: "multiply", transform: "translateZ(30px)" }}
+              style={{ width: "100%", height: "auto", maxWidth: 640, mixBlendMode: "multiply", transform: "translateZ(30px)" }}
             />
           </div>
         </div>

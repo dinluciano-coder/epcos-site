@@ -146,7 +146,7 @@ export default function ContactSection() {
                 <div className="mt-4 transform-gpu" style={{ transform: "translateZ(30px)" }}>
                   <MagneticButton 
                     type="submit" 
-                    theme="dark"
+                    theme="red"
                     disabled={isSubmitting}
                     className="w-full !px-10 !py-4 uppercase text-sm font-semibold tracking-[2px]"
                   >

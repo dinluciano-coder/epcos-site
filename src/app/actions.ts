@@ -33,9 +33,9 @@ export async function getFiles() {
   try {
     const { blobs } = await list();
     return { success: true, files: blobs };
-  } catch (error) {
+  } catch (error: any) {
     console.error("Error fetching files:", error);
-    return { success: false, error: "Falha ao carregar arquivos. Verifique o BLOB_READ_WRITE_TOKEN." };
+    return { success: false, error: error.message || "Erro desconhecido ao carregar arquivos da nuvem." };
   }
 }
 

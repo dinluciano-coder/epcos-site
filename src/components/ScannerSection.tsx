@@ -3,13 +3,15 @@
 import { useRef } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsapConfig";
 import { useGSAP } from "@gsap/react";
-import ThreeDScanner from "./ThreeDScanner";
 import TiltWrapper from "./TiltWrapper";
+
+import Image from "next/image";
 
 export default function ScannerSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLDivElement>(null);
   const specsRef = useRef<HTMLDivElement>(null);
+  const scannerImgRef = useRef<HTMLImageElement>(null);
 
   useGSAP(() => {
     if (!sectionRef.current) return;
@@ -47,6 +49,27 @@ export default function ScannerSection() {
         },
       }
     );
+
+    // Animate the Scanner PNG to simulate 3D rotation and depth on scroll
+    if (scannerImgRef.current) {
+      gsap.fromTo(
+        scannerImgRef.current,
+        { rotationY: -25, rotationX: 10, scale: 0.9, y: 50 },
+        {
+          rotationY: 25,
+          rotationX: -5,
+          scale: 1.1,
+          y: -20,
+          ease: "none",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1.5, // Suavização super fluida
+          }
+        }
+      );
+    }
   }, []);
 
   const specs = [
@@ -83,17 +106,27 @@ export default function ScannerSection() {
           </div>
         </div>
 
-        {/* Right Side: Interactive 3D Exploding Model */}
+        {/* Right Side: Animated Image Scanner */}
         <div className="relative h-[500px] md:h-[700px] w-full flex items-center justify-center">
           
           {/* Glass Pedestal Background */}
           <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-auto">
-            <TiltWrapper maxTilt={15} className="w-[80%] h-[120%]">
-              <div className="w-full h-full bg-white/40 backdrop-blur-3xl rounded-[3rem] border border-[rgba(255,255,255,0.8)] shadow-[0_40px_80px_-15px_rgba(0,0,0,0.1)] transform -rotate-6 scale-95 glass-card" style={{ transform: "rotate(-6deg) scale(0.95) translateZ(40px)" }} />
+            <TiltWrapper maxTilt={15} className="w-[80%] h-[100%] md:h-[120%] flex items-center justify-center">
+              <div className="w-full h-full bg-white/40 backdrop-blur-3xl rounded-[3rem] border border-[rgba(255,255,255,0.8)] shadow-[0_40px_80px_-15px_rgba(0,0,0,0.1)] transform -rotate-6 scale-95 glass-card relative flex items-center justify-center" style={{ transform: "rotate(-6deg) scale(0.95) translateZ(40px)" }}>
+                {/* PNG do Scanner animado e perfeitamente centralizado no vidro */}
+                <div className="absolute w-[120%] md:w-[140%] h-[120%] md:h-[140%] transform-gpu pointer-events-none perspective-1000" style={{ transform: "rotate(6deg) translateZ(60px)" }}>
+                  <Image 
+                    ref={scannerImgRef}
+                    src="/scanner.png"
+                    alt="Scanner 3D Creality Raptor X"
+                    fill
+                    className="object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.4)]"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                </div>
+              </div>
             </TiltWrapper>
           </div>
-
-          <ThreeDScanner containerRef={sectionRef as React.RefObject<HTMLDivElement>} />
           
         </div>
       </div>

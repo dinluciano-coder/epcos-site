@@ -134,7 +134,7 @@ export default function HeroSection() {
   return (
     <section 
       ref={sectionRef} 
-      className="relative min-h-screen flex flex-col items-center justify-center pt-24 pb-12 overflow-hidden"
+      className="relative min-h-[100svh] flex flex-col items-center justify-center pt-20 pb-16 overflow-hidden"
     >
       
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl h-96 bg-[#7B2D3B]/5 blur-[120px] rounded-full pointer-events-none" />
@@ -143,7 +143,7 @@ export default function HeroSection() {
         
         <div 
           ref={logoWrapperRef} 
-          className="mb-2 w-full flex justify-center perspective-1000 z-20"
+          className="mb-6 w-full flex justify-center perspective-1000 z-20"
           style={{ opacity: 0, perspective: "1000px" }}
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
@@ -156,23 +156,23 @@ export default function HeroSection() {
             <Image
               src="/logo-epcos.png"
               alt="EPCOS Engenharia"
-              width={400}
-              height={140}
+              width={320}
+              height={110}
               priority
               className="object-contain drop-shadow-[0_15px_30px_rgba(123,45,59,0.1)]"
-              style={{ width: "100%", height: "auto", maxWidth: 400, mixBlendMode: "multiply", transform: "translateZ(30px)" }}
+              style={{ width: "100%", height: "auto", maxWidth: 320, mixBlendMode: "multiply", transform: "translateZ(30px)" }}
             />
           </div>
         </div>
 
         <div ref={titleGroupRef} className="flex flex-col items-center transform-gpu z-10" style={{ transformStyle: "preserve-3d" }}>
           
-          <div ref={badgeRef} className="inline-flex items-center gap-2 mb-8 px-4 py-2 bg-white rounded-full border border-[rgba(0,0,0,0.06)] shadow-sm" style={{ opacity: 0, transform: "translateY(20px)" }}>
+          <div ref={badgeRef} className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-white rounded-full border border-[rgba(0,0,0,0.06)] shadow-sm" style={{ opacity: 0, transform: "translateY(20px)" }}>
             <span className="w-2 h-2 rounded-full bg-[#7B2D3B]"></span>
             <span className="text-xs font-semibold uppercase tracking-widest text-[#6B6B6B]">Engenharia & Automação Industrial</span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-[5.5rem] font-black leading-[1.05] tracking-tight mb-8 text-[#1A1A1A] perspective-1000" style={{ transformStyle: "preserve-3d" }}>
+          <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-[5rem] font-black leading-[1.05] tracking-tight mb-6 text-[#1A1A1A] perspective-1000" style={{ transformStyle: "preserve-3d" }}>
             <div className="block">
               <SplitText text="AUTOMAÇÃO QUE" />
             </div>
@@ -184,13 +184,13 @@ export default function HeroSection() {
             </div>
           </h1>
 
-          <p ref={subtitleRef} className="text-base sm:text-lg md:text-xl max-w-xl leading-relaxed mb-12 mx-auto" style={{ color: "#6B6B6B", opacity: 0, transform: "translateY(20px)" }}>
+          <p ref={subtitleRef} className="text-base sm:text-lg md:text-xl max-w-xl leading-relaxed mb-8 mx-auto" style={{ color: "#6B6B6B", opacity: 0, transform: "translateY(20px)" }}>
             Engenharia de precisão com tecnologia de ponta.
             <br className="hidden sm:block" />
             Escaneamento 3D, projetos mecânicos e soluções inteligentes.
           </p>
 
-          <div ref={ctaRef} className="mb-24" style={{ opacity: 0, transform: "translateY(20px)" }}>
+          <div ref={ctaRef} className="mb-8" style={{ opacity: 0, transform: "translateY(20px)" }}>
             <MagneticButton href="#sobre">
               Conheça a EPCOS
             </MagneticButton>
@@ -199,7 +199,7 @@ export default function HeroSection() {
         </div>
       </div>
 
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center text-[#9A9A9A] scroll-bounce z-20 pointer-events-none">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center text-[#9A9A9A] scroll-bounce z-20 pointer-events-none">
         <span className="text-xs font-semibold tracking-widest uppercase mb-2">Scroll para explorar</span>
         <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
           <path d="M6 9l6 6 6-6" />

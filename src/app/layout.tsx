@@ -10,23 +10,59 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "EPCOS Engenharia | Automação Industrial & Engenharia de Precisão",
+  title: "EPCOS Engenharia | Automação Industrial & Metrologia 3D",
   description:
-    "Soluções avançadas em automação industrial, escaneamento 3D e engenharia mecânica de precisão. Tecnologia que transforma a indústria.",
+    "Especialistas em automação industrial, engenharia mecânica, robótica e escaneamento 3D em Betim/MG. Projetos sob medida para a Indústria 4.0.",
   keywords: [
+    "EPCOS",
+    "EPCOS Engenharia",
     "automação industrial",
     "engenharia mecânica",
+    "metrologia 3D",
     "scanner 3D",
     "projetos industriais",
-    "EPCOS Engenharia",
+    "robótica industrial",
+    "Indústria 4.0",
+    "usinagem de precisão",
+    "retrofitting de máquinas",
+    "desenvolvimento de máquinas especiais",
+    "Betim",
+    "Minas Gerais",
+    "Belo Horizonte",
+    "projetos 3D",
+    "engenharia reversa",
+    "laudos dimensionais",
+    "integração de sistemas automação",
+    "manutenção mecânica"
   ],
-  authors: [{ name: "EPCOS Engenharia" }],
+  authors: [{ name: "EPCOS Engenharia", url: "https://epcos.com.br" }],
   openGraph: {
-    title: "EPCOS Engenharia | Automação Industrial & Engenharia de Precisão",
+    title: "EPCOS Engenharia | Soluções Avançadas para Indústria",
     description:
-      "Soluções avançadas em automação industrial, escaneamento 3D e engenharia mecânica de precisão.",
+      "Transformamos o chão de fábrica com projetos avançados em automação industrial, escaneamento 3D e engenharia de precisão.",
     type: "website",
     locale: "pt_BR",
+    url: "https://epcos.com.br",
+    siteName: "EPCOS Engenharia",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "EPCOS Engenharia | Automação Industrial",
+    description: "Transformamos o chão de fábrica com projetos avançados em automação e engenharia 3D.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  alternates: {
+    canonical: "https://epcos.com.br",
   },
 };
 

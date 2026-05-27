@@ -127,7 +127,7 @@ body {
   left: 0;
   width: 8px;
   height: 8px;
-  background: #1A1A1A;
+  background: #7B2D3B;
   border-radius: 50%;
   pointer-events: none;
   z-index: 999999;
@@ -139,6 +139,14 @@ body {
   width: 6px;
   height: 6px;
   background: #7B2D3B;
+}
+
+.cursor-dot.cursor-light {
+  background: #FFFFFF;
+}
+
+.cursor-dot.cursor-light.hovering {
+  background: #FFFFFF;
 }
 
 .cursor-ring {
@@ -170,6 +178,20 @@ body {
   height: 32px;
   border-color: rgba(123, 45, 59, 0.7);
   background: rgba(123, 45, 59, 0.08);
+}
+
+.cursor-ring.cursor-light {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.cursor-ring.cursor-light.hovering {
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.cursor-ring.cursor-light.clicking {
+  border-color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .cursor-glow {

@@ -70,6 +70,18 @@ export default function CustomCursor() {
     const onMouseDown = () => { isClicking.current = true; ringRef.current?.classList.add("clicking"); dotRef.current?.classList.add("clicking"); };
     const onMouseUp = () => { isClicking.current = false; ringRef.current?.classList.remove("clicking"); dotRef.current?.classList.remove("clicking"); };
 
+    const onMouseOver = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      // Checar se estamos passando o mouse sobre uma área com tema dark ou fundo escuro
+      if (target.closest('[data-theme="dark"], .bg-\\[\\#050505\\], .bg-\\[\\#1A1A1A\\]')) {
+        dotRef.current?.classList.add("cursor-light");
+        ringRef.current?.classList.add("cursor-light");
+      } else {
+        dotRef.current?.classList.remove("cursor-light");
+        ringRef.current?.classList.remove("cursor-light");
+      }
+    };
+
     const onMagneticEnter = (e: Event) => {
       const target = e.currentTarget as HTMLElement;
       const rect = target.getBoundingClientRect();
@@ -94,6 +106,7 @@ export default function CustomCursor() {
     window.addEventListener("mousemove", onMouseMove);
     window.addEventListener("mousedown", onMouseDown);
     window.addEventListener("mouseup", onMouseUp);
+    window.addEventListener("mouseover", onMouseOver);
 
     const magneticEls = document.querySelectorAll<HTMLElement>("[data-magnetic]");
     magneticEls.forEach(el => {
@@ -108,6 +121,7 @@ export default function CustomCursor() {
       window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("mousedown", onMouseDown);
       window.removeEventListener("mouseup", onMouseUp);
+      window.removeEventListener("mouseover", onMouseOver);
       magneticEls.forEach(el => {
         el.removeEventListener("mouseenter", onMagneticEnter);
         el.removeEventListener("mousemove", onMagneticMove);

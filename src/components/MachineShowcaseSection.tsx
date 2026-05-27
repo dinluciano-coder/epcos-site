@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { gsap } from "@/lib/gsapConfig";
 import { useGSAP } from "@gsap/react";
 import ImageShowcase from "./ImageShowcase";
+import TiltWrapper from "./TiltWrapper";
 
 const projects = [
   {
@@ -107,10 +108,14 @@ export default function MachineShowcaseSection() {
 
                 {/* Animated Image Gallery Container */}
                 <div className="flex-1 w-full h-[400px] md:h-[500px] lg:h-[600px] relative px-4 md:px-0">
-                  {/* Decorative background glow */}
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2/3 h-2/3 bg-[#7B2D3B]/20 blur-[120px] rounded-full pointer-events-none" />
-                  
-                  <ImageShowcase images={proj.images} />
+                  <TiltWrapper maxTilt={5}>
+                    <div className="w-full h-[400px] md:h-[500px] lg:h-[600px] relative transform-gpu" style={{ transform: "translateZ(30px)" }}>
+                      {/* Decorative background glow */}
+                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2/3 h-2/3 bg-[#7B2D3B]/20 blur-[120px] rounded-full pointer-events-none" />
+                      
+                      <ImageShowcase images={proj.images} />
+                    </div>
+                  </TiltWrapper>
                 </div>
                 
               </div>

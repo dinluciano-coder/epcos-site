@@ -75,7 +75,7 @@ export default function AboutSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="sobre" className="py-20 md:py-28 relative flex items-center bg-transparent z-10">
+    <section ref={sectionRef} id="sobre" className="py-20 md:py-28 relative flex items-center bg-[#F8F8FA] z-10">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center w-full">
         
         {/* Left: Text */}

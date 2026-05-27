@@ -2,7 +2,7 @@
 
 import { useRef, useMemo, useState, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
-import { Environment, Float, ContactShadows } from "@react-three/drei";
+import { Environment, Float, ContactShadows, View } from "@react-three/drei";
 import * as THREE from "three";
 import { gsap } from "@/lib/gsapConfig";
 import { useGSAP } from "@gsap/react";
@@ -145,48 +145,30 @@ function MachineGeometry({ type, containerRef }: ThreeDMachineProps) {
 }
 
 export default function ThreeDMachine({ containerRef, type }: ThreeDMachineProps) {
-  const [isVisible, setIsVisible] = useState(false);
-  const [dpr, setDpr] = useState<[number, number]>([1, 2]);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const isMobile = window.innerWidth < 768;
-    setDpr(isMobile ? [1, 1] : [1, 2]); // Force DPR=1 on mobile to prevent crashes
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsVisible(entry.isIntersecting);
-      },
-      { rootMargin: isMobile ? "0px" : "400px" } // Strict 0px margin on mobile so only 1 machine renders at a time
-    );
-    
-    if (wrapperRef.current) {
-      observer.observe(wrapperRef.current);
-    }
-    
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <div ref={wrapperRef} className="w-full h-full absolute inset-0">
-      {isVisible && (
-        <Canvas camera={{ position: [0, 0, 6], fov: 45 }} dpr={dpr}>
-          {/* Iluminação de Estúdio Industrial */}
-          <ambientLight intensity={0.5} />
-          <directionalLight position={[10, 10, 5]} intensity={1.5} color="#ffffff" />
-          <directionalLight position={[-10, 10, -5]} intensity={1} color="#7B2D3B" />
-          <spotLight position={[0, 5, 0]} intensity={2} angle={0.6} penumbra={0.5} color="#ffffff" />
-          
-          {/* Reflexos HDRI */}
-          <Environment preset="city" />
+    <>
+      {/* O HTML "alvo" que a View vai rastrear */}
+      <div ref={wrapperRef} className="w-full h-full" />
+      
+      {/* A View renderiza a cena 3D exatamente sobre o HTML alvo usando a única Canvas global da seção */}
+      <View track={wrapperRef as any}>
+        {/* Iluminação de Estúdio Industrial */}
+        <ambientLight intensity={0.5} />
+        <directionalLight position={[10, 10, 5]} intensity={1.5} color="#ffffff" />
+        <directionalLight position={[-10, 10, -5]} intensity={1} color="#7B2D3B" />
+        <spotLight position={[0, 5, 0]} intensity={2} angle={0.6} penumbra={0.5} color="#ffffff" />
+        
+        {/* Reflexos HDRI */}
+        <Environment preset="city" />
 
-          {/* Modelo 3D */}
-          <MachineGeometry type={type} containerRef={containerRef} />
+        {/* Modelo 3D */}
+        <MachineGeometry type={type} containerRef={containerRef} />
 
-          {/* Sombra de Contato para ancorar no chão */}
-          <ContactShadows position={[0, -2, 0]} opacity={0.5} scale={10} blur={2} far={4} />
-        </Canvas>
-      )}
-    </div>
+        {/* Sombra de Contato para ancorar no chão */}
+        <ContactShadows position={[0, -2, 0]} opacity={0.5} scale={10} blur={2} far={4} />
+      </View>
+    </>
   );
 }

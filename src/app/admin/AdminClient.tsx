@@ -1,8 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { upload } from "@vercel/blob/client";
-import { login, logout, getFiles, deleteFile } from "../actions";
+import { login, logout, getFiles, deleteFile, uploadFileAction } from "../actions";
 import MagneticButton from "@/components/MagneticButton";
 
 export default function AdminClient({ initialAuth }: { initialAuth: boolean }) {
@@ -59,18 +58,21 @@ export default function AdminClient({ initialAuth }: { initialAuth: boolean }) {
     setError("");
     
     try {
-      // Upload via client directly to Vercel Blob
-      await upload(file.name, file, {
-        access: 'public',
-        handleUploadUrl: '/api/upload',
-      });
+      const formData = new FormData();
+      formData.append("file", file);
+
+      const res = await uploadFileAction(formData);
       
-      // Reload list
-      await loadFiles();
-      if (fileInputRef.current) fileInputRef.current.value = "";
+      if (res.success) {
+        await loadFiles();
+        if (fileInputRef.current) fileInputRef.current.value = "";
+      } else {
+        setError(`Erro no envio: ${res.error}`);
+        if (fileInputRef.current) fileInputRef.current.value = "";
+      }
     } catch (err: any) {
       console.error("Upload error details:", err);
-      setError(`Erro no envio: ${err.message || "Tamanho ou formato não suportado."}`);
+      setError(`Erro crítico: ${err.message || "Tamanho excedido ou erro de rede."}`);
       if (fileInputRef.current) fileInputRef.current.value = "";
     } finally {
       setUploading(false);

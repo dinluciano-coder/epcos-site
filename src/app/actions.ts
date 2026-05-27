@@ -1,6 +1,6 @@
 "use server";
 
-import { list, del } from "@vercel/blob";
+import { list, del, put } from "@vercel/blob";
 import { cookies } from "next/headers";
 
 export async function login(password: string) {
@@ -49,5 +49,21 @@ export async function deleteFile(url: string) {
   } catch (error) {
     console.error("Error deleting file:", error);
     return { success: false, error: "Falha ao deletar arquivo." };
+  }
+}
+
+export async function uploadFileAction(formData: FormData) {
+  const isAuth = await checkAuth();
+  if (!isAuth) return { success: false, error: "Não autorizado" };
+
+  const file = formData.get("file") as File;
+  if (!file) return { success: false, error: "Arquivo inválido" };
+
+  try {
+    const blob = await put(file.name, file, { access: 'public' });
+    return { success: true, url: blob.url };
+  } catch (error: any) {
+    console.error("Server upload error:", error);
+    return { success: false, error: error.message || "Falha ao comunicar com a Vercel" };
   }
 }

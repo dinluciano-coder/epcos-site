@@ -25,6 +25,7 @@ export default function ServicesSection() {
         scrollTrigger: {
           trigger: titleRef.current,
           start: "top 85%",
+          toggleActions: "play reverse play reverse",
         },
       }
     );
@@ -48,6 +49,7 @@ export default function ServicesSection() {
         scrollTrigger: {
           trigger: cardsRef.current,
           start: "top 80%",
+          toggleActions: "play reverse play reverse",
         },
       }
     );

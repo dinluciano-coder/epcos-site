@@ -26,6 +26,7 @@ export default function ProjectsSection() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 70%",
+          toggleActions: "play reverse play reverse",
         },
         onComplete: () => {
           gsap.to(".project-card-anim", {

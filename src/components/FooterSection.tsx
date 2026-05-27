@@ -25,6 +25,7 @@ export default function FooterSection() {
         scrollTrigger: {
           trigger: ctaRef.current,
           start: "top 85%",
+          toggleActions: "play reverse play reverse",
         },
       }
     );

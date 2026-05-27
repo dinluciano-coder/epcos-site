@@ -46,6 +46,7 @@ export default function CareersSection() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 75%",
+          toggleActions: "play reverse play reverse",
         }
       }
     );

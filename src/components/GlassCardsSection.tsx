@@ -130,6 +130,7 @@ export default function GlassCardsSection() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 70%",
+          toggleActions: "play reverse play reverse",
         }
       }
     );
@@ -146,6 +147,7 @@ export default function GlassCardsSection() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 60%",
+          toggleActions: "play reverse play reverse",
         }
       }
     );

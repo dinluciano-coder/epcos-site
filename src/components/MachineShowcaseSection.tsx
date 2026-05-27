@@ -61,6 +61,7 @@ export default function MachineShowcaseSection() {
           scrollTrigger: {
             trigger: section,
             start: "top 60%",
+          toggleActions: "play reverse play reverse",
           }
         }
       );

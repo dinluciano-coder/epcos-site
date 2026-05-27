@@ -22,7 +22,7 @@ export default function AboutSection() {
         duration: 1.2, 
         stagger: 0.15, 
         ease: "back.out(1.5)",
-        scrollTrigger: { trigger: sectionRef.current, start: "top 75%" } 
+        scrollTrigger: { trigger: sectionRef.current, start: "top 75%", toggleActions: "play reverse play reverse" } 
       }
     );
 

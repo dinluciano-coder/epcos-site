@@ -29,6 +29,7 @@ export default function ScannerSection() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 80%",
+          toggleActions: "play reverse play reverse",
         },
       }
     );
@@ -46,6 +47,7 @@ export default function ScannerSection() {
         scrollTrigger: {
           trigger: ".spec-item",
           start: "top 85%",
+          toggleActions: "play reverse play reverse",
         },
       }
     );

@@ -1,26 +1,196 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg-primary: #FFFFFF;
+  --color-bg-secondary: #F8F8FA;
+  --color-surface: #FFFFFF;
+  --color-text-primary: #1A1A1A;
+  --color-text-secondary: #6B6B6B;
+  --color-burgundy: #7B2D3B;
+  --color-burgundy-light: #9A3A4A;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ===== GLOBAL RESET ===== */
+* {
+  cursor: none !important;
+}
+
+@media (pointer: coarse) {
+  * {
+    cursor: auto !important;
   }
 }
 
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #FFFFFF;
+  color: #1A1A1A;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(123, 45, 59, 0.2);
+  color: #1A1A1A;
+}
+
+/* ===== GLASSMORPHISM SYSTEM (Vidro Grosso 5mm) ===== */
+.glass {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow:
+    0 20px 40px -10px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  border-radius: 20px;
+}
+
+.glass-nav {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  /* Efeito de chanfro/espessura do vidro */
+  border-top: 1px solid rgba(255, 255, 255, 0.95);
+  border-left: 1px solid rgba(255, 255, 255, 0.8);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border-right: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 
+    0 40px 80px -15px rgba(0, 0, 0, 0.15),
+    0 15px 35px -5px rgba(0, 0, 0, 0.1),
+    inset 0 4px 10px -2px rgba(255, 255, 255, 0.9),
+    inset 0 -2px 8px -2px rgba(0, 0, 0, 0.05);
+  border-radius: 24px;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateZ(0); /* Hardware acceleration */
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.85);
+  border-top: 1px solid rgba(123, 45, 59, 0.4);
+  border-left: 1px solid rgba(123, 45, 59, 0.2);
+  box-shadow:
+    0 50px 100px -20px rgba(123, 45, 59, 0.2),
+    0 20px 40px -5px rgba(123, 45, 59, 0.1),
+    inset 0 4px 10px -2px rgba(255, 255, 255, 1),
+    inset 0 -2px 8px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Variante Dark para cards no footer/projetos */
+.glass-card-dark {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 
+    0 40px 80px -15px rgba(0, 0, 0, 0.5),
+    inset 0 4px 10px -2px rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+}
+
+/* ===== GRADIENT TEXT ===== */
+.gradient-text {
+  background: linear-gradient(135deg, #1A1A1A 0%, #7B2D3B 50%, #9A3A4A 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 8s ease infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* ===== CUSTOM CURSOR STYLES ===== */
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background: #1A1A1A;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 999999;
+  will-change: transform;
+  transition: width 0.3s ease, height 0.3s ease, background 0.3s ease, opacity 0.3s ease;
+}
+
+.cursor-dot.hovering {
+  width: 6px;
+  height: 6px;
+  background: #7B2D3B;
+}
+
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  border: 1.5px solid rgba(123, 45, 59, 0.4);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 999998;
+  will-change: transform;
+  transition: width 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+              height 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+              border-color 0.3s ease,
+              background 0.3s ease;
+}
+
+.cursor-ring.hovering {
+  width: 64px;
+  height: 64px;
+  border-color: rgba(123, 45, 59, 0.3);
+  background: rgba(123, 45, 59, 0.04);
+}
+
+.cursor-ring.clicking {
+  width: 32px;
+  height: 32px;
+  border-color: rgba(123, 45, 59, 0.7);
+  background: rgba(123, 45, 59, 0.08);
+}
+
+.cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 999997;
+  will-change: transform;
+  background: radial-gradient(circle, rgba(123, 45, 59, 0.04) 0%, rgba(123, 45, 59, 0.01) 40%, transparent 70%);
+}
+
+/* ===== SCROLL INDICATOR ===== */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
+
+.scroll-bounce {
+  animation: bounce 2s ease-in-out infinite;
 }

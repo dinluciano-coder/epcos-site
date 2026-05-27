@@ -15,7 +15,7 @@ export default function CareersSection() {
   const [errorMessage, setErrorMessage] = useState("");
   const [fileName, setFileName] = useState("");
 
-  // Web3Forms Submit Handler
+  // Formspree Submit Handler
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -23,22 +23,29 @@ export default function CareersSection() {
     setErrorMessage("");
 
     const formData = new FormData(e.currentTarget);
-    formData.append("access_key", "24e58fe8-93ff-4d00-a653-6fb5b75d5d58");
     formData.append("subject", "Novo Currículo Enviado pelo Site EPCOS");
 
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
+      const response = await fetch("https://formspree.io/f/mredrzod", {
         method: "POST",
-        body: formData
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
       });
 
       const data = await response.json();
 
-      if (data.success) {
+      if (response.ok) {
         setIsSuccess(true);
       } else {
         setIsError(true);
-        setErrorMessage(data.message || "Erro desconhecido ao enviar arquivo.");
+        // Formspree returns an array of errors sometimes
+        if (data.errors && data.errors.length > 0) {
+          setErrorMessage(data.errors[0].message);
+        } else {
+          setErrorMessage("Erro desconhecido ao enviar arquivo.");
+        }
       }
     } catch (error) {
       setIsError(true);
@@ -149,8 +156,6 @@ export default function CareersSection() {
                   </label>
                   {!fileName && <p className="text-xs text-[#9A9A9A] mt-2">Máximo 2MB</p>}
                 </div>
-
-                <input type="checkbox" name="botcheck" className="hidden" style={{ display: 'none' }} />
 
                 <button 
                   type="submit" 

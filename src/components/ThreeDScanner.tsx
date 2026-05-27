@@ -97,18 +97,34 @@ function AbstractScannerModel({ scrollTriggerRef }: { scrollTriggerRef: React.Re
 }
 
 export default function ThreeDScanner({ containerRef }: { containerRef: React.RefObject<HTMLDivElement | null> }) {
+  const [isVisible, setIsVisible] = React.useState(false);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { rootMargin: "200px 0px" }
+    );
+    if (wrapperRef.current) observer.observe(wrapperRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div className="w-full h-[500px] md:h-[700px] absolute -inset-10 md:-inset-20 pointer-events-none z-0">
-      <Canvas camera={{ position: [0, 0, 8.5], fov: 45 }}>
-        <ambientLight intensity={0.5} />
-        <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={1} castShadow />
-        <pointLight position={[-10, -10, -10]} intensity={0.5} />
-        
-        <AbstractScannerModel scrollTriggerRef={containerRef} />
-        
-        <Environment preset="studio" />
-        <ContactShadows position={[0, -2.5, 0]} opacity={0.6} scale={20} blur={2.5} far={10} resolution={512} color="#000000" />
-      </Canvas>
+    <div ref={wrapperRef} className="w-full h-[500px] md:h-[700px] absolute -inset-10 md:-inset-20 pointer-events-none z-0">
+      {isVisible && (
+        <Canvas camera={{ position: [0, 0, 8.5], fov: 45 }}>
+          <ambientLight intensity={0.5} />
+          <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={1} castShadow />
+          <pointLight position={[-10, -10, -10]} intensity={0.5} />
+          
+          <AbstractScannerModel scrollTriggerRef={containerRef} />
+          
+          <Environment preset="studio" />
+          <ContactShadows position={[0, -2.5, 0]} opacity={0.6} scale={20} blur={2.5} far={10} resolution={512} color="#000000" />
+        </Canvas>
+      )}
     </div>
   );
 }

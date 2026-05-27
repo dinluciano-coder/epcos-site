@@ -4,8 +4,6 @@ import { useRef } from "react";
 import { gsap } from "@/lib/gsapConfig";
 import { useGSAP } from "@gsap/react";
 import ThreeDMachine from "./ThreeDMachine";
-import { Canvas } from "@react-three/fiber";
-import { View } from "@react-three/drei";
 
 const projects = [
   {
@@ -109,12 +107,6 @@ export default function MachineShowcaseSection() {
         })}
       </div>
 
-      {/* GLOBAL CANVAS FOR VIEWS (Solves WebGL Context Limit on Mobile) */}
-      <div className="fixed top-0 left-0 w-screen h-screen pointer-events-none z-50">
-        <Canvas eventSource={containerRef as any} className="pointer-events-none" dpr={[1, 2]}>
-          <View.Port />
-        </Canvas>
-      </div>
     </section>
   );
 }

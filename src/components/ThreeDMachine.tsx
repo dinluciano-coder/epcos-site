@@ -145,30 +145,43 @@ function MachineGeometry({ type, containerRef }: ThreeDMachineProps) {
 }
 
 export default function ThreeDMachine({ containerRef, type }: ThreeDMachineProps) {
+  const [isVisible, setIsVisible] = useState(false);
+  const [dpr, setDpr] = useState<[number, number]>([1, 2]);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    const isMobile = window.innerWidth < 768;
+    setDpr(isMobile ? [1, 1] : [1, 2]); // Low res on mobile
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      // Aggressive negative margin guarantees it only mounts when well inside the viewport,
+      // ensuring previous canvases unmount first.
+      { rootMargin: isMobile ? "-20% 0px" : "100px 0px" } 
+    );
+    
+    if (wrapperRef.current) {
+      observer.observe(wrapperRef.current);
+    }
+    
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <>
-      {/* O HTML "alvo" que a View vai rastrear */}
-      <div ref={wrapperRef} className="w-full h-full" />
-      
-      {/* A View renderiza a cena 3D exatamente sobre o HTML alvo usando a única Canvas global da seção */}
-      <View track={wrapperRef as any}>
-        {/* Iluminação de Estúdio Industrial */}
-        <ambientLight intensity={0.5} />
-        <directionalLight position={[10, 10, 5]} intensity={1.5} color="#ffffff" />
-        <directionalLight position={[-10, 10, -5]} intensity={1} color="#7B2D3B" />
-        <spotLight position={[0, 5, 0]} intensity={2} angle={0.6} penumbra={0.5} color="#ffffff" />
-        
-        {/* Reflexos HDRI */}
-        <Environment preset="city" />
-
-        {/* Modelo 3D */}
-        <MachineGeometry type={type} containerRef={containerRef} />
-
-        {/* Sombra de Contato para ancorar no chão */}
-        <ContactShadows position={[0, -2, 0]} opacity={0.5} scale={10} blur={2} far={4} />
-      </View>
-    </>
+    <div ref={wrapperRef} className="w-full h-full absolute inset-0">
+      {isVisible && (
+        <Canvas camera={{ position: [0, 0, 6], fov: 45 }} dpr={dpr}>
+          <ambientLight intensity={0.5} />
+          <directionalLight position={[10, 10, 5]} intensity={1.5} color="#ffffff" />
+          <directionalLight position={[-10, 10, -5]} intensity={1} color="#7B2D3B" />
+          <spotLight position={[0, 5, 0]} intensity={2} angle={0.6} penumbra={0.5} color="#ffffff" />
+          <Environment preset="city" />
+          <MachineGeometry type={type} containerRef={containerRef} />
+          <ContactShadows position={[0, -2, 0]} opacity={0.5} scale={10} blur={2} far={4} />
+        </Canvas>
+      )}
+    </div>
   );
 }

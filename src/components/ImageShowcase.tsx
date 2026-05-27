@@ -29,15 +29,15 @@ export default function ImageShowcase({ images }: ImageShowcaseProps) {
 
     gsap.fromTo(
       parallaxRef.current,
-      { y: "-10%" },
+      { yPercent: -25 },
       {
-        y: "10%",
+        yPercent: 25,
         ease: "none",
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top bottom", // Começa quando o topo do container bate na base da tela
           end: "bottom top",   // Termina quando a base bate no topo
-          scrub: true,         // Anima junto com o scroll
+          scrub: 1.5,          // Suaviza a animação com delay de 1.5s
         }
       }
     );
@@ -50,10 +50,10 @@ export default function ImageShowcase({ images }: ImageShowcaseProps) {
       ref={containerRef} 
       className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl border border-white/10"
     >
-      {/* Container do Parallax - um pouco maior que a div pai para permitir o movimento sem mostrar fundo */}
+      {/* Container do Parallax - muito maior para o efeito ser super perceptível */}
       <div 
         ref={parallaxRef} 
-        className="absolute inset-0 w-full h-[120%] -top-[10%]"
+        className="absolute w-full h-[150%] -top-[25%] left-0"
       >
         {images.map((imgUrl, index) => {
           const isActive = index === currentIndex;

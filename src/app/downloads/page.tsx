@@ -4,44 +4,26 @@ import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import FooterSection from "@/components/FooterSection";
 import LeadCaptureModal from "@/components/LeadCaptureModal";
-
-const files = [
-  {
-    id: "logo",
-    title: "Logotipo EPCOS",
-    description: "Versões em alta resolução (PNG, SVG, EPS) para uso em web e impressão.",
-    type: "ZIP",
-    size: "12 MB",
-    path: "/downloads/EPCOS_Logotipo_Exemplo.zip"
-  },
-  {
-    id: "apresentacao",
-    title: "Apresentação Institucional",
-    description: "Deck completo sobre nossas soluções em engenharia mecânica e automação.",
-    type: "PDF",
-    size: "8.5 MB",
-    path: "/downloads/EPCOS_Apresentacao_Exemplo.pdf"
-  },
-  {
-    id: "timbrado",
-    title: "Papel Timbrado",
-    description: "Modelo oficial de documento comercial EPCOS.",
-    type: "DOCX",
-    size: "2 MB",
-    path: "/downloads/EPCOS_Timbrado_Exemplo.docx"
-  }
-];
+import { getFiles } from "../actions";
 
 export default function DownloadsPage() {
   const [isUnlocked, setIsUnlocked] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [pendingFile, setPendingFile] = useState<string | null>(null);
+  const [files, setFiles] = useState<any[]>([]);
 
   useEffect(() => {
     // Check if user already unlocked the downloads
     if (localStorage.getItem("epcos_lead_captured") === "true") {
       setIsUnlocked(true);
     }
+    
+    // Fetch files from Vercel Blob
+    getFiles().then((res) => {
+      if (res.success && res.files) {
+        setFiles(res.files);
+      }
+    });
   }, []);
 
   const handleDownloadClick = (path: string) => {
@@ -49,6 +31,7 @@ export default function DownloadsPage() {
       // Create a temporary anchor to trigger download
       const a = document.createElement("a");
       a.href = path;
+      a.target = "_blank";
       a.download = path.split("/").pop() || "download";
       document.body.appendChild(a);
       a.click();
@@ -68,6 +51,7 @@ export default function DownloadsPage() {
       setTimeout(() => {
         const a = document.createElement("a");
         a.href = pendingFile;
+        a.target = "_blank";
         a.download = pendingFile.split("/").pop() || "download";
         document.body.appendChild(a);
         a.click();
@@ -101,8 +85,15 @@ export default function DownloadsPage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {files.map((file) => (
-            <div key={file.id} className="glass-card-dark p-8 flex flex-col justify-between h-full bg-[#1A1A1A]/80 border border-white/10 hover:border-[#7B2D3B]/50 transition-colors group">
+          {files.length === 0 ? (
+            <div className="col-span-full py-12 text-center text-[#6B6B6B]">Carregando arquivos...</div>
+          ) : files.map((file) => {
+            const extension = file.pathname.split('.').pop()?.toUpperCase() || "ARQUIVO";
+            const sizeMB = (file.size / 1024 / 1024).toFixed(1) + " MB";
+            const title = file.pathname.split('/').pop()?.split('.')[0].replace(/[-_]/g, ' ') || "Documento";
+
+            return (
+            <div key={file.url} className="glass-card-dark p-8 flex flex-col justify-between h-full bg-[#1A1A1A]/80 border border-white/10 hover:border-[#7B2D3B]/50 transition-colors group">
               <div>
                 <div className="flex justify-between items-start mb-6">
                   <div className="w-12 h-12 rounded-xl bg-[#7B2D3B]/20 flex items-center justify-center text-[#7B2D3B]">
@@ -111,17 +102,17 @@ export default function DownloadsPage() {
                     </svg>
                   </div>
                   <div className="flex gap-2">
-                    <span className="text-xs font-bold px-2 py-1 bg-white/10 text-white rounded-md">{file.type}</span>
-                    <span className="text-xs font-bold px-2 py-1 bg-white/10 text-white rounded-md">{file.size}</span>
+                    <span className="text-xs font-bold px-2 py-1 bg-white/10 text-white rounded-md">{extension}</span>
+                    <span className="text-xs font-bold px-2 py-1 bg-white/10 text-white rounded-md">{sizeMB}</span>
                   </div>
                 </div>
                 
-                <h3 className="text-xl font-bold text-white mb-2">{file.title}</h3>
-                <p className="text-sm text-[#6B6B6B] mb-8 line-clamp-3">{file.description}</p>
+                <h3 className="text-xl font-bold text-white mb-2 capitalize">{title}</h3>
+                <p className="text-sm text-[#6B6B6B] mb-8 line-clamp-3">Arquivo oficial EPCOS disponível para download restrito.</p>
               </div>
 
               <button 
-                onClick={() => handleDownloadClick(file.path)}
+                onClick={() => handleDownloadClick(file.url)}
                 className={`w-full py-4 rounded-xl flex items-center justify-center gap-2 font-bold text-sm uppercase tracking-wider transition-all duration-300 ${
                   isUnlocked 
                     ? "bg-[#00D4FF]/10 text-[#00D4FF] hover:bg-[#00D4FF]/20 border border-[#00D4FF]/30" 
@@ -145,7 +136,7 @@ export default function DownloadsPage() {
                 )}
               </button>
             </div>
-          ))}
+          )})}
         </div>
       </section>
 

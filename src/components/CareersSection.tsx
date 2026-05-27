@@ -12,12 +12,15 @@ export default function CareersSection() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [fileName, setFileName] = useState("");
 
   // Web3Forms Submit Handler
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     setIsError(false);
+    setErrorMessage("");
 
     const formData = new FormData(e.currentTarget);
     formData.append("access_key", "24e58fe8-93ff-4d00-a653-6fb5b75d5d58");
@@ -35,9 +38,11 @@ export default function CareersSection() {
         setIsSuccess(true);
       } else {
         setIsError(true);
+        setErrorMessage(data.message || "Erro desconhecido ao enviar arquivo.");
       }
     } catch (error) {
       setIsError(true);
+      setErrorMessage("Erro de conexão. Tente novamente.");
     } finally {
       setIsSubmitting(false);
     }
@@ -104,7 +109,7 @@ export default function CareersSection() {
               <form onSubmit={handleSubmit} className="w-full flex flex-col gap-4 transform-gpu" style={{ transform: "translateZ(35px)" }}>
                 {isError && (
                   <div className="bg-red-50 text-red-600 p-3 rounded-xl text-sm border border-red-100 mb-2 text-center">
-                    Ocorreu um erro. Verifique o tamanho do PDF (max 2MB) ou tente novamente.
+                    Erro: {errorMessage}
                   </div>
                 )}
                 
@@ -115,12 +120,34 @@ export default function CareersSection() {
                 
                 <input type="text" name="vaga" required placeholder="Qual vaga te interessa?" className="w-full bg-white/50 border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-[#7B2D3B] focus:ring-1 focus:ring-[#7B2D3B] transition-all" />
                 
-                <div className="w-full bg-white/50 border border-black/10 border-dashed rounded-xl px-4 py-6 text-center hover:bg-white/80 transition-colors">
-                  <label className="cursor-pointer text-[#7B2D3B] font-semibold">
-                    <span>Clique para anexar seu Currículo (PDF)</span>
-                    <input type="file" name="attachment" accept=".pdf,.doc,.docx" required className="hidden" />
+                <div className={`w-full bg-white/50 border border-dashed rounded-xl px-4 py-6 text-center transition-colors ${fileName ? 'border-[#7B2D3B] bg-[#7B2D3B]/5' : 'border-black/10 hover:bg-white/80'}`}>
+                  <label className="cursor-pointer text-[#7B2D3B] font-semibold flex flex-col items-center gap-2">
+                    {fileName ? (
+                      <>
+                        <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <span className="text-[#1A1A1A]">{fileName}</span>
+                        <span className="text-xs underline text-[#7B2D3B]">Trocar arquivo</span>
+                      </>
+                    ) : (
+                      <>
+                        <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
+                        </svg>
+                        <span>Clique para anexar seu Currículo (PDF)</span>
+                      </>
+                    )}
+                    <input 
+                      type="file" 
+                      name="attachment" 
+                      accept=".pdf,.doc,.docx" 
+                      required 
+                      className="hidden" 
+                      onChange={(e) => setFileName(e.target.files?.[0]?.name || "")}
+                    />
                   </label>
-                  <p className="text-xs text-[#9A9A9A] mt-2">Máximo 2MB</p>
+                  {!fileName && <p className="text-xs text-[#9A9A9A] mt-2">Máximo 2MB</p>}
                 </div>
 
                 <input type="checkbox" name="botcheck" className="hidden" style={{ display: 'none' }} />

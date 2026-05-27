@@ -16,9 +16,7 @@ export async function POST(request: Request): Promise<NextResponse> {
       body,
       request,
       onBeforeGenerateToken: async (pathname) => {
-        // Here you can check limits or change pathname
         return {
-          allowedContentTypes: ['application/pdf', 'application/zip', 'application/x-zip-compressed', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'image/png', 'image/jpeg', 'image/svg+xml'],
           tokenPayload: JSON.stringify({ uploadedBy: 'admin' }),
         };
       },

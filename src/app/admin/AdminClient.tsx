@@ -69,11 +69,12 @@ export default function AdminClient({ initialAuth }: { initialAuth: boolean }) {
       await loadFiles();
       if (fileInputRef.current) fileInputRef.current.value = "";
     } catch (err: any) {
-      console.error(err);
-      setError("Erro ao fazer upload. Verifique o tamanho ou o formato.");
+      console.error("Upload error details:", err);
+      setError(`Erro no envio: ${err.message || "Tamanho ou formato não suportado."}`);
+      if (fileInputRef.current) fileInputRef.current.value = "";
+    } finally {
+      setUploading(false);
     }
-    
-    setUploading(false);
   };
 
   const handleDelete = async (url: string) => {

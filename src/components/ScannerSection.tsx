@@ -87,8 +87,10 @@ export default function ScannerSection() {
         <div className="relative h-[500px] md:h-[700px] w-full flex items-center justify-center">
           
           {/* Glass Pedestal Background */}
-          <div className="absolute inset-0 z-0 flex items-center justify-center transform-gpu">
-            <div className="w-[80%] h-[120%] bg-white/40 backdrop-blur-3xl rounded-[3rem] border border-white/60 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.05)] transform -rotate-6 scale-95" />
+          <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-auto">
+            <TiltWrapper maxTilt={15} className="w-[80%] h-[120%]">
+              <div className="w-full h-full bg-white/40 backdrop-blur-3xl rounded-[3rem] border border-[rgba(255,255,255,0.8)] shadow-[0_40px_80px_-15px_rgba(0,0,0,0.1)] transform -rotate-6 scale-95 glass-card" style={{ transform: "rotate(-6deg) scale(0.95) translateZ(40px)" }} />
+            </TiltWrapper>
           </div>
 
           <ThreeDScanner containerRef={sectionRef as React.RefObject<HTMLDivElement>} />

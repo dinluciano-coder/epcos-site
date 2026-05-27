@@ -84,9 +84,9 @@ export default function ProjectsSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {projects.map((proj, i) => (
-            <div key={i} className="project-card-anim">
-              <TiltWrapper maxTilt={10}>
-                <div className="group relative rounded-3xl overflow-hidden glass-card-dark transition-all duration-500 h-full">
+            <div key={i} className="project-card-anim h-full">
+              <TiltWrapper maxTilt={10} className="h-full">
+                <div className="group relative rounded-3xl overflow-hidden glass-card-dark transition-all duration-500 h-full flex flex-col">
                   
                   <div className="aspect-[4/3] w-full overflow-hidden relative">
                     <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-all z-10 pointer-events-none"></div>

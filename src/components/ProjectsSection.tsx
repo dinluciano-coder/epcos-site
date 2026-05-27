@@ -90,12 +90,10 @@ export default function ProjectsSection() {
                   
                   <div className="aspect-[4/3] w-full overflow-hidden relative">
                     <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-all z-10 pointer-events-none"></div>
-                    <Image 
+                    <img 
                       src={proj.image} 
                       alt={proj.title}
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-110"
-                      unoptimized
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
                   </div>
 

@@ -166,7 +166,7 @@ export default function HeroSection() {
           </div>
         </div>
 
-        <div ref={titleGroupRef} className="flex flex-col items-center transform-gpu z-10" style={{ transformStyle: "preserve-3d" }}>
+        <div ref={titleGroupRef} className="flex flex-col items-center transform-gpu z-10 -mt-20" style={{ transformStyle: "preserve-3d" }}>
           
           <div ref={badgeRef} className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-black/10 bg-white/50 backdrop-blur-md mb-4 shadow-sm" style={{ opacity: 0, transform: "translateY(20px)" }}>
             <span className="w-2 h-2 rounded-full bg-[#7B2D3B] animate-pulse"></span>
@@ -193,7 +193,7 @@ export default function HeroSection() {
             Escaneamento 3D, projetos mecânicos e soluções inteligentes.
           </p>
 
-          <div ref={ctaRef} className="mb-8" style={{ opacity: 0, transform: "translateY(20px)" }}>
+          <div ref={ctaRef} className="mb-16" style={{ opacity: 0, transform: "translateY(20px)" }}>
             <MagneticButton href="#sobre">
               Conheça a EPCOS
             </MagneticButton>

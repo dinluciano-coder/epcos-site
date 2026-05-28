@@ -105,26 +105,40 @@ export default function HeroSection() {
 
   }, []);
 
+  const rafRef = useRef<number | null>(null);
+
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     if (window.innerWidth < 768) return;
     if (!logoWrapperRef.current) return;
 
-    const rect = logoWrapperRef.current.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-    
-    // Normalized distance from center of the logo (-1 to 1)
-    const normalizedX = (e.clientX - centerX) / (rect.width / 2);
-    const normalizedY = (e.clientY - centerY) / (rect.height / 2);
+    // Cache mouse coordinates to avoid closure staleness
+    const clientX = e.clientX;
+    const clientY = e.clientY;
 
-    // Efeito magnético e Tilt 3D idêntico aos cards
-    rotateXTo.current?.(normalizedY * -20);
-    rotateYTo.current?.(normalizedX * 20);
-    xTo.current?.(normalizedX * 15);
-    yTo.current?.(normalizedY * 15);
+    if (rafRef.current) return; // Already requested a frame
+
+    rafRef.current = requestAnimationFrame(() => {
+      const rect = logoWrapperRef.current!.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      
+      const normalizedX = (clientX - centerX) / (rect.width / 2);
+      const normalizedY = (clientY - centerY) / (rect.height / 2);
+
+      rotateXTo.current?.(normalizedY * -20);
+      rotateYTo.current?.(normalizedX * 20);
+      xTo.current?.(normalizedX * 15);
+      yTo.current?.(normalizedY * 15);
+      
+      rafRef.current = null;
+    });
   }, []);
 
   const handleMouseLeave = useCallback(() => {
+    if (rafRef.current) {
+      cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
+    }
     rotateXTo.current?.(0);
     rotateYTo.current?.(0);
     xTo.current?.(0);

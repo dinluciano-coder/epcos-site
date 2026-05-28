@@ -24,26 +24,37 @@ export default function TiltWrapper({ children, className = "", maxTilt = 10 }: 
     rotateYTo.current = gsap.quickTo(cardRef.current, "rotationY", { duration: 0.8, ease: "power3.out" });
   }, []);
 
+  const rafRef = useRef<number | null>(null);
+
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    // IMPORTANTE: Medimos a posição do mouse em relação ao container pai (que é estático)
-    // Se medirmos o cardRef (que está rotacionando em 3D), o getBoundingClientRect() sofre
-    // distorções constantes conforme o card gira, causando o efeito de "trepidação" (jitter)
     if (!containerRef.current) return;
-    
     if (window.innerWidth < 768) return;
 
-    const rect = containerRef.current.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-    
-    const normalizedX = (e.clientX - centerX) / (rect.width / 2);
-    const normalizedY = (e.clientY - centerY) / (rect.height / 2);
-    
-    rotateXTo.current?.(normalizedY * -maxTilt);
-    rotateYTo.current?.(normalizedX * maxTilt);
+    const clientX = e.clientX;
+    const clientY = e.clientY;
+
+    if (rafRef.current) return;
+
+    rafRef.current = requestAnimationFrame(() => {
+      const rect = containerRef.current!.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      
+      const normalizedX = (clientX - centerX) / (rect.width / 2);
+      const normalizedY = (clientY - centerY) / (rect.height / 2);
+      
+      rotateXTo.current?.(normalizedY * -maxTilt);
+      rotateYTo.current?.(normalizedX * maxTilt);
+
+      rafRef.current = null;
+    });
   }, [maxTilt]);
 
   const handleMouseLeave = useCallback(() => {
+    if (rafRef.current) {
+      cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
+    }
     rotateXTo.current?.(0);
     rotateYTo.current?.(0);
   }, []);

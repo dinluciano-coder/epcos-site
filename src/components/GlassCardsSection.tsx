@@ -41,29 +41,42 @@ function TiltCard({ title, description, delay = 0 }: TiltCardProps) {
     });
   }, [delay]);
 
+  const rafRef = useRef<number | null>(null);
+
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
     
-    // Calculate distance from center (-1 to 1)
-    const normalizedX = (e.clientX - centerX) / (rect.width / 2);
-    const normalizedY = (e.clientY - centerY) / (rect.height / 2);
-    
-    // Max rotation in degrees
-    const maxRotate = 15;
-    
-    rotateXTo.current?.(normalizedY * -maxRotate);
-    rotateYTo.current?.(normalizedX * maxRotate);
-    
-    // Move glare opposite to mouse
-    glareXTo.current?.(normalizedX * -50);
-    glareYTo.current?.(normalizedY * -50);
-    glareOpacityTo.current?.(1);
+    const clientX = e.clientX;
+    const clientY = e.clientY;
+
+    if (rafRef.current) return;
+
+    rafRef.current = requestAnimationFrame(() => {
+      const rect = cardRef.current!.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      
+      const normalizedX = (clientX - centerX) / (rect.width / 2);
+      const normalizedY = (clientY - centerY) / (rect.height / 2);
+      
+      const maxRotate = 15;
+      
+      rotateXTo.current?.(normalizedY * -maxRotate);
+      rotateYTo.current?.(normalizedX * maxRotate);
+      
+      glareXTo.current?.(normalizedX * -50);
+      glareYTo.current?.(normalizedY * -50);
+      glareOpacityTo.current?.(1);
+
+      rafRef.current = null;
+    });
   }, []);
 
   const handleMouseLeave = useCallback(() => {
+    if (rafRef.current) {
+      cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
+    }
     rotateXTo.current?.(0);
     rotateYTo.current?.(0);
     glareOpacityTo.current?.(0);

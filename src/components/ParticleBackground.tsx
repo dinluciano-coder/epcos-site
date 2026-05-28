@@ -52,7 +52,8 @@ export default function ParticleBackground() {
     const handleResize = () => {
       const w = window.innerWidth;
       const h = window.innerHeight;
-      const dpr = window.devicePixelRatio || 1;
+      const rawDpr = window.devicePixelRatio || 1;
+      const dpr = Math.min(rawDpr, 1.5); // CAP DPR
 
       canvas.width = w * dpr;
       canvas.height = h * dpr;
@@ -83,16 +84,12 @@ export default function ParticleBackground() {
 
     // Scroll listener to detect dark/light sections
     const handleScroll = () => {
-      // Find element in the middle of the screen
       const el = document.elementFromPoint(window.innerWidth / 2, window.innerHeight / 2);
       if (el) {
-        // Traverse up to find if we are in a dark section
         const isDark = el.closest('[data-theme="dark"]');
         if (isDark) {
-          // Target White
           targetColorRef.current = { r: 255, g: 255, b: 255 };
         } else {
-          // Target Burgundy
           targetColorRef.current = { r: 123, g: 45, b: 59 };
         }
       }
@@ -103,20 +100,17 @@ export default function ParticleBackground() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll(); // Initial check
 
-    const isMobile = () => sizeRef.current.w < 768;
-
+    // Loop
     const animate = () => {
-      frameCountRef.current++;
-      if (isMobile() && frameCountRef.current % 2 !== 0) {
-        rafRef.current = requestAnimationFrame(animate);
-        return;
-      }
+      frameCountRef.current += 1;
+      // Skip some calculations if offscreen? Not implementing here to keep it 100% smooth, 
+      // but we will optimize the math instead.
 
       // Smoothly interpolate colors
       colorRef.current.r += (targetColorRef.current.r - colorRef.current.r) * 0.05;
       colorRef.current.g += (targetColorRef.current.g - colorRef.current.g) * 0.05;
       colorRef.current.b += (targetColorRef.current.b - colorRef.current.b) * 0.05;
-      
+
       const { r, g, b } = colorRef.current;
       const currentRgb = `${Math.round(r)}, ${Math.round(g)}, ${Math.round(b)}`;
 
@@ -130,15 +124,17 @@ export default function ParticleBackground() {
         const p = particles[i];
         const dx = p.x - mouse.x;
         const dy = p.y - mouse.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-
-        // Repulsion
-        if (dist < 200 && dist > 0) {
-          const force = ((200 - dist) / 200) * 2;
-          const nx = dx / dist;
-          const ny = dy / dist;
-          p.x += nx * force;
-          p.y += ny * force;
+        
+        // Fast bounding box check before heavy Math.sqrt
+        if (Math.abs(dx) < 200 && Math.abs(dy) < 200) {
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 200 && dist > 0) {
+            const force = ((200 - dist) / 200) * 2;
+            const nx = dx / dist;
+            const ny = dy / dist;
+            p.x += nx * force;
+            p.y += ny * force;
+          }
         }
 
         p.x += p.vx;
@@ -150,17 +146,22 @@ export default function ParticleBackground() {
         if (p.y > h) p.y -= h;
       }
 
-      ctx.lineWidth = 1; // Thicker lines
+      ctx.lineWidth = 1; 
       for (let i = 0; i < particles.length; i++) {
+        const a = particles[i];
         for (let j = i + 1; j < particles.length; j++) {
-          const a = particles[i];
           const b = particles[j];
           const dx = a.x - b.x;
+          // FAST spatial check before expensive Math.sqrt
+          if (Math.abs(dx) > 150) continue;
+          
           const dy = a.y - b.y;
+          if (Math.abs(dy) > 150) continue;
+          
           const dist = Math.sqrt(dx * dx + dy * dy);
 
           if (dist < 150) {
-            const opacity = (1 - dist / 150) * 0.15; // More visible lines
+            const opacity = (1 - dist / 150) * 0.15; 
             ctx.strokeStyle = `rgba(${currentRgb}, ${opacity})`;
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);

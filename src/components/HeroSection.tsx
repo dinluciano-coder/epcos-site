@@ -135,7 +135,7 @@ export default function HeroSection() {
     <section 
       id="hero"
       ref={sectionRef} 
-      className="relative min-h-[100svh] flex flex-col items-center justify-center pt-20 pb-16 overflow-hidden"
+      className="relative min-h-[100svh] flex flex-col items-center justify-start pt-[140px] pb-16 overflow-hidden"
     >
       
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl h-96 bg-[#7B2D3B]/5 blur-[120px] rounded-full pointer-events-none" />

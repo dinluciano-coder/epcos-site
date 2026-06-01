@@ -197,28 +197,21 @@ body {
   background: rgba(255, 255, 255, 0.2);
 }
 
-/* === Scanning Particles inside Cursor === */
-@keyframes scan-flash {
-  0% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
-  50% { transform: translate(var(--tx), var(--ty)) scale(var(--s)); opacity: var(--o); }
-  100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
+/* === CNC Crosshair inside Cursor === */
+.cursor-ring.clicking .cnc-crosshair {
+  opacity: 1;
+  transform: scale(1) rotate(90deg);
+  color: #7B2D3B;
 }
 
-.scan-particle {
-  position: absolute;
-  background-color: #7B2D3B;
-  opacity: 0;
-  pointer-events: none;
-  transition: background-color 0.3s ease;
+.cursor-ring.cursor-light.clicking .cnc-crosshair {
+  color: #FFFFFF;
 }
 
-.cursor-ring.cursor-light .scan-particle {
-  background-color: #FFFFFF;
-}
-
-.cursor-ring.clicking .scan-particle {
-  animation: scan-flash var(--dur) ease-in-out infinite;
-  animation-delay: var(--del);
+/* Hide the normal border and background of the ring when clicking, letting the crosshair shine */
+.cursor-ring.clicking {
+  border-color: transparent !important;
+  background: transparent !important;
 }
 
 .cursor-glow {

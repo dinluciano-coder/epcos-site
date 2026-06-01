@@ -137,21 +137,34 @@ export default function CustomCursor() {
     <>
       <div ref={glowRef} className="cursor-glow" style={{ position: "fixed", pointerEvents: "none", zIndex: 9997, willChange: "transform" }} />
       <div ref={ringRef} className="cursor-ring" style={{ position: "fixed", pointerEvents: "none", zIndex: 9998, willChange: "transform" }}>
-        {/* CNC Crosshair Elements */}
-        <div className="cnc-crosshair absolute top-0 left-0 w-full h-full flex items-center justify-center opacity-0 scale-50 transition-all duration-500 ease-[cubic-bezier(0.175,0.885,0.32,1.275)] pointer-events-none text-current">
-          {/* Central Target */}
-          <div className="absolute w-[120%] h-[1px] bg-current opacity-70" />
-          <div className="absolute h-[120%] w-[1px] bg-current opacity-70" />
+        {Array.from({ length: 30 }).map((_, i) => {
+          // Espalha partículas além do anel (raio do anel é 16px no click, vamos até 40px)
+          const tx = (Math.random() - 0.5) * 80;
+          const ty = (Math.random() - 0.5) * 80;
           
-          {/* Measurement Brackets */}
-          <div className="absolute -top-2 -left-2 w-3 h-3 border-t-2 border-l-2 border-current opacity-80" />
-          <div className="absolute -top-2 -right-2 w-3 h-3 border-t-2 border-r-2 border-current opacity-80" />
-          <div className="absolute -bottom-2 -left-2 w-3 h-3 border-b-2 border-l-2 border-current opacity-80" />
-          <div className="absolute -bottom-2 -right-2 w-3 h-3 border-b-2 border-r-2 border-current opacity-80" />
+          // Calcula a distância do centro (Teorema de Pitágoras)
+          const dist = Math.sqrt(tx * tx + ty * ty);
           
-          {/* Outer circle of the CNC */}
-          <div className="absolute w-[140%] h-[140%] rounded-full border border-dashed border-current opacity-30 animate-[spin_10s_linear_infinite]" />
-        </div>
+          // Lógica de difusão: quanto mais perto do centro (0), mais opaco. Quanto mais longe (40), mais transparente.
+          const maxDist = 40;
+          let baseOpacity = 1 - (dist / maxDist);
+          if (baseOpacity < 0) baseOpacity = 0; // Evita partículas negativas/invisíveis muito longe
+          
+          const s = Math.random() * 1.5 + 0.5;
+          // Multiplica a opacidade base por um valor aleatório para não ficar tudo uniforme
+          const o = baseOpacity * (Math.random() * 0.6 + 0.4); 
+          
+          const dur = Math.random() * 0.5 + 0.4;
+          const del = Math.random() * 0.8;
+          
+          return (
+            <div 
+              key={`p-${i}`} 
+              className="scan-particle w-[4px] h-[4px] rounded-full" 
+              style={{ '--tx': `${tx}px`, '--ty': `${ty}px`, '--s': s, '--o': o, '--dur': `${dur}s`, '--del': `${del}s` } as any} 
+            />
+          );
+        })}
       </div>
       <div ref={dotRef} className="cursor-dot" style={{ position: "fixed", pointerEvents: "none", zIndex: 9999, willChange: "transform" }} />
     </>

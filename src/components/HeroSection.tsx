@@ -125,10 +125,16 @@ export default function HeroSection() {
       const normalizedX = (clientX - centerX) / (rect.width / 2);
       const normalizedY = (clientY - centerY) / (rect.height / 2);
 
-      rotateXTo.current?.(normalizedY * -20);
-      rotateYTo.current?.(normalizedX * 20);
-      xTo.current?.(normalizedX * 15);
-      yTo.current?.(normalizedY * 15);
+      const maxDimension = Math.max(rect.width, rect.height);
+      const scaleFactor = Math.min(1, 350 / maxDimension);
+      
+      const finalRotate = 20 * scaleFactor;
+      const finalTranslate = 15 * scaleFactor;
+
+      rotateXTo.current?.(normalizedY * -finalRotate);
+      rotateYTo.current?.(normalizedX * finalRotate);
+      xTo.current?.(normalizedX * finalTranslate);
+      yTo.current?.(normalizedY * finalTranslate);
       
       rafRef.current = null;
     });

@@ -60,9 +60,12 @@ function TiltCard({ title, description, delay = 0 }: TiltCardProps) {
       const normalizedY = (clientY - centerY) / (rect.height / 2);
       
       const maxRotate = 15;
+      const maxDimension = Math.max(rect.width, rect.height);
+      const scaleFactor = Math.min(1, 350 / maxDimension);
+      const finalMaxRotate = maxRotate * scaleFactor;
       
-      rotateXTo.current?.(normalizedY * -maxRotate);
-      rotateYTo.current?.(normalizedX * maxRotate);
+      rotateXTo.current?.(normalizedY * -finalMaxRotate);
+      rotateYTo.current?.(normalizedX * finalMaxRotate);
       
       glareXTo.current?.(normalizedX * -50);
       glareYTo.current?.(normalizedY * -50);

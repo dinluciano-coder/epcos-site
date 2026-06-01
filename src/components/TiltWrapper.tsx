@@ -43,8 +43,14 @@ export default function TiltWrapper({ children, className = "", maxTilt = 10 }: 
       const normalizedX = (clientX - centerX) / (rect.width / 2);
       const normalizedY = (clientY - centerY) / (rect.height / 2);
       
-      rotateXTo.current?.(normalizedY * -maxTilt);
-      rotateYTo.current?.(normalizedX * maxTilt);
+      // Compensação de tamanho: quanto maior o card, menor o ângulo máximo permitido
+      // Isso garante que a distorção 3D nas bordas (deslocamento Z) seja idêntica em cards grandes e pequenos
+      const maxDimension = Math.max(rect.width, rect.height);
+      const scaleFactor = Math.min(1, 350 / maxDimension); // 350px é o tamanho ideal de referência
+      const finalMaxTilt = maxTilt * scaleFactor;
+      
+      rotateXTo.current?.(normalizedY * -finalMaxTilt);
+      rotateYTo.current?.(normalizedX * finalMaxTilt);
 
       rafRef.current = null;
     });

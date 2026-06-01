@@ -44,10 +44,10 @@ export default function HeroSection() {
     if (!sectionRef.current) return;
 
     if (logoRef.current) {
-      rotateXTo.current = gsap.quickTo(logoRef.current, "rotationX", { duration: 0.8, ease: "power3.out" });
-      rotateYTo.current = gsap.quickTo(logoRef.current, "rotationY", { duration: 0.8, ease: "power3.out" });
-      xTo.current = gsap.quickTo(logoRef.current, "x", { duration: 0.8, ease: "power3.out" });
-      yTo.current = gsap.quickTo(logoRef.current, "y", { duration: 0.8, ease: "power3.out" });
+      rotateXTo.current = gsap.quickTo(logoRef.current, "rotationX", { duration: 0.5, ease: "power3.out" });
+      rotateYTo.current = gsap.quickTo(logoRef.current, "rotationY", { duration: 0.5, ease: "power3.out" });
+      xTo.current = gsap.quickTo(logoRef.current, "x", { duration: 0.5, ease: "power3.out" });
+      yTo.current = gsap.quickTo(logoRef.current, "y", { duration: 0.5, ease: "power3.out" });
     }
 
     // Initial Load Animation for Logo

@@ -20,8 +20,8 @@ export default function TiltWrapper({ children, className = "", maxTilt = 10 }: 
   useGSAP(() => {
     if (!cardRef.current) return;
     
-    rotateXTo.current = gsap.quickTo(cardRef.current, "rotationX", { duration: 0.8, ease: "power3.out" });
-    rotateYTo.current = gsap.quickTo(cardRef.current, "rotationY", { duration: 0.8, ease: "power3.out" });
+    rotateXTo.current = gsap.quickTo(cardRef.current, "rotationX", { duration: 0.5, ease: "power3.out" });
+    rotateYTo.current = gsap.quickTo(cardRef.current, "rotationY", { duration: 0.5, ease: "power3.out" });
   }, []);
 
   const rafRef = useRef<number | null>(null);

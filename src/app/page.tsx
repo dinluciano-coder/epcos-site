@@ -22,11 +22,11 @@ export default function Home() {
       <main className="relative z-10 w-full overflow-hidden bg-transparent">
         <HeroSection />
         <AboutSection />
-        <ScannerSection />
         <GlassCardsSection />
         <ProjectsSection />
         <MachineShowcaseSection />
         <ServicesSection />
+        <ScannerSection />
         <CareersSection />
         <ContactSection />
         <FooterSection />

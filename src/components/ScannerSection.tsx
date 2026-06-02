@@ -126,7 +126,7 @@ export default function ScannerSection() {
               style={{ transformStyle: "preserve-3d" }}
             >
               <Image 
-                src="/scanner.png"
+                src="/reverse_engineering.png"
                 alt="Metrologia 3D aplicada à Engenharia Mecânica"
                 fill
                 quality={100}

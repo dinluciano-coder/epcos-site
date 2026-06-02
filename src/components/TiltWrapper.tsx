@@ -18,10 +18,16 @@ export default function TiltWrapper({ children, className = "", maxTilt = 10 }: 
   const rotateYTo = useRef<ReturnType<typeof gsap.quickTo> | null>(null);
 
   useGSAP(() => {
-    if (!cardRef.current) return;
+    if (!cardRef.current || !containerRef.current) return;
     
-    rotateXTo.current = gsap.quickTo(cardRef.current, "rotationX", { duration: 0.5, ease: "power3.out" });
-    rotateYTo.current = gsap.quickTo(cardRef.current, "rotationY", { duration: 0.5, ease: "power3.out" });
+    const rect = containerRef.current.getBoundingClientRect();
+    const maxDimension = Math.max(rect.width, rect.height);
+    // Dynamic Duration: 350px card = 0.5s. 1400px card = 1.2s. 
+    // This directly answers the user's request: "quanto maior, mais lento"
+    const dynamicDuration = Math.min(1.5, Math.max(0.5, (maxDimension / 350) * 0.4)); 
+    
+    rotateXTo.current = gsap.quickTo(cardRef.current, "rotationX", { duration: dynamicDuration, ease: "power3.out" });
+    rotateYTo.current = gsap.quickTo(cardRef.current, "rotationY", { duration: dynamicDuration, ease: "power3.out" });
   }, []);
 
   const rafRef = useRef<number | null>(null);
@@ -75,7 +81,7 @@ export default function TiltWrapper({ children, className = "", maxTilt = 10 }: 
     >
       <div
         ref={cardRef}
-        className="w-full h-full transform-gpu transition-all duration-500 ease-out"
+        className="w-full h-full transform-gpu"
         style={{ transformStyle: "preserve-3d", willChange: "transform" }}
       >
         {children}

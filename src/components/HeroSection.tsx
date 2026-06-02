@@ -43,11 +43,15 @@ export default function HeroSection() {
   useGSAP(() => {
     if (!sectionRef.current) return;
 
-    if (logoRef.current) {
-      rotateXTo.current = gsap.quickTo(logoRef.current, "rotationX", { duration: 0.5, ease: "power3.out" });
-      rotateYTo.current = gsap.quickTo(logoRef.current, "rotationY", { duration: 0.5, ease: "power3.out" });
-      xTo.current = gsap.quickTo(logoRef.current, "x", { duration: 0.5, ease: "power3.out" });
-      yTo.current = gsap.quickTo(logoRef.current, "y", { duration: 0.5, ease: "power3.out" });
+    if (logoRef.current && logoWrapperRef.current) {
+      const rect = logoWrapperRef.current.getBoundingClientRect();
+      const maxDimension = Math.max(rect.width, rect.height);
+      const dynamicDuration = Math.min(1.5, Math.max(0.5, (maxDimension / 350) * 0.5)); 
+      
+      rotateXTo.current = gsap.quickTo(logoRef.current, "rotationX", { duration: dynamicDuration, ease: "power3.out" });
+      rotateYTo.current = gsap.quickTo(logoRef.current, "rotationY", { duration: dynamicDuration, ease: "power3.out" });
+      xTo.current = gsap.quickTo(logoRef.current, "x", { duration: dynamicDuration, ease: "power3.out" });
+      yTo.current = gsap.quickTo(logoRef.current, "y", { duration: dynamicDuration, ease: "power3.out" });
     }
 
     // Initial Load Animation for Logo
@@ -171,7 +175,7 @@ export default function HeroSection() {
         >
           <div 
             ref={logoRef} 
-            className="relative z-10 scale-100 md:scale-[1.5] w-full max-w-[320px] md:max-w-[480px] transform-gpu transition-all duration-500 ease-out"
+            className="relative z-10 scale-100 md:scale-[1.5] w-full max-w-[320px] md:max-w-[480px] transform-gpu"
             style={{ transformStyle: "preserve-3d" }}
           >
             <Image

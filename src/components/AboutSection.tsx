@@ -88,10 +88,10 @@ export default function AboutSection() {
             Engenharia que <br/><span className="text-[#7B2D3B]">Molda o Futuro.</span>
           </h2>
           <p className="about-text text-lg md:text-xl text-[#6B6B6B] leading-relaxed max-w-lg mb-6">
-            Nascemos da necessidade de trazer precisão absoluta para a indústria nacional. Com tecnologia de escaneamento de ponta e projetos mecânicos robustos, somos o parceiro estratégico de grandes corporações.
+            Nascemos da necessidade de projetar soluções robustas para a indústria nacional. Focados em automação e engenharia mecânica de alta performance, somos o parceiro estratégico de grandes corporações.
           </p>
           <p className="about-text text-lg text-[#6B6B6B] leading-relaxed max-w-lg">
-            Nossa missão é otimizar sua linha de produção com soluções inteligentes que reduzem custos e maximizam a eficiência operacional.
+            Nossa missão é otimizar sua linha de produção com projetos inteligentes que reduzem custos, eliminam gargalos e maximizam a eficiência operacional do seu maquinário.
           </p>
         </div>
 

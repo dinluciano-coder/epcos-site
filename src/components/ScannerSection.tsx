@@ -73,10 +73,10 @@ export default function ScannerSection() {
   }, []);
 
   const specs = [
-    { label: "Precisão", value: "0.02 mm" },
-    { label: "Tecnologia", value: "Laser + NIR" },
-    { label: "Velocidade", value: "60 fps" },
-    { label: "Conexão", value: "Wi-Fi 6" }
+    { label: "Encaixe (Zero Erro)", value: "Sub-milimétrico" },
+    { label: "Engenharia Reversa", value: "100% Fiel" },
+    { label: "Nacionalização", value: "Rápida" },
+    { label: "Integração CAD", value: "Direta" }
   ];
 
   return (
@@ -87,13 +87,13 @@ export default function ScannerSection() {
         <div className="flex flex-col z-10">
           <div className="scanner-text inline-flex items-center gap-2 mb-6 px-4 py-2 bg-white rounded-full border border-[rgba(0,0,0,0.06)] shadow-sm w-fit">
             <span className="w-2 h-2 rounded-full bg-[#7B2D3B]"></span>
-            <span className="text-xs font-semibold uppercase tracking-widest text-[#6B6B6B]">Hardware</span>
+            <span className="text-xs font-semibold uppercase tracking-widest text-[#6B6B6B]">Diferencial Tecnológico</span>
           </div>
           <h2 className="scanner-text text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-[#1A1A1A] tracking-tight">
-            Creality <span className="text-[#7B2D3B]">Raptor X.</span>
+            Engenharia Reversa <span className="text-[#7B2D3B]">de Alta Fidelidade.</span>
           </h2>
           <p className="scanner-text text-lg text-[#6B6B6B] leading-relaxed mb-10 max-w-lg">
-            Equipados com o scanner híbrido de nível metrológico Creality Raptor X. Combinando 41 linhas de laser azul e luz estruturada infravermelha (NIR), garantimos digitalização 3D de peças de qualquer material com precisão absoluta para engenharia reversa.
+            Integramos a metrologia 3D diretamente aos nossos projetos mecânicos. Isso nos permite digitalizar o seu chão de fábrica e projetar soluções de automação e peças de reposição com encaixe perfeito, minimizando paradas e maximizando a eficiência da sua indústria.
           </p>
 
           <div className="grid grid-cols-2 gap-4">
@@ -127,7 +127,7 @@ export default function ScannerSection() {
             >
               <Image 
                 src="/scanner.png"
-                alt="Scanner 3D Creality Raptor X"
+                alt="Metrologia 3D aplicada à Engenharia Mecânica"
                 fill
                 quality={100}
                 priority

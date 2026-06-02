@@ -75,7 +75,7 @@ export default function TiltWrapper({ children, className = "", maxTilt = 10 }: 
     >
       <div
         ref={cardRef}
-        className="w-full h-full transform-gpu"
+        className="w-full h-full transform-gpu transition-all duration-500 ease-out"
         style={{ transformStyle: "preserve-3d", willChange: "transform" }}
       >
         {children}

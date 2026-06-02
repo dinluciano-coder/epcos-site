@@ -171,7 +171,7 @@ export default function HeroSection() {
         >
           <div 
             ref={logoRef} 
-            className="transform-gpu p-0 transition-shadow duration-300 rounded-3xl"
+            className="relative z-10 scale-100 md:scale-[1.5] w-full max-w-[320px] md:max-w-[480px] transform-gpu transition-all duration-500 ease-out"
             style={{ transformStyle: "preserve-3d" }}
           >
             <Image
@@ -208,9 +208,9 @@ export default function HeroSection() {
           </h1>
 
           <p ref={subtitleRef} className="text-base sm:text-lg md:text-xl max-w-xl leading-relaxed mb-8 mx-auto" style={{ color: "#6B6B6B", opacity: 0, transform: "translateY(20px)" }}>
-            Engenharia de precisão com tecnologia de ponta.
+            Engenharia de precisão voltada para a Indústria 4.0.
             <br className="hidden sm:block" />
-            Escaneamento 3D, projetos mecânicos e soluções inteligentes.
+            Projetos mecânicos, automação e otimização de máquinas.
           </p>
 
           <div ref={ctaRef} className="mb-16" style={{ opacity: 0, transform: "translateY(20px)" }}>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import { gsap } from "@/lib/gsapConfig";
 import { useGSAP } from "@gsap/react";
@@ -45,6 +45,8 @@ export default function ProjectsSection() {
     );
   }, []);
 
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
   const projects = [
     {
       title: "Projeto de Automação Industrial",
@@ -67,58 +69,95 @@ export default function ProjectsSection() {
   ];
 
   return (
-    <section ref={sectionRef} id="projetos" data-theme="dark" className="py-16 md:py-24 relative bg-[#1A1A1A] text-white rounded-t-[3rem] -mt-10 z-20">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
-          <div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 tracking-tight">
-              Nossos <span className="text-[#7B2D3B]">Projetos</span>
-            </h2>
-            <p className="text-[#9A9A9A] text-lg max-w-xl">
-              Um portfólio de excelência. Projetos mecânicos rigorosos, renderizados e desenvolvidos com o estado da arte da engenharia para a indústria 4.0.
-            </p>
-          </div>
-          <div>
-            <MagneticButton theme="dark" href="#contato">Iniciar Projeto</MagneticButton>
-          </div>
-        </div>
-
-        <div className="flex flex-col gap-24">
-          {projects.map((proj, i) => (
-            <div key={i} className={`project-card-anim flex flex-col ${i % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-12 lg:gap-20`}>
-              
-              {/* Quadro da Imagem */}
-              <div className="w-full lg:w-1/2">
-                <TiltWrapper maxTilt={5} className="w-full">
-                  <div className="relative rounded-3xl overflow-hidden glass-card-dark border border-white/5 shadow-2xl">
-                    <div className="aspect-[4/3] md:aspect-video lg:aspect-square w-full relative group">
-                      <div className="absolute inset-0 bg-[#7B2D3B]/10 group-hover:bg-transparent transition-all duration-500 z-10 pointer-events-none"></div>
-                      <img 
-                        src={proj.image} 
-                        alt={proj.title}
-                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      />
-                    </div>
-                  </div>
-                </TiltWrapper>
-              </div>
-
-              {/* Texto ao lado */}
-              <div className="w-full lg:w-1/2 flex flex-col justify-center">
-                <div className="inline-flex items-center gap-2 mb-4 px-3 py-1 bg-white/5 rounded-full border border-white/10 w-fit">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#7B2D3B]"></span>
-                  <span className="text-[10px] font-bold tracking-widest text-[#9A9A9A] uppercase">{proj.category}</span>
-                </div>
-                <h3 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight">{proj.title}</h3>
-                <p className="text-[#9A9A9A] text-lg leading-relaxed">
-                  {proj.desc}
-                </p>
-              </div>
-
+    <>
+      <section ref={sectionRef} id="projetos" data-theme="dark" className="py-16 md:py-24 relative bg-[#1A1A1A] text-white rounded-t-[3rem] -mt-10 z-20">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
+            <div>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 tracking-tight">
+                Nossos <span className="text-[#7B2D3B]">Projetos</span>
+              </h2>
+              <p className="text-[#9A9A9A] text-lg max-w-xl">
+                Um portfólio de excelência. Projetos mecânicos rigorosos, renderizados e desenvolvidos com o estado da arte da engenharia para a indústria 4.0.
+              </p>
             </div>
-          ))}
+            <div>
+              <MagneticButton theme="dark" href="#contato">Iniciar Projeto</MagneticButton>
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-24">
+            {projects.map((proj, i) => (
+              <div key={i} className={`project-card-anim flex flex-col ${i % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-12 lg:gap-20`}>
+                
+                {/* Quadro da Imagem */}
+                <div className="w-full lg:w-1/2">
+                  <TiltWrapper maxTilt={10} className="w-full">
+                    <div className="relative rounded-3xl overflow-hidden glass-card-dark border border-white/5 shadow-2xl transform-gpu" style={{ transformStyle: "preserve-3d" }}>
+                      <div 
+                        className="aspect-[4/3] md:aspect-video lg:aspect-square w-full relative group cursor-zoom-in transform-gpu" 
+                        style={{ transform: "translateZ(30px)" }}
+                        onClick={() => setSelectedImage(proj.image)}
+                      >
+                        <div className="absolute inset-0 bg-[#7B2D3B]/10 group-hover:bg-transparent transition-all duration-500 z-10 pointer-events-none"></div>
+                        <img 
+                          src={proj.image} 
+                          alt={proj.title}
+                          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                      </div>
+                    </div>
+                  </TiltWrapper>
+                </div>
+
+                {/* Texto ao lado */}
+                <div className="w-full lg:w-1/2 flex flex-col justify-center">
+                  <div className="inline-flex items-center gap-2 mb-4 px-3 py-1 bg-white/5 rounded-full border border-white/10 w-fit">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#7B2D3B]"></span>
+                    <span className="text-[10px] font-bold tracking-widest text-[#9A9A9A] uppercase">{proj.category}</span>
+                  </div>
+                  <h3 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight">{proj.title}</h3>
+                  <p className="text-[#9A9A9A] text-lg leading-relaxed">
+                    {proj.desc}
+                  </p>
+                </div>
+
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* Lightbox Modal */}
+      {selectedImage && (
+        <div 
+          className="fixed inset-0 z-[99999] bg-black/90 flex items-center justify-center p-4 backdrop-blur-sm cursor-zoom-out opacity-0 animate-fade-in"
+          style={{ animation: "fadeIn 0.3s forwards" }}
+          onClick={() => setSelectedImage(null)}
+        >
+          <div className="relative max-w-6xl w-full h-full flex items-center justify-center">
+            <img 
+              src={selectedImage} 
+              alt="Projeto Ampliado" 
+              className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl scale-95 animate-scale-up"
+              style={{ animation: "scaleUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards" }}
+              onClick={(e) => e.stopPropagation()} // Prevent close when clicking the image itself
+            />
+            <button 
+              className="absolute top-4 right-4 text-white/50 hover:text-white transition-colors p-2"
+              onClick={() => setSelectedImage(null)}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+          <style dangerouslySetInnerHTML={{__html: `
+            @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+            @keyframes scaleUp { from { transform: scale(0.95); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+          `}} />
+        </div>
+      )}
+    </>
   );
 }

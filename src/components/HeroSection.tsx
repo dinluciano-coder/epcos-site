@@ -175,7 +175,7 @@ export default function HeroSection() {
         >
           <div 
             ref={logoRef} 
-            className="relative z-10 scale-100 md:scale-[1.5] w-full max-w-[320px] md:max-w-[480px] transform-gpu"
+            className="relative z-10 w-full max-w-[320px] md:max-w-[480px] transform-gpu"
             style={{ transformStyle: "preserve-3d" }}
           >
             <Image

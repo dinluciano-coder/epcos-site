@@ -93,9 +93,12 @@ export default function ProjectsSection() {
                 {/* Quadro da Imagem */}
                 <div className="w-full lg:w-1/2">
                   <TiltWrapper maxTilt={10} className="w-full">
-                    <div className="relative rounded-3xl overflow-hidden glass-card-dark border border-white/5 shadow-2xl transform-gpu" style={{ transformStyle: "preserve-3d" }}>
+                    {/* Parent Frame (Z=0) */}
+                    <div className="relative rounded-3xl glass-card-dark border border-white/5 shadow-2xl transform-gpu" style={{ transformStyle: "preserve-3d" }}>
+                      
+                      {/* Image Layer (Z=30) - This pops out of the frame! */}
                       <div 
-                        className="aspect-[4/3] md:aspect-video lg:aspect-square w-full relative group cursor-zoom-in transform-gpu" 
+                        className="aspect-[4/3] md:aspect-video lg:aspect-square w-full relative group cursor-zoom-in transform-gpu rounded-3xl overflow-hidden" 
                         style={{ transform: "translateZ(30px)" }}
                         onClick={() => setSelectedImage(proj.image)}
                       >
@@ -106,6 +109,7 @@ export default function ProjectsSection() {
                           className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                         />
                       </div>
+
                     </div>
                   </TiltWrapper>
                 </div>

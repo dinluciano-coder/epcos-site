@@ -4,7 +4,6 @@ import AboutSection from "@/components/AboutSection";
 import ScannerSection from "@/components/ScannerSection";
 import GlassCardsSection from "@/components/GlassCardsSection";
 import ProjectsSection from "@/components/ProjectsSection";
-import MachineShowcaseSection from "@/components/MachineShowcaseSection";
 import ServicesSection from "@/components/ServicesSection";
 import CareersSection from "@/components/CareersSection";
 import ContactSection from "@/components/ContactSection";
@@ -24,7 +23,6 @@ export default function Home() {
         <AboutSection />
         <GlassCardsSection />
         <ProjectsSection />
-        <MachineShowcaseSection />
         <ServicesSection />
         <ScannerSection />
         <CareersSection />

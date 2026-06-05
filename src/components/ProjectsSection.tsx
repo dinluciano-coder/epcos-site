@@ -108,13 +108,21 @@ export default function ProjectsSection() {
     {
       title: "Engenharia de Dispositivos e Dispositivos de Montagem",
       category: "Engenharia Mecânica",
-      images: ["/projeto-mecanico-2.jpg"],
+      images: [
+        "/projeto-mecanico-2-a.jpg",
+        "/projeto-mecanico-2-b.jpg",
+        "/projeto-mecanico-2-c.jpg"
+      ],
       desc: "Projetos de engenharia mecânica focados em dispositivos precisos para montagem e inspeção. Garantimos o dimensionamento exato, escolha de materiais adequados e modelagem CAD detalhada para suportar as linhas mais exigentes."
     },
     {
       title: "Automação e Cinemática Industrial",
       category: "Projetos 3D e Estrutural",
-      images: ["/projeto-mecanico-3.jpg"],
+      images: [
+        "/projeto-mecanico-3-a.jpg",
+        "/projeto-mecanico-3-b.jpg",
+        "/projeto-mecanico-3-c.jpg"
+      ],
       desc: "Layout 3D e detalhamento de sistemas complexos de manufatura. Analisamos a cinemática e a resistência estrutural de cada componente para desenvolver máquinas customizadas que operam 24/7 com extrema estabilidade mecânica e eficiência."
     }
   ];

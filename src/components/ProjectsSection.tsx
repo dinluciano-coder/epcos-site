@@ -1,11 +1,58 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import { gsap } from "@/lib/gsapConfig";
 import { useGSAP } from "@gsap/react";
 import MagneticButton from "./MagneticButton";
 import TiltWrapper from "./TiltWrapper";
+
+const ProjectCarousel = ({ images, onImageClick }: { images: string[], onImageClick: (img: string) => void }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    if (images.length <= 1) return;
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, 4000); // 4 seconds per slide
+    return () => clearInterval(interval);
+  }, [images.length]);
+
+  return (
+    <div 
+      className="aspect-[4/3] md:aspect-video lg:aspect-square w-full relative group cursor-zoom-in transform-gpu rounded-3xl overflow-hidden" 
+      style={{ transform: "translateZ(30px)" }}
+      onClick={() => onImageClick(images[currentIndex])}
+    >
+      <div className="absolute inset-0 bg-[#7B2D3B]/10 group-hover:bg-transparent transition-all duration-500 z-20 pointer-events-none"></div>
+      
+      {images.map((img, idx) => (
+        <img 
+          key={idx}
+          src={img} 
+          alt={`Project Image ${idx + 1}`}
+          className={`absolute inset-0 w-full h-full object-cover transition-all duration-1000 group-hover:scale-110 ${idx === currentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0 scale-105'}`}
+        />
+      ))}
+      
+      {/* Carousel Dots */}
+      {images.length > 1 && (
+        <div className="absolute bottom-6 left-0 w-full flex justify-center gap-2 z-30">
+          {images.map((_, idx) => (
+            <button 
+              key={idx} 
+              onClick={(e) => {
+                e.stopPropagation();
+                setCurrentIndex(idx);
+              }}
+              className={`h-2 rounded-full transition-all duration-500 ${idx === currentIndex ? 'bg-[#7B2D3B] w-8' : 'bg-white/40 w-2 hover:bg-white/80'}`}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
 
 export default function ProjectsSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -51,19 +98,23 @@ export default function ProjectsSection() {
     {
       title: "Projeto de Automação Industrial",
       category: "Célula Robótica",
-      image: "/projeto-mecanico-1.jpg",
+      images: [
+        "/projeto-mecanico-1-a.jpg",
+        "/projeto-mecanico-1-b.jpg",
+        "/projeto-mecanico-1-c.jpg"
+      ],
       desc: "Desenvolvimento completo de células automatizadas, desde a concepção 3D até a validação virtual. Nossos projetos mecânicos garantem precisão estrutural para robótica de alta performance, minimizando ciclos e elevando a produtividade."
     },
     {
       title: "Engenharia de Dispositivos e Dispositivos de Montagem",
       category: "Engenharia Mecânica",
-      image: "/projeto-mecanico-2.jpg",
+      images: ["/projeto-mecanico-2.jpg"],
       desc: "Projetos de engenharia mecânica focados em dispositivos precisos para montagem e inspeção. Garantimos o dimensionamento exato, escolha de materiais adequados e modelagem CAD detalhada para suportar as linhas mais exigentes."
     },
     {
       title: "Automação e Cinemática Industrial",
       category: "Projetos 3D e Estrutural",
-      image: "/projeto-mecanico-3.jpg",
+      images: ["/projeto-mecanico-3.jpg"],
       desc: "Layout 3D e detalhamento de sistemas complexos de manufatura. Analisamos a cinemática e a resistência estrutural de cada componente para desenvolver máquinas customizadas que operam 24/7 com extrema estabilidade mecânica e eficiência."
     }
   ];
@@ -97,18 +148,7 @@ export default function ProjectsSection() {
                     <div className="relative rounded-3xl glass-card-dark border border-white/5 shadow-2xl transform-gpu" style={{ transformStyle: "preserve-3d" }}>
                       
                       {/* Image Layer (Z=30) - This pops out of the frame! */}
-                      <div 
-                        className="aspect-[4/3] md:aspect-video lg:aspect-square w-full relative group cursor-zoom-in transform-gpu rounded-3xl overflow-hidden" 
-                        style={{ transform: "translateZ(30px)" }}
-                        onClick={() => setSelectedImage(proj.image)}
-                      >
-                        <div className="absolute inset-0 bg-[#7B2D3B]/10 group-hover:bg-transparent transition-all duration-500 z-10 pointer-events-none"></div>
-                        <img 
-                          src={proj.image} 
-                          alt={proj.title}
-                          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                        />
-                      </div>
+                      <ProjectCarousel images={proj.images} onImageClick={setSelectedImage} />
 
                     </div>
                   </TiltWrapper>

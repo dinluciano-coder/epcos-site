@@ -1,5 +1,5 @@
 export default function MobileContactBar() {
-  const address = "Avenida Teotônio Parreira Coelho, 805, Jardim da Cidade - Betim/MG";
+  const address = "Rua Eli Geraldo Braga, 93B - Guarujá Mansões - Betim/MG";
   const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
 
   return (

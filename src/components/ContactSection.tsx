@@ -22,7 +22,7 @@ export default function ContactSection() {
 
     const formData = new FormData(e.currentTarget);
     // Adiciona a chave de acesso do Web3Forms
-    formData.append("access_key", "24e58fe8-93ff-4d00-a653-6fb5b75d5d58");
+    formData.append("access_key", "d9a863ec-13f1-4027-8fb4-a728d7ff0db3");
     // Assunto personalizado do e-mail
     formData.append("subject", "Novo Contato pelo Site da EPCOS");
 
@@ -90,8 +90,8 @@ export default function ContactSection() {
                 <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
               </div>
               <div>
-                <div className="text-sm text-[#9A9A9A]">E-mail Oficial (Temporário Teste)</div>
-                <div className="font-semibold text-[#1A1A1A]">dinluciano@gmail.com</div>
+                <div className="text-sm text-[#9A9A9A]">E-mail</div>
+                <div className="font-semibold text-[#1A1A1A]">jackson@epcos.eng.br</div>
               </div>
             </div>
           </div>

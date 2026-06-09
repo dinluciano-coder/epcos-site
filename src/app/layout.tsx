@@ -4,6 +4,7 @@ import "./globals.css";
 import CustomCursor from "@/components/CustomCursor";
 import ScrollIndicator from "@/components/ScrollIndicator";
 import CookieBanner from "@/components/CookieBanner";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -80,6 +81,7 @@ export default function RootLayout({
         <CustomCursor />
         {children}
         <ScrollIndicator />
+        <WhatsAppButton />
         <CookieBanner />
       </body>
     </html>

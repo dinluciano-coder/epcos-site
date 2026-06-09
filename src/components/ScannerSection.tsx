@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import { gsap } from "@/lib/gsapConfig";
 import { useGSAP } from "@gsap/react";
@@ -41,11 +41,11 @@ const scannerData = [
 export default function ScannerSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const [activeTab, setActiveTab] = useState<string>(scannerData[0].id);
+  const [isHovered, setIsHovered] = useState(false);
 
   useGSAP(() => {
     if (!sectionRef.current) return;
     
-    // Animate texts
     gsap.fromTo(
       ".scanner-anim",
       { opacity: 0, y: 30 },
@@ -63,12 +63,29 @@ export default function ScannerSection() {
     );
   }, []);
 
+  // Auto-play logic
+  useEffect(() => {
+    if (isHovered) return;
+    
+    const interval = setInterval(() => {
+      setActiveTab((current) => {
+        const currentIndex = scannerData.findIndex((item) => item.id === current);
+        const nextIndex = (currentIndex + 1) % scannerData.length;
+        return scannerData[nextIndex].id;
+      });
+    }, 4000); // changes every 4 seconds
+
+    return () => clearInterval(interval);
+  }, [isHovered]);
+
+  const activeItem = scannerData.find(item => item.id === activeTab) || scannerData[0];
+
   return (
-    <section ref={sectionRef} id="scanner" className="py-24 relative bg-white text-[#1A1A1A] z-20 overflow-hidden">
+    <section ref={sectionRef} id="scanner" className="py-24 relative bg-[#FAFAFA] text-[#1A1A1A] z-20 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         
         {/* Header */}
-        <div className="mb-16 scanner-anim text-center md:text-left">
+        <div className="mb-12 scanner-anim text-center md:text-left">
           <div className="inline-flex items-center gap-2 mb-4 px-3 py-1 bg-white rounded-full border border-[rgba(0,0,0,0.06)] shadow-sm w-fit">
             <span className="w-1.5 h-1.5 rounded-full bg-[#7B2D3B]"></span>
             <span className="text-[10px] font-bold tracking-widest text-[#6B6B6B] uppercase">Diferencial Tecnológico</span>
@@ -77,12 +94,16 @@ export default function ScannerSection() {
             Engenharia Reversa <span className="text-[#7B2D3B]">de Alta Fidelidade.</span>
           </h2>
           <p className="text-[#6B6B6B] text-lg max-w-3xl leading-relaxed">
-            Integramos a metrologia 3D diretamente aos nossos projetos mecânicos. Isso nos permite digitalizar o seu chão de fábrica e projetar soluções de automação e peças de reposição com encaixe perfeito, minimizando paradas e maximizando a eficiência da sua indústria.
+            Integramos a metrologia 3D diretamente aos nossos projetos mecânicos. Isso nos permite digitalizar o seu chão de fábrica e projetar soluções de automação e peças de reposição com encaixe perfeito.
           </p>
         </div>
 
         {/* Accordion Layout */}
-        <div className="flex flex-col lg:flex-row gap-4 h-[400px] md:h-[500px] lg:h-[550px] scanner-anim">
+        <div 
+          className="flex flex-col lg:flex-row gap-2 md:gap-4 h-[600px] md:h-[500px] lg:h-[550px] scanner-anim"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
           {scannerData.map((item) => {
             const isActive = activeTab === item.id;
             
@@ -90,8 +111,8 @@ export default function ScannerSection() {
               <div 
                 key={item.id}
                 onClick={() => setActiveTab(item.id)}
-                className={`relative rounded-3xl overflow-hidden cursor-pointer transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] flex-shrink-0 ${
-                  isActive ? "flex-grow lg:w-[75%] shadow-2xl ring-1 ring-black/5" : "flex-grow-0 lg:w-[6%] h-24 lg:h-full opacity-80 hover:opacity-100"
+                className={`relative rounded-2xl md:rounded-3xl overflow-hidden cursor-pointer transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] flex-shrink-0 ${
+                  isActive ? "flex-grow lg:w-[75%] shadow-xl ring-1 ring-black/5" : "flex-grow-0 lg:w-[6%] h-12 md:h-24 lg:h-full opacity-70 hover:opacity-100"
                 }`}
               >
                 {/* Background Image */}
@@ -102,39 +123,38 @@ export default function ScannerSection() {
                     fill
                     className={`object-cover transition-transform duration-1000 ${isActive ? 'scale-100' : 'scale-110'}`}
                   />
-                  {/* Gradient Overlay for text readability (dark gradient at bottom) */}
-                  <div className={`absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-opacity duration-700 ${isActive ? 'opacity-100' : 'opacity-40'}`}></div>
+                  {/* Subtle overlay just for contrast on collapsed items */}
+                  <div className={`absolute inset-0 bg-black transition-opacity duration-700 ${isActive ? 'opacity-0' : 'opacity-40'}`}></div>
                 </div>
 
-                {/* Content */}
-                <div className={`absolute bottom-0 left-0 w-full p-6 md:p-10 transition-all duration-700 flex flex-col justify-end h-full ${isActive ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0 lg:opacity-100'}`}>
-                  
-                  {/* Vertical Title (for collapsed state on desktop) */}
-                  {!isActive && (
-                    <div className="hidden lg:block absolute bottom-12 left-1/2 -translate-x-1/2 -rotate-90 whitespace-nowrap origin-bottom-left text-lg font-bold tracking-widest text-white/90 drop-shadow-md">
-                      {item.title}
-                    </div>
-                  )}
-
-                  {/* Active Content */}
-                  <div className={`transition-all duration-500 delay-200 text-white ${isActive ? 'opacity-100 transform-none' : 'opacity-0 translate-y-4 hidden lg:block'}`}>
-                    <h3 className="text-2xl md:text-3xl font-bold mb-3 drop-shadow-lg">{item.title}</h3>
-                    <p className="text-white/90 text-sm md:text-base max-w-lg leading-relaxed drop-shadow">
-                      {item.desc}
-                    </p>
-                  </div>
+                {/* Vertical Title (for collapsed state on desktop) */}
+                <div className={`absolute bottom-8 left-1/2 -translate-x-1/2 -rotate-90 whitespace-nowrap origin-bottom-left text-sm md:text-lg font-bold tracking-widest text-white drop-shadow-md transition-opacity duration-300 ${isActive ? 'opacity-0 hidden lg:block' : 'opacity-100 hidden lg:block'}`}>
+                  {item.title}
                 </div>
                 
                 {/* Mobile Collapsed Title */}
                 {!isActive && (
                   <div className="lg:hidden absolute inset-0 flex items-center justify-center">
-                    <h3 className="text-lg font-bold text-white drop-shadow-lg">{item.title}</h3>
+                    <h3 className="text-sm md:text-lg font-bold text-white tracking-widest drop-shadow-lg">{item.title}</h3>
                   </div>
                 )}
               </div>
             );
           })}
         </div>
+
+        {/* Dynamic Text Below Accordion */}
+        <div className="mt-8 scanner-anim min-h-[100px] flex flex-col md:flex-row md:items-center gap-4 bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-[rgba(0,0,0,0.04)]">
+          <div className="md:w-1/3">
+            <h3 className="text-2xl md:text-3xl font-bold text-[#1A1A1A]">{activeItem.title}</h3>
+          </div>
+          <div className="md:w-2/3 md:border-l md:border-gray-100 md:pl-8">
+            <p className="text-[#6B6B6B] text-base md:text-lg leading-relaxed">
+              {activeItem.desc}
+            </p>
+          </div>
+        </div>
+
       </div>
     </section>
   );

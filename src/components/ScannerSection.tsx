@@ -82,7 +82,7 @@ export default function ScannerSection() {
         </div>
 
         {/* Accordion Layout */}
-        <div className="flex flex-col lg:flex-row gap-4 h-[500px] md:h-[600px] scanner-anim">
+        <div className="flex flex-col lg:flex-row gap-4 h-[400px] md:h-[500px] lg:h-[550px] scanner-anim">
           {scannerData.map((item) => {
             const isActive = activeTab === item.id;
             
@@ -91,7 +91,7 @@ export default function ScannerSection() {
                 key={item.id}
                 onClick={() => setActiveTab(item.id)}
                 className={`relative rounded-3xl overflow-hidden cursor-pointer transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] flex-shrink-0 ${
-                  isActive ? "flex-grow lg:w-[50%] shadow-2xl ring-1 ring-black/5" : "flex-grow-0 lg:w-[12%] h-24 lg:h-full opacity-80 hover:opacity-100"
+                  isActive ? "flex-grow lg:w-[75%] shadow-2xl ring-1 ring-black/5" : "flex-grow-0 lg:w-[6%] h-24 lg:h-full opacity-80 hover:opacity-100"
                 }`}
               >
                 {/* Background Image */}

@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
+import ClientsMarquee from "@/components/ClientsMarquee";
 import AboutSection from "@/components/AboutSection";
 import ScannerSection from "@/components/ScannerSection";
 import GlassCardsSection from "@/components/GlassCardsSection";
@@ -21,6 +22,7 @@ export default function Home() {
       
       <main className="relative z-10 w-full overflow-hidden bg-transparent">
         <HeroSection />
+        <ClientsMarquee />
         <AboutSection />
         <GlassCardsSection />
         <ProjectsSection />

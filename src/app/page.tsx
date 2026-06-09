@@ -22,7 +22,6 @@ export default function Home() {
       
       <main className="relative z-10 w-full overflow-hidden bg-transparent">
         <HeroSection />
-        <ClientsMarquee />
         <AboutSection />
         <GlassCardsSection />
         <ProjectsSection />
@@ -31,6 +30,7 @@ export default function Home() {
         <ScannerSection />
         <CareersSection />
         <ContactSection />
+        <ClientsMarquee />
         <FooterSection />
       </main>
     </ClientLayout>

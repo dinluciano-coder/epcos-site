@@ -15,7 +15,7 @@ const MARQUEE_ITEMS = [...TEMP_LOGOS, ...TEMP_LOGOS];
 
 export default function ClientsMarquee() {
   return (
-    <section className="relative w-full bg-[#050505] py-12 border-y border-white/5 overflow-hidden flex flex-col justify-center">
+    <section className="relative w-full bg-white py-12 overflow-hidden flex flex-col justify-center">
       
       {/* Title */}
       <div className="w-full text-center mb-8">
@@ -27,29 +27,29 @@ export default function ClientsMarquee() {
       {/* Marquee Container */}
       <div className="relative flex w-full overflow-hidden">
         
-        {/* Left/Right Fading Gradients */}
-        <div className="absolute top-0 left-0 w-24 md:w-48 h-full bg-gradient-to-r from-[#050505] to-transparent z-10 pointer-events-none"></div>
-        <div className="absolute top-0 right-0 w-24 md:w-48 h-full bg-gradient-to-l from-[#050505] to-transparent z-10 pointer-events-none"></div>
+        {/* Left/Right Fading Gradients (White) */}
+        <div className="absolute top-0 left-0 w-16 md:w-32 h-full bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
+        <div className="absolute top-0 right-0 w-16 md:w-32 h-full bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
 
         {/* Scrolling Track */}
         <div className="flex animate-marquee hover:[animation-play-state:paused] min-w-max items-center">
           {MARQUEE_ITEMS.map((logo, index) => (
             <div 
               key={`${logo.id}-${index}`} 
-              className="flex items-center justify-center w-[160px] md:w-[240px] h-[80px] md:h-[110px] mx-6 md:mx-10 group"
+              className="flex items-center justify-center w-[110px] md:w-[170px] h-[60px] md:h-[80px] mx-6 md:mx-10 group"
             >
               {logo.src ? (
                 <Image
                   src={logo.src}
                   alt={logo.name}
-                  width={240}
-                  height={110}
-                  className="object-contain w-full h-full brightness-0 invert opacity-60 transition-all duration-500 ease-out group-hover:brightness-100 group-hover:invert-0 group-hover:opacity-100 group-hover:scale-110"
+                  width={170}
+                  height={80}
+                  className="object-contain w-full h-full transition-all duration-500 ease-out group-hover:scale-110"
                 />
               ) : (
                 // Temporary Placeholder UI
-                <div className="w-full h-full flex items-center justify-center bg-white/5 rounded-lg border border-white/10 brightness-0 invert opacity-60 transition-all duration-500 group-hover:brightness-100 group-hover:invert-0 group-hover:opacity-100 group-hover:bg-white/10 group-hover:scale-110">
-                  <span className="text-white/40 text-xs font-semibold">{logo.name}</span>
+                <div className="w-full h-full flex items-center justify-center bg-gray-100 rounded-lg border border-gray-200 transition-all duration-500 group-hover:scale-110">
+                  <span className="text-gray-400 text-xs font-semibold">{logo.name}</span>
                 </div>
               )}
             </div>

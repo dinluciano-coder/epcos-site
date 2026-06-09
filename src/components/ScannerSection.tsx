@@ -100,7 +100,7 @@ export default function ScannerSection() {
 
         {/* Accordion Layout */}
         <div 
-          className="flex flex-col lg:flex-row gap-2 md:gap-4 h-[600px] md:h-[500px] lg:h-[550px] scanner-anim"
+          className="flex flex-col lg:flex-row gap-2 md:gap-4 h-[430px] md:h-[500px] lg:h-[550px] scanner-anim"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >

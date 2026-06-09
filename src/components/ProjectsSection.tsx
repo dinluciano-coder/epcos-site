@@ -99,9 +99,11 @@ export default function ProjectsSection() {
       title: "Projeto de Automação Industrial",
       category: "Célula Robótica",
       images: [
-        "/projeto-mecanico-1-a.jpg",
-        "/projeto-mecanico-1-b.jpg",
-        "/projeto-mecanico-1-c.jpg"
+        "/novo-projeto-1-a.jpg",
+        "/novo-projeto-1-b.jpg",
+        "/novo-projeto-1-c.jpg",
+        "/novo-projeto-1-d.jpg",
+        "/novo-projeto-1-e.jpg"
       ],
       desc: "Desenvolvimento completo de células automatizadas, desde a concepção 3D até a validação virtual. Nossos projetos mecânicos garantem precisão estrutural para robótica de alta performance, minimizando ciclos e elevando a produtividade."
     },
@@ -109,9 +111,11 @@ export default function ProjectsSection() {
       title: "Engenharia de Dispositivos e Dispositivos de Montagem",
       category: "Engenharia Mecânica",
       images: [
-        "/projeto-mecanico-2-a.jpg",
-        "/projeto-mecanico-2-b.jpg",
-        "/projeto-mecanico-2-c.jpg"
+        "/novo-projeto-2-a.jpg",
+        "/novo-projeto-2-b.jpg",
+        "/novo-projeto-2-c.jpg",
+        "/novo-projeto-2-d.jpg",
+        "/novo-projeto-2-e.jpg"
       ],
       desc: "Projetos de engenharia mecânica focados em dispositivos precisos para montagem e inspeção. Garantimos o dimensionamento exato, escolha de materiais adequados e modelagem CAD detalhada para suportar as linhas mais exigentes."
     },
@@ -119,9 +123,11 @@ export default function ProjectsSection() {
       title: "Automação e Cinemática Industrial",
       category: "Projetos 3D e Estrutural",
       images: [
-        "/projeto-mecanico-3-a.jpg",
-        "/projeto-mecanico-3-b.jpg",
-        "/projeto-mecanico-3-c.jpg"
+        "/novo-projeto-3-a.jpg",
+        "/novo-projeto-3-b.jpg",
+        "/novo-projeto-3-c.jpg",
+        "/novo-projeto-3-d.jpg",
+        "/novo-projeto-3-e.jpg"
       ],
       desc: "Layout 3D e detalhamento de sistemas complexos de manufatura. Analisamos a cinemática e a resistência estrutural de cada componente para desenvolver máquinas customizadas que operam 24/7 com extrema estabilidade mecânica e eficiência."
     }

@@ -5,6 +5,7 @@ import CustomCursor from "@/components/CustomCursor";
 import ScrollIndicator from "@/components/ScrollIndicator";
 import CookieBanner from "@/components/CookieBanner";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import MobileContactBar from "@/components/MobileContactBar";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -77,11 +78,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" className={`${inter.variable} dark`}>
-      <body className="min-h-screen bg-bg-primary text-text font-sans antialiased">
+      <body className="min-h-screen bg-bg-primary text-text font-sans antialiased md:pb-0 pb-16">
         <CustomCursor />
         {children}
         <ScrollIndicator />
         <WhatsAppButton />
+        <MobileContactBar />
         <CookieBanner />
       </body>
     </html>

@@ -29,7 +29,7 @@ export default function CareersSection() {
       `Olá equipe EPCOS,\n\nMeu nome é ${formData.name} e estou me candidatando à vaga de ${formData.vaga}.\nMeu e-mail de contato é: ${formData.email}\n\n[POR FAVOR, ANEXE SEU CURRÍCULO EM PDF AQUI ANTES DE ENVIAR]\n\nAtenciosamente,\n${formData.name}`
     );
     
-    window.location.href = `mailto:dinluciano@gmail.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:jackson@epcos.eng.br?subject=${subject}&body=${body}`;
   };
   
   useGSAP(() => {
@@ -102,7 +102,7 @@ export default function CareersSection() {
               {/* Fallback Text for users without Mail Client */}
               <p className="text-xs text-[#9A9A9A] text-center mt-2">
                 Se o seu aplicativo de e-mail não abrir, envie seu currículo diretamente para <br />
-                <strong className="text-[#1A1A1A]">dinluciano@gmail.com</strong> com o assunto da vaga.
+                <strong className="text-[#1A1A1A]">jackson@epcos.eng.br</strong> com o assunto da vaga.
               </p>
             </form>
           </div>

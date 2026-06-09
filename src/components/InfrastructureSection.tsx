@@ -16,13 +16,13 @@ const infraData = [
     id: "meeting",
     title: "Sala de Reuniões",
     desc: "Onde as grandes ideias tomam forma. Uma infraestrutura completa para alinhar escopos, apresentar projetos em grandes telas e tomar decisões críticas de engenharia com você, nosso cliente. Conforto, privacidade e foco total no seu negócio.",
-    image: "/infra-official-1.jpg",
+    image: "/infra-official-2.jpg",
   },
   {
     id: "metrology",
     title: "Sala de Escaneamento 3D",
     desc: "Equipamentos de ponta e iluminação controlada para máxima precisão metrológica. Nosso laboratório é dedicado à engenharia reversa e inspeção de peças complexas, entregando nuvens de pontos e malhas 3D com precisão micrométrica.",
-    image: "/infra-official-2.jpg",
+    image: "/infra-official-1.jpg",
   }
 ];
 

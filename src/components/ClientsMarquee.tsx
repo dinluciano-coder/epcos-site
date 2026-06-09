@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 
 // Placeholder data - to be replaced once the 13 logos are uploaded
-const TEMP_LOGOS = Array.from({ length: 13 }).map((_, i) => ({
+const TEMP_LOGOS = Array.from({ length: 7 }).map((_, i) => ({
   id: i,
   name: `Cliente ${i + 1}`,
   src: `/logos/logo-${i + 1}.png`,

@@ -42,7 +42,7 @@ export default function FooterSection() {
         
         {/* Top CTA */}
         <div ref={ctaRef} className="flex flex-col items-center text-center mb-24">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 tracking-tight">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 md:mb-8 tracking-tight">
             Pronto para <span className="text-[#7B2D3B]">transformar</span><br />sua produção?
           </h2>
           

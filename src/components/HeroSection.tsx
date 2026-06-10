@@ -195,26 +195,24 @@ export default function HeroSection() {
           <div ref={badgeRef} className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-black/10 bg-white/50 backdrop-blur-md mb-4 shadow-sm" style={{ opacity: 0, transform: "translateY(20px)" }}>
             <span className="w-2 h-2 rounded-full bg-[#7B2D3B] animate-pulse"></span>
             <span className="text-xs font-bold tracking-[0.2em] text-[#1A1A1A] uppercase">
-              ENGENHARIA QUE TRANSFORMA A INDÚSTRIA
+              PROJETOS MECÂNICOS INDUSTRIAIS
             </span>
           </div>
 
           <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-[5rem] font-black leading-[1.05] tracking-tight mb-4 text-[#1A1A1A] perspective-1000" style={{ transformStyle: "preserve-3d" }}>
             <div className="block">
-              <SplitText text="ENGENHARIA QUE" />
+              <SplitText text="PROJETOS MECÂNICOS" />
             </div>
             <div className="block text-[#7B2D3B]">
-              <SplitText text="TRANSFORMA" />
+              <SplitText text="QUE TRANSFORMAM" />
             </div>
             <div className="block">
-              <SplitText text="A INDÚSTRIA" />
+              <SplitText text="DESAFIOS INDUSTRIAIS" />
             </div>
           </h1>
 
           <p ref={subtitleRef} className="text-base sm:text-lg md:text-xl max-w-xl leading-relaxed mb-8 mx-auto" style={{ color: "#6B6B6B", opacity: 0, transform: "translateY(20px)" }}>
-            Engenharia de precisão voltada para a Indústria 4.0.
-            <br className="hidden sm:block" />
-            Projetos mecânicos, automação e otimização de máquinas.
+            Desenvolvemos projetos mecânicos, engenharia reversa e digitalização 3D para criar soluções industriais com precisão, agilidade e confiabilidade.
           </p>
 
           <div ref={ctaRef} className="mb-16" style={{ opacity: 0, transform: "translateY(20px)" }}>

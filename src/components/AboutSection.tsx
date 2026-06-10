@@ -85,13 +85,10 @@ export default function AboutSection() {
             <span className="text-xs font-semibold uppercase tracking-widest text-[#6B6B6B]">Sobre a EPCOS</span>
           </div>
           <h2 className="about-text text-4xl md:text-5xl lg:text-7xl font-bold mb-6 text-[#1A1A1A] tracking-tight leading-tight">
-            Engenharia que <br/><span className="text-[#7B2D3B]">Molda o Futuro.</span>
+            Soluções de Engenharia para os <br/><span className="text-[#7B2D3B]">Desafios da Sua Operação.</span>
           </h2>
           <p className="about-text text-lg md:text-xl text-[#6B6B6B] leading-relaxed max-w-lg mb-6">
-            Nascemos da necessidade de projetar soluções robustas para a indústria nacional. Focados em automação e engenharia mecânica de alta performance, somos o parceiro estratégico de grandes corporações.
-          </p>
-          <p className="about-text text-lg text-[#6B6B6B] leading-relaxed max-w-lg">
-            Nossa missão é otimizar sua linha de produção com projetos inteligentes que reduzem custos, eliminam gargalos e maximizam a eficiência operacional do seu maquinário.
+            Desenvolvemos projetos mecânicos e soluções industriais sob medida, combinando experiência técnica e tecnologia para transformar necessidades reais em resultados concretos.
           </p>
         </div>
 

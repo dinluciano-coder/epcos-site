@@ -78,10 +78,10 @@ export default function ContactSection() {
             <span className="text-xs font-semibold uppercase tracking-widest text-[#6B6B6B]">Fale Conosco</span>
           </div>
           <h2 className="contact-stagger text-4xl md:text-5xl font-bold mb-6 text-[#1A1A1A] tracking-tight">
-            Vamos construir o próximo <span className="text-[#7B2D3B]">padrão</span> juntos.
+            Tem um <span className="text-[#7B2D3B]">desafio industrial?</span>
           </h2>
           <p className="contact-stagger text-lg text-[#6B6B6B] mb-12 max-w-md">
-            Envie sua mensagem. Retornaremos rapidamente com as melhores soluções de engenharia para o seu negócio.
+            Nossa equipe está pronta para entender sua necessidade e desenvolver a melhor solução para sua operação.
           </p>
 
           <div className="contact-stagger space-y-6">
@@ -150,7 +150,7 @@ export default function ContactSection() {
                     disabled={isSubmitting}
                     className="w-full !px-10 !py-4 uppercase text-sm font-semibold tracking-[2px]"
                   >
-                    {isSubmitting ? "Enviando..." : "Enviar Mensagem"}
+                    {isSubmitting ? "Enviando..." : "Solicitar Avaliação Técnica"}
                   </MagneticButton>
                 </div>
               </form>

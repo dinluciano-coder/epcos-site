@@ -171,16 +171,16 @@ export default function GlassCardsSection() {
 
   const features = [
     {
-      title: "Precisão Absoluta",
-      description: "Captura de dados com margem de erro sub-milimétrica. Qualidade que define o padrão da indústria."
+      title: "Precisão Técnica",
+      description: "Projetos desenvolvidos com alto nível de detalhamento e confiabilidade."
     },
     {
-      title: "Integração Fluida",
-      description: "Do escaneamento direto para o seu software CAD. Fluxo de trabalho sem interrupções."
+      title: "Agilidade no Desenvolvimento",
+      description: "Processos estruturados para reduzir prazos e acelerar entregas."
     },
     {
-      title: "Análise Estrutural",
-      description: "Identificação de falhas e otimização de materiais através de escaneamento profundo."
+      title: "Soluções Personalizadas",
+      description: "Cada projeto é desenvolvido de acordo com a necessidade da aplicação."
     }
   ];
 

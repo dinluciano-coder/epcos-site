@@ -61,10 +61,10 @@ export default function InfrastructureSection() {
             <span className="text-[10px] font-bold tracking-widest text-[#9A9A9A] uppercase">Instalações Físicas</span>
           </div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 tracking-tight">
-            Nossa <span className="text-[#7B2D3B]">Infraestrutura</span>
+            Estrutura Completa para <span className="text-[#7B2D3B]">Desenvolver Soluções Industriais</span>
           </h2>
           <p className="text-[#9A9A9A] text-lg max-w-2xl">
-            Estrutura física de ponta preparada para receber grandes desafios da engenharia. Da concepção no CAD até a engenharia reversa de alta precisão.
+            Equipe qualificada e recursos tecnológicos para transformar desafios industriais em projetos eficientes e confiáveis.
           </p>
         </div>
 

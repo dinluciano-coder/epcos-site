@@ -9,6 +9,7 @@ import InfrastructureSection from "@/components/InfrastructureSection";
 import ServicesSection from "@/components/ServicesSection";
 import CareersSection from "@/components/CareersSection";
 import ContactSection from "@/components/ContactSection";
+import HowWeHelpSection from "@/components/HowWeHelpSection";
 import FooterSection from "@/components/FooterSection";
 import ClientLayout from "@/components/ClientLayout";
 import ParticleBackground from "@/components/ParticleBackground";
@@ -29,6 +30,7 @@ export default function Home() {
         <ServicesSection />
         <ScannerSection />
         <CareersSection />
+        <HowWeHelpSection />
         <ContactSection />
         <ClientsMarquee />
         <FooterSection />

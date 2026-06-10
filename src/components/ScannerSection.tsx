@@ -91,10 +91,10 @@ export default function ScannerSection() {
             <span className="text-[10px] font-bold tracking-widest text-[#6B6B6B] uppercase">Diferencial Tecnológico</span>
           </div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight">
-            Engenharia Reversa <span className="text-[#7B2D3B]">de Alta Fidelidade.</span>
+            Engenharia Reversa <span className="text-[#7B2D3B]">com Scanner 3D de precisão 0,02 mm.</span>
           </h2>
           <p className="text-[#6B6B6B] text-lg max-w-3xl leading-relaxed">
-            Integramos a metrologia 3D diretamente aos nossos projetos mecânicos. Isso nos permite digitalizar o seu chão de fábrica e projetar soluções de automação e peças de reposição com encaixe perfeito.
+            Utilizamos escaneamento 3D para transformar peças físicas em modelos digitais precisos, acelerando o desenvolvimento de projetos mecânicos.
           </p>
         </div>
 

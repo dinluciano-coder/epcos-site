@@ -87,14 +87,14 @@ function TiltCard({ title, description, delay = 0 }: TiltCardProps) {
 
   return (
     <div 
-      className="perspective-1000 relative z-10 w-full"
+      className="perspective-1000 relative z-10 w-full h-full"
       style={{ perspective: "1000px" }}
     >
       <div
         ref={cardRef}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        className="relative overflow-hidden rounded-3xl p-8 md:p-10 flex flex-col justify-start transition-all duration-300 transform-gpu"
+        className="relative overflow-hidden rounded-3xl p-8 md:p-10 flex flex-col justify-start transition-all duration-300 transform-gpu h-full"
         style={{
           background: "rgba(255, 255, 255, 0.45)",
           backdropFilter: "blur(40px)",
@@ -201,9 +201,9 @@ export default function GlassCardsSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 items-stretch">
           {features.map((feature, i) => (
-            <div key={i} className="glass-3d-card-wrapper">
+            <div key={i} className="glass-3d-card-wrapper h-full">
               <TiltCard 
                 title={feature.title} 
                 description={feature.description} 

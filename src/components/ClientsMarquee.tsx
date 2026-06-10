@@ -50,7 +50,7 @@ export default function ClientsMarquee() {
                 alt={logo.name}
                 width={160}
                 height={72}
-                className="object-contain w-full h-full opacity-60 grayscale transition-all duration-500 ease-out group-hover:opacity-100 group-hover:grayscale-0 group-hover:scale-110"
+                className="object-contain w-full h-full transition-all duration-500 ease-out group-hover:scale-110"
               />
             </div>
           ))}

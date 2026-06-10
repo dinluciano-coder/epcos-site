@@ -102,8 +102,8 @@ export default function AboutSection() {
                 <div className="w-12 h-12 rounded-full bg-[#7B2D3B]/10 flex items-center justify-center text-[#7B2D3B] mb-5">
                   <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                 </div>
-                <h4 className="text-2xl font-bold mb-3 text-[#1A1A1A] transform-gpu" style={{ transform: "translateZ(30px)" }}>Agilidade</h4>
-                <p className="text-[#6B6B6B] leading-relaxed transform-gpu" style={{ transform: "translateZ(20px)" }}>Entregas ágeis e prototipagem rápida graças aos nossos scanners de precisão absolutos.</p>
+                <h4 className="text-xl font-bold mb-3 text-[#1A1A1A] transform-gpu" style={{ transform: "translateZ(30px)" }}>Agilidade no Desenvolvimento</h4>
+                <p className="text-[#6B6B6B] text-sm leading-relaxed transform-gpu" style={{ transform: "translateZ(20px)" }}>Projetos desenvolvidos com rapidez e eficiência para reduzir prazos e acelerar suas entregas.</p>
               </div>
             </TiltWrapper>
           </div>
@@ -115,8 +115,8 @@ export default function AboutSection() {
                 <div className="w-14 h-14 rounded-full bg-[#7B2D3B]/10 flex items-center justify-center text-[#7B2D3B] mb-6">
                   <svg width="28" height="28" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg>
                 </div>
-                <h4 className="text-3xl font-bold mb-4 text-[#1A1A1A] transform-gpu" style={{ transform: "translateZ(30px)" }}>Qualidade Sub-milimétrica</h4>
-                <p className="text-[#6B6B6B] text-lg leading-relaxed transform-gpu" style={{ transform: "translateZ(20px)" }}>Cada projeto passa por um rigoroso controle, garantindo encaixes perfeitos nas máquinas da sua linha.</p>
+                <h4 className="text-2xl font-bold mb-4 text-[#1A1A1A] transform-gpu" style={{ transform: "translateZ(30px)" }}>Precisão Técnica</h4>
+                <p className="text-[#6B6B6B] leading-relaxed transform-gpu" style={{ transform: "translateZ(20px)" }}>Soluções projetadas com alto nível de detalhamento para garantir confiabilidade e desempenho.</p>
               </div>
             </TiltWrapper>
           </div>
@@ -128,8 +128,8 @@ export default function AboutSection() {
                 <div className="w-10 h-10 rounded-full bg-[#1A1A1A] flex items-center justify-center text-white mb-4">
                   <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
                 </div>
-                <h4 className="text-xl font-bold mb-2 text-[#1A1A1A] transform-gpu" style={{ transform: "translateZ(30px)" }}>Time Experiente</h4>
-                <p className="text-[#6B6B6B] text-sm transform-gpu" style={{ transform: "translateZ(20px)" }}>Engenheiros de campo com décadas de experiência prática.</p>
+                <h4 className="text-lg font-bold mb-2 text-[#1A1A1A] transform-gpu" style={{ transform: "translateZ(30px)" }}>Experiência Industrial</h4>
+                <p className="text-[#6B6B6B] text-sm leading-relaxed transform-gpu" style={{ transform: "translateZ(20px)" }}>Equipe especializada com vivência prática no desenvolvimento de soluções para a indústria.</p>
               </div>
             </TiltWrapper>
           </div>

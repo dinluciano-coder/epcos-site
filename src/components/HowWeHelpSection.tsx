@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { gsap } from "@/lib/gsapConfig";
 import { useGSAP } from "@gsap/react";
+import TiltWrapper from "./TiltWrapper";
 
 const challenges = [
   {
@@ -96,47 +97,58 @@ export default function HowWeHelpSection() {
         </div>
 
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
           {challenges.map((item, i) => (
-            <div
-              key={i}
-              className="help-anim glass-card group relative overflow-hidden p-8 flex flex-col gap-4 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-            >
-              {/* Top accent line */}
-              <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#7B2D3B] to-[#9A3A4A] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <TiltWrapper key={i} maxTilt={8} className="help-anim h-full">
+              <div
+                className="glass-card group relative h-full overflow-hidden p-8 flex flex-col gap-4 transition-all duration-300 transform-gpu"
+                style={{ transformStyle: "preserve-3d" }}
+              >
+                {/* Top accent line */}
+                <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#7B2D3B] to-[#9A3A4A] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-              {/* Icon */}
-              <div className="w-12 h-12 rounded-xl bg-[#7B2D3B]/10 flex items-center justify-center text-[#7B2D3B] flex-shrink-0">
-                {item.icon}
-              </div>
+                <div className="transform-gpu" style={{ transform: "translateZ(30px)" }}>
+                  {/* Icon */}
+                  <div className="w-12 h-12 rounded-xl bg-[#7B2D3B]/10 flex items-center justify-center text-[#7B2D3B] flex-shrink-0 mb-4">
+                    {item.icon}
+                  </div>
 
-              {/* Content */}
-              <div>
-                <h3 className="text-lg font-bold text-[#1A1A1A] mb-2 leading-snug">{item.title}</h3>
-                <p className="text-[#6B6B6B] text-sm leading-relaxed">{item.description}</p>
+                  {/* Content */}
+                  <div>
+                    <h3 className="text-lg font-bold text-[#1A1A1A] mb-2 leading-snug">{item.title}</h3>
+                    <p className="text-[#6B6B6B] text-sm leading-relaxed">{item.description}</p>
+                  </div>
+                </div>
               </div>
-            </div>
+            </TiltWrapper>
           ))}
 
           {/* CTA Card */}
-          <div className="help-anim relative overflow-hidden rounded-3xl p-8 flex flex-col justify-between gap-4 bg-[#1A1A1A] text-white md:col-span-2 lg:col-span-1">
-            <div className="absolute top-0 right-0 w-40 h-40 bg-[#7B2D3B]/30 rounded-full blur-3xl pointer-events-none" />
-            <div>
-              <h3 className="text-xl font-bold mb-2">Tem outro desafio?</h3>
-              <p className="text-[#9A9A9A] text-sm leading-relaxed">
-                Nossa equipe de engenharia está pronta para avaliar sua situação e propor a melhor solução.
-              </p>
-            </div>
-            <a
-              href="#contato"
-              className="inline-flex items-center gap-2 bg-[#7B2D3B] text-white font-semibold text-sm px-6 py-3 rounded-xl hover:bg-[#9A3A4A] transition-colors w-fit"
+          <TiltWrapper maxTilt={5} className="help-anim md:col-span-2 lg:col-span-1 h-full">
+            <div 
+              className="relative overflow-hidden rounded-3xl p-8 flex flex-col justify-between gap-4 bg-[#1A1A1A] text-white h-full transform-gpu"
+              style={{ transformStyle: "preserve-3d" }}
             >
-              Falar com Nossa Engenharia
-              <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </a>
-          </div>
+              <div className="absolute top-0 right-0 w-40 h-40 bg-[#7B2D3B]/30 rounded-full blur-3xl pointer-events-none" />
+              <div className="transform-gpu" style={{ transform: "translateZ(20px)" }}>
+                <h3 className="text-xl font-bold mb-2">Tem outro desafio?</h3>
+                <p className="text-[#9A9A9A] text-sm leading-relaxed">
+                  Nossa equipe de engenharia está pronta para avaliar sua situação e propor a melhor solução.
+                </p>
+              </div>
+              <div className="transform-gpu" style={{ transform: "translateZ(30px)" }}>
+                <a
+                  href="#contato"
+                  className="inline-flex items-center gap-2 bg-[#7B2D3B] text-white font-semibold text-sm px-6 py-3 rounded-xl hover:bg-[#9A3A4A] transition-colors w-fit"
+                >
+                  Falar com Nossa Engenharia
+                  <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </TiltWrapper>
         </div>
 
       </div>

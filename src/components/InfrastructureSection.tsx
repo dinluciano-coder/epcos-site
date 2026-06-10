@@ -60,10 +60,10 @@ export default function InfrastructureSection() {
             <span className="w-1.5 h-1.5 rounded-full bg-[#7B2D3B]"></span>
             <span className="text-[10px] font-bold tracking-widest text-[#9A9A9A] uppercase">Instalações Físicas</span>
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 tracking-tight">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 tracking-tight">
             Estrutura Completa para <span className="text-[#7B2D3B]">Desenvolver Soluções Industriais</span>
           </h2>
-          <p className="text-[#9A9A9A] text-lg max-w-2xl">
+          <p className="text-[#9A9A9A] text-base md:text-lg max-w-2xl">
             Equipe qualificada e recursos tecnológicos para transformar desafios industriais em projetos eficientes e confiáveis.
           </p>
         </div>

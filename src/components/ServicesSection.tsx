@@ -108,28 +108,28 @@ export default function ServicesSection() {
     <section ref={sectionRef} id="servicos" className="py-16 md:py-24 section-light relative z-10">
       <div className="max-w-7xl mx-auto px-6">
         
-        <div ref={titleRef} className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-[#1A1A1A] tracking-tight">
+        <div ref={titleRef} className="text-center mb-12 md:mb-20">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 text-[#1A1A1A] tracking-tight">
             Serviços & Soluções
           </h2>
-          <p className="text-lg md:text-xl text-[#6B6B6B] max-w-2xl mx-auto">
+          <p className="text-base md:text-xl text-[#6B6B6B] max-w-2xl mx-auto">
             Soluções completas em engenharia e automação para elevar o patamar da sua produção industrial.
           </p>
         </div>
 
-        <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
           {services.map((service, i) => (
-            <TiltWrapper key={i} maxTilt={8}>
-              <div className="glass-card relative overflow-hidden p-8 md:p-10 h-full">
+            <TiltWrapper key={i} maxTilt={8} className="h-full">
+              <div className="glass-card relative overflow-hidden p-6 md:p-10 h-full">
                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#7B2D3B] to-[#9A3A4A] opacity-70"></div>
                 
-                <div className="flex items-start gap-6 transform-gpu" style={{ transform: "translateZ(30px)" }}>
-                  <div className="flex-shrink-0 w-14 h-14 rounded-full bg-[#7B2D3B]/10 flex items-center justify-center text-[#7B2D3B]">
+                <div className="flex items-start gap-5 transform-gpu" style={{ transform: "translateZ(30px)" }}>
+                  <div className="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-full bg-[#7B2D3B]/10 flex items-center justify-center text-[#7B2D3B]">
                     {service.icon}
                   </div>
                   <div>
-                    <h3 className="text-xl md:text-2xl font-bold mb-3 text-[#1A1A1A]">{service.title}</h3>
-                    <p className="text-[#6B6B6B] leading-relaxed">
+                    <h3 className="text-lg md:text-2xl font-bold mb-2 md:mb-3 text-[#1A1A1A] leading-snug">{service.title}</h3>
+                    <p className="text-sm md:text-base text-[#6B6B6B] leading-relaxed">
                       {service.description}
                     </p>
                   </div>

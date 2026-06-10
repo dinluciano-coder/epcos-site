@@ -90,10 +90,10 @@ export default function ScannerSection() {
             <span className="w-1.5 h-1.5 rounded-full bg-[#7B2D3B]"></span>
             <span className="text-[10px] font-bold tracking-widest text-[#6B6B6B] uppercase">Diferencial Tecnológico</span>
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-5 md:mb-6 tracking-tight">
             Engenharia Reversa <span className="text-[#7B2D3B]">com Scanner 3D de precisão 0,02 mm.</span>
           </h2>
-          <p className="text-[#6B6B6B] text-lg max-w-3xl leading-relaxed">
+          <p className="text-[#6B6B6B] text-base md:text-lg max-w-3xl leading-relaxed">
             Utilizamos escaneamento 3D para transformar peças físicas em modelos digitais precisos, acelerando o desenvolvimento de projetos mecânicos.
           </p>
         </div>

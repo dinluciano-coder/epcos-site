@@ -119,7 +119,7 @@ function TiltCard({ title, description, delay = 0 }: TiltCardProps) {
         />
 
         <div className="relative z-10 transform-gpu" style={{ transform: "translateZ(30px)" }}>
-          <h3 className="text-2xl md:text-3xl font-bold mb-4 text-[#1A1A1A] tracking-tight">{title}</h3>
+          <h3 className="text-xl md:text-3xl font-bold mb-3 md:mb-4 text-[#1A1A1A] tracking-tight">{title}</h3>
           <p className="text-[#6B6B6B] leading-relaxed">
             {description}
           </p>
@@ -193,10 +193,10 @@ export default function GlassCardsSection() {
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="text-center mb-24 glass-3d-title">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1A1A1A] tracking-tight">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-[#1A1A1A] tracking-tight">
             Engenharia de <span className="text-[#7B2D3B]">Excelência</span>
           </h2>
-          <p className="mt-6 text-xl text-[#6B6B6B] max-w-2xl mx-auto">
+          <p className="mt-4 md:mt-6 text-base md:text-xl text-[#6B6B6B] max-w-2xl mx-auto">
             Projetos mecânicos complexos, automação industrial e escaneamento 3D com nível metrológico para garantir máxima performance.
           </p>
         </div>

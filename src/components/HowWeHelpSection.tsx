@@ -87,11 +87,11 @@ export default function HowWeHelpSection() {
             <span className="w-2 h-2 rounded-full bg-[#7B2D3B]"></span>
             <span className="text-xs font-semibold uppercase tracking-widest text-[#6B6B6B]">Nosso Foco</span>
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1A1A1A] tracking-tight mb-4">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-[#1A1A1A] tracking-tight mb-4">
             Como Podemos Ajudar{" "}
             <span className="text-[#7B2D3B]">Sua Operação?</span>
           </h2>
-          <p className="text-lg text-[#6B6B6B] max-w-2xl mx-auto">
+          <p className="text-base md:text-lg text-[#6B6B6B] max-w-2xl mx-auto">
             Atendemos os desafios mais comuns da indústria com soluções de engenharia desenvolvidas para cada necessidade.
           </p>
         </div>
@@ -101,7 +101,7 @@ export default function HowWeHelpSection() {
           {challenges.map((item, i) => (
             <TiltWrapper key={i} maxTilt={8} className="help-anim h-full">
               <div
-                className="glass-card group relative h-full overflow-hidden p-8 flex flex-col gap-4 transition-all duration-300 transform-gpu"
+                className="glass-card group relative h-full overflow-hidden p-6 md:p-8 flex flex-col gap-3 transition-all duration-300 transform-gpu"
                 style={{ transformStyle: "preserve-3d" }}
               >
                 {/* Top accent line */}
@@ -109,14 +109,14 @@ export default function HowWeHelpSection() {
 
                 <div className="transform-gpu" style={{ transform: "translateZ(30px)" }}>
                   {/* Icon */}
-                  <div className="w-12 h-12 rounded-xl bg-[#7B2D3B]/10 flex items-center justify-center text-[#7B2D3B] flex-shrink-0 mb-4">
+                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-[#7B2D3B]/10 flex items-center justify-center text-[#7B2D3B] flex-shrink-0 mb-3">
                     {item.icon}
                   </div>
 
                   {/* Content */}
                   <div>
-                    <h3 className="text-lg font-bold text-[#1A1A1A] mb-2 leading-snug">{item.title}</h3>
-                    <p className="text-[#6B6B6B] text-sm leading-relaxed">{item.description}</p>
+                    <h3 className="text-base md:text-lg font-bold text-[#1A1A1A] mb-1.5 md:mb-2 leading-snug">{item.title}</h3>
+                    <p className="text-xs md:text-sm text-[#6B6B6B] leading-relaxed">{item.description}</p>
                   </div>
                 </div>
               </div>

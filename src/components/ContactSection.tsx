@@ -77,10 +77,10 @@ export default function ContactSection() {
             <span className="w-2 h-2 rounded-full bg-[#7B2D3B]"></span>
             <span className="text-xs font-semibold uppercase tracking-widest text-[#6B6B6B]">Fale Conosco</span>
           </div>
-          <h2 className="contact-stagger text-4xl md:text-5xl font-bold mb-6 text-[#1A1A1A] tracking-tight">
+          <h2 className="contact-stagger text-3xl md:text-5xl font-bold mb-5 md:mb-6 text-[#1A1A1A] tracking-tight">
             Tem um <span className="text-[#7B2D3B]">desafio industrial?</span>
           </h2>
-          <p className="contact-stagger text-lg text-[#6B6B6B] mb-12 max-w-md">
+          <p className="contact-stagger text-base md:text-lg text-[#6B6B6B] mb-10 md:mb-12 max-w-md">
             Nossa equipe está pronta para entender sua necessidade e desenvolver a melhor solução para sua operação.
           </p>
 

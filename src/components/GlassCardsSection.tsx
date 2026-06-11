@@ -171,16 +171,16 @@ export default function GlassCardsSection() {
 
   const features = [
     {
-      title: "Precisão Técnica",
-      description: "Projetos desenvolvidos com alto nível de detalhamento e confiabilidade."
+      title: "Compromisso com Resultado",
+      description: "Focamos em entregar soluções que impactam diretamente a produtividade e a eficiência da sua operação."
     },
     {
-      title: "Agilidade no Desenvolvimento",
-      description: "Processos estruturados para reduzir prazos e acelerar entregas."
+      title: "Integração Multidisciplinar",
+      description: "Combinamos mecânica, automação e metrologia 3D em projetos que atendem toda a cadeia produtiva."
     },
     {
-      title: "Soluções Personalizadas",
-      description: "Cada projeto é desenvolvido de acordo com a necessidade da aplicação."
+      title: "Suporte Contínuo",
+      description: "Acompanhamos cada etapa do projeto, da concepção à implementação, garantindo total alinhamento técnico."
     }
   ];
 

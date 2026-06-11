@@ -108,7 +108,7 @@ export default function ProjectsSection() {
       desc: "Desenvolvimento completo de células automatizadas, desde a concepção 3D até a validação virtual. Nossos projetos mecânicos garantem precisão estrutural para robótica de alta performance, minimizando ciclos e elevando a produtividade."
     },
     {
-      title: "Engenharia de Dispositivos e Dispositivos de Montagem",
+      title: "Projeto de Dispositivos e Bancadas de Montagem",
       category: "Engenharia Mecânica",
       images: [
         "/novo-projeto-2-a.jpg",

@@ -76,7 +76,7 @@ export default function CareersSection() {
               </svg>
               <h3 className="text-2xl font-bold mb-3 text-[#1A1A1A] transform-gpu" style={{ transform: "translateZ(25px)" }}>Vagas Abertas</h3>
               <p className="text-[#6B6B6B] mb-8 transform-gpu text-center" style={{ transform: "translateZ(20px)" }}>
-                Neste momento, avaliamos currículos para o banco de talentos de <strong className="text-[#1A1A1A]">Engenheiro Mecânico Sênior</strong> e <strong className="text-[#1A1A1A]">Especialista em Metrologia 3D</strong>.
+                Neste momento, avaliamos currículos para o banco de talentos de <strong className="text-[#1A1A1A]">Projetista</strong> e <strong className="text-[#1A1A1A]">Especialista em Metrologia 3D</strong>.
               </p>
             </div>
 

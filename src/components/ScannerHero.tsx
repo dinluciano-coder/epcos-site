@@ -64,9 +64,9 @@ export default function ScannerHero() {
     if (!visible) return;
     let v = 0;
     const id = setInterval(() => {
-      v = Math.min(v + 1440000 / 90, 1440000);
+      v = Math.min(v + 1020000 / 90, 1020000);
       setCounter(Math.floor(v));
-      if (v >= 1440000) clearInterval(id);
+      if (v >= 1020000) clearInterval(id);
     }, 16);
     return () => clearInterval(id);
   }, [visible]);
@@ -301,9 +301,9 @@ export default function ScannerHero() {
   }, [initCanvas]);
 
   const hudData = [
-    { label: "Precisão",  value: "0,02 mm",                       color: "#64c8ff" },
-    { label: "Pontos/s",  value: counter.toLocaleString("pt-BR"), color: "#a855f7" },
-    { label: "Cobertura", value: "360°",                          color: "#f472b6" },
+    { label: "Precisão",  value: "até 0,02 mm",                                         color: "#64c8ff" },
+    { label: "Pontos/s",  value: `até ${counter.toLocaleString("pt-BR")}`, subText: "no modo laser azul de 34 linhas", color: "#a855f7" },
+    { label: "Cobertura", value: "360°",                                                color: "#f472b6" },
   ];
 
   return (
@@ -434,6 +434,11 @@ export default function ScannerHero() {
                 <span className="text-base font-extrabold" style={{ color: "#eef8ff" }}>
                   {hud.value}
                 </span>
+                {hud.subText && (
+                  <span className="text-[9px] leading-tight mt-0.5" style={{ color: "rgba(190,215,255,0.45)" }}>
+                    {hud.subText}
+                  </span>
+                )}
               </div>
             ))}
           </div>

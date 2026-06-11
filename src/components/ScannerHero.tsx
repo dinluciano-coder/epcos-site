@@ -100,10 +100,11 @@ export default function ScannerHero() {
       stateRef.current.W = W;
       stateRef.current.H = H;
 
+      // Paleta ajustada para tons de azul/violeta baseados na imagem de referência
       const palette: [number, number, number][] = [
-        [50,  215, 255], [90,  140, 255], [155,  65, 255],
-        [225,  55, 200], [65,  245, 255], [195,  85, 255],
-        [40,  225, 245], [125,  75, 255],
+        [100, 130, 255], [120, 140, 255], [110, 120, 255],
+        [140, 150, 255], [105, 115, 250], [90, 110, 255],
+        [130, 145, 255], [85, 100, 245],
       ];
 
       // Leque de 22 raios espalhados ±22° ao redor do ângulo central
@@ -251,7 +252,7 @@ export default function ScannerHero() {
             vy: (Math.random() - 0.5) * 2,
             life: 0, maxLife: 20 + Math.random() * 30,
             size: 0.7 + Math.random() * 1.6,
-            hue: 185 + Math.random() * 90,
+            hue: 230 + Math.random() * 15, // Hue azul/violeta correspondente aos raios
           });
         }
       });
@@ -259,8 +260,8 @@ export default function ScannerHero() {
       // ── Glow na lente ─────────────────────────────────────────────────────
       const gr = (38 + Math.sin(s.t * 2.4) * 7) * boost;
       const gl = ctx.createRadialGradient(lx, ly, 0, lx, ly, gr);
-      gl.addColorStop(0,    `rgba(80,215,255,${0.45 * boost})`);
-      gl.addColorStop(0.45, `rgba(140,80,255,${0.16 * boost})`);
+      gl.addColorStop(0,    `rgba(120,140,255,${0.45 * boost})`);
+      gl.addColorStop(0.45, `rgba(100,120,255,${0.16 * boost})`);
       gl.addColorStop(1,    "rgba(0,0,0,0)");
       ctx.fillStyle = gl;
       ctx.beginPath();

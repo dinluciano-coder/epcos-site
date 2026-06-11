@@ -4,6 +4,7 @@ import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import { gsap } from "@/lib/gsapConfig";
 import { useGSAP } from "@gsap/react";
+import ScannerHero from "./ScannerHero";
 
 const scannerData = [
   {
@@ -96,6 +97,11 @@ export default function ScannerSection() {
           <p className="text-[#6B6B6B] text-base md:text-lg max-w-3xl leading-relaxed">
             Utilizamos escaneamento 3D para transformar peças físicas em modelos digitais precisos, acelerando o desenvolvimento de projetos mecânicos.
           </p>
+        </div>
+
+        {/* Scanner Hero — animated visualization */}
+        <div className="mb-10 scanner-anim">
+          <ScannerHero />
         </div>
 
         {/* Accordion Layout */}

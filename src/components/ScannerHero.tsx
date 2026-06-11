@@ -71,11 +71,19 @@ export default function ScannerHero() {
     return () => clearInterval(id);
   }, [visible]);
 
-  // ── Mouse tracking ─────────────────────────────────────────────────────────
-  const onSectionMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    mouseRef.current = { x: e.clientX, y: e.clientY };
+  // ── Mouse & Touch tracking ─────────────────────────────────────────────────
+  const onSectionPointerMove = useCallback((e: React.MouseEvent | React.TouchEvent) => {
+    let clientX, clientY;
+    if ('touches' in e) {
+      clientX = e.touches[0].clientX;
+      clientY = e.touches[0].clientY;
+    } else {
+      clientX = (e as React.MouseEvent).clientX;
+      clientY = (e as React.MouseEvent).clientY;
+    }
+    mouseRef.current = { x: clientX, y: clientY };
   }, []);
-  const onSectionMouseLeave = useCallback(() => {
+  const onSectionPointerLeave = useCallback(() => {
     mouseRef.current = { x: -1, y: -1 };
   }, []);
 
@@ -131,10 +139,17 @@ export default function ScannerHero() {
       const { W, H } = s;
       if (!W || !H) { animRef.current = requestAnimationFrame(draw); return; }
 
-      // ── Posição da lente (scanner encostado à direita) ─────────────────────
-      // Scanner está no canto direito; a lente esq. fica a ~84% da largura
-      const lx = W * 0.835;
-      const ly = H * 0.285;
+      // ── Posição da lente (cálculo dinâmico e responsivo) ───────────────────
+      // Em vez de posição fixa, lemos a posição real da imagem na tela (mobile/PC)
+      let lx = W * 0.835;
+      let ly = H * 0.285;
+      if (scannerImgRef.current) {
+        const rect = scannerImgRef.current.getBoundingClientRect();
+        const canvasRect = canvas.getBoundingClientRect();
+        // A lente (pivô) está em 65% width e 28% height da imagem
+        lx = (rect.left - canvasRect.left + rect.width * 0.65) * (W / canvasRect.width);
+        ly = (rect.top - canvasRect.top + rect.height * 0.28) * (H / canvasRect.height);
+      }
 
       // ── Calcula ângulo alvo com base no mouse ──────────────────────────────
       const { x: mx, y: my } = mouseRef.current;
@@ -298,8 +313,11 @@ export default function ScannerHero() {
         background: "linear-gradient(135deg,#05080f 0%,#0b1122 55%,#090415 100%)",
         minHeight: "clamp(360px,48vw,500px)",
       }}
-      onMouseMove={onSectionMouseMove}
-      onMouseLeave={onSectionMouseLeave}
+      onMouseMove={onSectionPointerMove}
+      onMouseLeave={onSectionPointerLeave}
+      onTouchMove={onSectionPointerMove}
+      onTouchStart={onSectionPointerMove}
+      onTouchEnd={onSectionPointerLeave}
       onMouseEnter={() => setIsHovered(true)}
     >
       {/* Grid de pontos */}
@@ -392,11 +410,11 @@ export default function ScannerHero() {
             Cada varredura captura milhões de pontos em milissegundos, transformando geometrias complexas em modelos prontos para engenharia reversa.
           </p>
 
-          <div className="grid grid-cols-3 gap-2 mt-1">
+          <div className="grid grid-cols-3 gap-1.5 sm:gap-2 mt-2 lg:mt-1">
             {hudData.map(hud => (
               <div
                 key={hud.label}
-                className="flex flex-col gap-2 rounded-xl p-3 backdrop-blur-sm"
+                className="flex flex-col gap-1 sm:gap-2 rounded-xl p-2 sm:p-3 backdrop-blur-sm"
                 style={{
                   background: "rgba(255,255,255,0.04)",
                   border: `1px solid ${hud.color}2e`,
@@ -420,14 +438,12 @@ export default function ScannerHero() {
           </div>
         </div>
 
-        {/* DIREITA — scanner encostado no canto direito */}
         <div
-          className="lg:w-[45%] flex items-center justify-end"
+          className="w-full lg:w-[45%] flex items-center justify-center lg:justify-end mt-4 lg:mt-0"
           style={{
             opacity:   visible ? 1 : 0,
             transform: visible ? "none" : "translateY(20px)",
             transition: "opacity 1s ease 0.2s, transform 1s ease 0.2s",
-            // Sem padding direito — encosta na borda
             paddingRight: 0,
           }}
         >
@@ -474,7 +490,7 @@ export default function ScannerHero() {
       {/* Hint: aparece quando mouse não está sobre a seção */}
       {visible && !isHovered && (
         <div
-          className="absolute bottom-4 right-6 flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-semibold tracking-wide select-none pointer-events-none"
+          className="absolute bottom-4 left-1/2 -translate-x-1/2 lg:left-auto lg:-translate-x-0 lg:right-6 flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-semibold tracking-wide select-none pointer-events-none"
           style={{
             background: "rgba(80,180,255,0.08)",
             border: "1px solid rgba(80,180,255,0.18)",
@@ -482,7 +498,7 @@ export default function ScannerHero() {
             animation: "hintPulse 2.5s ease-in-out infinite",
           }}
         >
-          ✦ Mova o mouse para escanear
+          ✦ Mova o dedo ou mouse para escanear
         </div>
       )}
 

@@ -80,26 +80,35 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
     <main className="min-h-screen bg-[#0A0A0A] text-white">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      {/* Hero cover */}
-      <div className="relative h-[45vh] min-h-[320px] w-full">
-        {post.cover_url ? (
-          <Image src={post.cover_url} alt={post.title} fill className="object-cover" priority />
-        ) : (
-          <div className="absolute inset-0 bg-gradient-to-br from-[#1A0A0E] to-[#0A0A0A]" />
-        )}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/60 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 max-w-3xl mx-auto px-6 pb-8">
-          <h1 className="text-3xl md:text-5xl font-black leading-tight tracking-tight">
-            {post.title}
-          </h1>
-          <p className="mt-3 text-[#9A9A9A] text-sm">
-            EPCOS Engenharia &mdash; {post.published_at ? formatDate(post.published_at) : ''}
-          </p>
+      <div className="max-w-3xl mx-auto px-6 pt-32 pb-8">
+        <h1 className="text-3xl md:text-5xl font-black leading-tight tracking-tight mb-6">
+          {post.title}
+        </h1>
+        <div className="flex items-center gap-3 text-[#9A9A9A] text-sm">
+          <span className="font-bold text-white">EPCOS Engenharia</span>
+          <span>•</span>
+          <span>{post.published_at ? formatDate(post.published_at) : formatDate(post.created_at)}</span>
         </div>
       </div>
 
+      {/* Featured Image */}
+      {post.cover_url && (
+        <div className="max-w-4xl mx-auto px-6 mb-12">
+          <div className="w-full rounded-2xl overflow-hidden border border-white/10 bg-[#111111]">
+            <Image 
+              src={post.cover_url} 
+              alt={post.title} 
+              width={1200} 
+              height={675} 
+              className="w-full h-auto object-contain" 
+              priority 
+            />
+          </div>
+        </div>
+      )}
+
       {/* Article body */}
-      <div className="max-w-3xl mx-auto px-6 py-12">
+      <div className="max-w-3xl mx-auto px-6 py-4">
         {/* Excerpt / intro */}
         {post.excerpt && (
           <p className="text-xl text-[#9A9A9A] leading-relaxed mb-10 pb-10 border-b border-white/10">

@@ -127,7 +127,7 @@ export default function FooterSection() {
             </div>
           </div>
           <p className="text-[#9A9A9A] text-center w-full pb-4">
-            Desenvolvido por <strong className="text-white font-medium">Luciano Diniz</strong>
+            Desenvolvido por <a href="https://www.instagram.com/dinluciano" target="_blank" rel="noopener noreferrer" className="text-white font-medium hover:text-[#7B2D3B] transition-colors">Luciano Diniz</a>
           </p>
         </div>
         

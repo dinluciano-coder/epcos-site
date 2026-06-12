@@ -9,6 +9,9 @@ import PostCard from '@/components/blog/PostCard';
 
 const BASE_URL = 'https://epcos.eng.br';
 
+export const revalidate = 60; // revalidate every 60 seconds
+export const dynamicParams = true;
+
 export async function generateStaticParams() {
   const posts = await getAllPublishedPosts();
   return posts.map(p => ({ slug: p.slug }));

@@ -75,7 +75,7 @@ export const metadata: Metadata = {
 
   // ── Google Search Console Verification ───────────────────────────────
   verification: {
-    google: "tJVX_yN6DC2kaJVwtbo4pNxKpFeTK0SQRnIH2knuAQA",
+    google: "E-_NgPCAQv-tP1xptna89EtJAh7-HszeYVfGGIGIZJs",
   },
 
   // ── Open Graph (WhatsApp, LinkedIn, Facebook, Google Imagens) ─────────

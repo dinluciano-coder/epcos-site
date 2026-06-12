@@ -32,7 +32,8 @@ export async function checkAuth() {
 export async function getFiles() {
   try {
     const { blobs } = await list();
-    return { success: true, files: blobs };
+    const filteredBlobs = blobs.filter(blob => !blob.pathname.startsWith('blog/'));
+    return { success: true, files: filteredBlobs };
   } catch (error: any) {
     console.error("Error fetching files:", error);
     return { success: false, error: error.message || "Erro desconhecido ao carregar arquivos da nuvem." };

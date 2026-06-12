@@ -100,20 +100,36 @@ export default function Header() {
       {/* Mobile Menu */}
       <div 
         className={`md:hidden absolute top-20 left-0 right-0 bg-white/95 backdrop-blur-3xl border-b border-black/5 overflow-hidden transition-all duration-300 ${
-          isMobileMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+          isMobileMenuOpen ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
         }`}
       >
         <div className="flex flex-col p-6 gap-4 shadow-2xl">
-          {navLinks.map((link) => (
-            <a 
-              key={link.name} 
-              href={link.href}
-              className="text-lg font-medium text-[#1A1A1A] py-2 border-b border-black/5"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              {link.name}
-            </a>
-          ))}
+          {navLinks.map((link) =>
+            link.href.startsWith('/') && !link.href.startsWith('/#') ? (
+              <Link
+                key={link.name}
+                href={link.href}
+                className="flex items-center justify-between text-lg font-medium text-[#1A1A1A] py-2 border-b border-black/5"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {link.name}
+                {link.isNew && (
+                  <span className="text-[10px] font-black px-2 py-1 rounded-full bg-[#7B2D3B] text-white uppercase tracking-wider animate-pulse">
+                    NEW
+                  </span>
+                )}
+              </Link>
+            ) : (
+              <a
+                key={link.name}
+                href={link.href}
+                className="text-lg font-medium text-[#1A1A1A] py-2 border-b border-black/5"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {link.name}
+              </a>
+            )
+          )}
           <a 
             href="https://wa.me/5531992825058"
             target="_blank"

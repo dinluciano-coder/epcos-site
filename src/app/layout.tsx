@@ -6,7 +6,7 @@ import ScrollIndicator from "@/components/ScrollIndicator";
 import CookieBanner from "@/components/CookieBanner";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import MobileContactBar from "@/components/MobileContactBar";
-import { Analytics } from "@vercel/analytics/react";
+import { Analytics } from "@vercel/analytics/next";
 
 const inter = Inter({
   subsets: ["latin"],

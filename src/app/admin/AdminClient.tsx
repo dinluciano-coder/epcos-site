@@ -128,14 +128,24 @@ export default function AdminClient({ initialAuth }: { initialAuth: boolean }) {
 
   return (
     <div className="w-full">
-      <div className="flex justify-between items-center mb-10">
+      <div className="flex justify-between items-center mb-6">
         <div>
-          <h1 className="text-4xl font-bold text-white mb-2">Gerenciador de Arquivos</h1>
-          <p className="text-[#9A9A9A]">Adicione ou remova documentos da página de Downloads.</p>
+          <h1 className="text-4xl font-bold text-white mb-2">Painel de Controle</h1>
+          <p className="text-[#9A9A9A]">Bem-vindo à área restrita da EPCOS.</p>
         </div>
         <button onClick={handleLogout} className="text-sm text-[#9A9A9A] hover:text-white underline underline-offset-4 transition-colors">
           Sair
         </button>
+      </div>
+
+      {/* Admin Navigation Tabs */}
+      <div className="flex gap-4 mb-10 pb-4 border-b border-white/10">
+        <div className="px-5 py-2.5 bg-white/10 text-white rounded-xl font-bold border border-white/5">
+          📁 Downloads
+        </div>
+        <a href="/admin/posts" className="px-5 py-2.5 text-[#9A9A9A] hover:text-white hover:bg-white/5 rounded-xl transition-colors font-medium">
+          📝 Blog / News
+        </a>
       </div>
 
       {error && <div className="mb-6 p-4 bg-red-500/10 text-red-400 rounded-xl border border-red-500/20">{error}</div>}

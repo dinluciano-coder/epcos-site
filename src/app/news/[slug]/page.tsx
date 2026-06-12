@@ -84,6 +84,19 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       <div className="max-w-3xl mx-auto px-6 pt-32 pb-8">
+        {/* Top Navigation Buttons */}
+        <div className="flex flex-wrap items-center gap-3 mb-10">
+          <Link href="/" className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm font-semibold text-[#9A9A9A] hover:text-white hover:bg-white/10 transition-colors">
+            🏠 Início
+          </Link>
+          <Link href="/news" className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm font-semibold text-[#9A9A9A] hover:text-white hover:bg-white/10 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+            </svg>
+            Todos os Posts
+          </Link>
+        </div>
+
         <h1 className="text-3xl md:text-5xl font-black leading-tight tracking-tight mb-6">
           {post.title}
         </h1>

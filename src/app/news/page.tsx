@@ -23,6 +23,17 @@ export default async function NewsPage() {
       {/* Hero */}
       <section className="relative max-w-7xl mx-auto px-6 mb-16">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-64 bg-[#7B2D3B]/10 blur-[120px] pointer-events-none" />
+        
+        {/* Navigation */}
+        <div className="mb-8">
+          <Link href="/" className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm font-semibold text-[#9A9A9A] hover:text-white hover:bg-white/10 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
+            </svg>
+            Página Inicial
+          </Link>
+        </div>
+
         <div className="relative text-center">
           <span className="inline-block text-xs font-bold tracking-[0.3em] text-[#7B2D3B] uppercase mb-4">
             EPCOS Engenharia

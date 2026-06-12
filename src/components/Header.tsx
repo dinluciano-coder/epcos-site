@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import MagneticButton from "./MagneticButton";
 
 export default function Header() {
@@ -14,6 +15,7 @@ export default function Header() {
     { name: "Projetos", href: "/#projetos" },
     { name: "Serviços", href: "/#servicos" },
     { name: "Carreiras", href: "/#carreiras" },
+    { name: "News", href: "/news", isNew: true },
   ];
 
   return (
@@ -34,16 +36,31 @@ export default function Header() {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <a 
-              key={link.name} 
-              href={link.href}
-              data-magnetic
-              className="text-sm font-semibold tracking-wide text-[#6B6B6B] hover:text-[#7B2D3B] transition-colors py-2"
-            >
-              {link.name}
-            </a>
-          ))}
+          {navLinks.map((link) =>
+            link.href.startsWith('/') && !link.href.startsWith('/#') ? (
+              <Link
+                key={link.name}
+                href={link.href}
+                className="relative text-sm font-semibold tracking-wide text-[#6B6B6B] hover:text-[#7B2D3B] transition-colors py-2 flex items-center gap-1.5"
+              >
+                {link.name}
+                {link.isNew && (
+                  <span className="text-[9px] font-black px-1.5 py-0.5 rounded-full bg-[#7B2D3B] text-white uppercase tracking-wider animate-pulse">
+                    NEW
+                  </span>
+                )}
+              </Link>
+            ) : (
+              <a
+                key={link.name}
+                href={link.href}
+                data-magnetic
+                className="text-sm font-semibold tracking-wide text-[#6B6B6B] hover:text-[#7B2D3B] transition-colors py-2"
+              >
+                {link.name}
+              </a>
+            )
+          )}
           
           <div className="flex items-center gap-4 ml-2 mr-2 border-l border-black/10 pl-6">
             <a href="https://www.linkedin.com/company/epcos-engenharia-ltda/posts/?feedView=all" target="_blank" rel="noopener noreferrer" className="text-[#7B2D3B] hover:scale-125 hover:-translate-y-1 transition-transform duration-300">

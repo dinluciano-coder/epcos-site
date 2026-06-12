@@ -1,38 +1,21 @@
-import { handleUpload, type HandleUploadBody } from '@vercel/blob/client';
-import { NextResponse } from 'next/server';
+import { type NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
+import { put } from '@vercel/blob';
 
-export async function POST(request: Request): Promise<NextResponse> {
-  const body = (await request.json()) as HandleUploadBody;
-  
-  // Security Check: Only check auth when the client is requesting a token.
-  // The 'blob.upload-completed' webhook comes from Vercel servers, so it has no cookies.
-  if (body.type === 'blob.generate-client-token') {
-    const session = (await cookies()).get("epcos_admin_session");
-    if (session?.value !== "true") {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
+async function isAdmin() {
+  const c = await cookies();
+  return c.get('epcos_admin_session')?.value === 'true';
+}
+
+export async function POST(req: NextRequest) {
+  if (!(await isAdmin())) {
+    return NextResponse.json({ error: 'Não autorizado' }, { status: 401 });
   }
 
-  try {
-    const jsonResponse = await handleUpload({
-      body,
-      request,
-      onBeforeGenerateToken: async (pathname) => {
-        return {
-          tokenPayload: JSON.stringify({ uploadedBy: 'admin' }),
-        };
-      },
-      onUploadCompleted: async ({ blob, tokenPayload }) => {
-        console.log('Blob upload completed', blob, tokenPayload);
-      },
-    });
+  const form = await req.formData();
+  const file = form.get('file') as File | null;
+  if (!file) return NextResponse.json({ error: 'Arquivo não encontrado' }, { status: 400 });
 
-    return NextResponse.json(jsonResponse);
-  } catch (error) {
-    return NextResponse.json(
-      { error: (error as Error).message },
-      { status: 400 },
-    );
-  }
+  const blob = await put(`blog/${Date.now()}-${file.name}`, file, { access: 'public' });
+  return NextResponse.json({ url: blob.url });
 }

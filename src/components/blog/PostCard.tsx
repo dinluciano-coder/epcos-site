@@ -45,16 +45,6 @@ export default function PostCard({ post }: { post: Post }) {
           )}
           {/* Gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-transparent to-transparent" />
-          {/* Tags */}
-          {post.tags?.length > 0 && (
-            <div className="absolute bottom-3 left-4 flex flex-wrap gap-1.5">
-              {post.tags.slice(0, 2).map(tag => (
-                <span key={tag} className={`text-xs font-semibold px-2.5 py-1 rounded-full backdrop-blur-sm ${tagColor(tag)}`}>
-                  {tag}
-                </span>
-              ))}
-            </div>
-          )}
         </div>
 
         {/* Content */}

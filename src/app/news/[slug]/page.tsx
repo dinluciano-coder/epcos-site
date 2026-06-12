@@ -89,16 +89,6 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/60 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 max-w-3xl mx-auto px-6 pb-8">
-          {post.tags?.length > 0 && (
-            <div className="flex flex-wrap gap-2 mb-4">
-              {post.tags.map(tag => (
-                <Link key={tag} href={`/news?tag=${encodeURIComponent(tag)}`}
-                  className="text-xs font-bold px-3 py-1 rounded-full bg-[#7B2D3B]/30 text-[#c0505f] border border-[#7B2D3B]/30 hover:bg-[#7B2D3B]/50 transition-colors">
-                  {tag}
-                </Link>
-              ))}
-            </div>
-          )}
           <h1 className="text-3xl md:text-5xl font-black leading-tight tracking-tight">
             {post.title}
           </h1>

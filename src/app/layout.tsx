@@ -9,6 +9,7 @@ import MobileContactBar from "@/components/MobileContactBar";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import StructuredData from "@/components/StructuredData";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -148,6 +149,7 @@ export default function RootLayout({
         <CookieBanner />
         <Analytics />
         <SpeedInsights />
+        <GoogleAnalytics gaId="G-Z29YFEBLM9" />
       </body>
     </html>
   );

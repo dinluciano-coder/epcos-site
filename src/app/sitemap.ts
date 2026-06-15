@@ -23,7 +23,18 @@ const projectImages = [
   { url: '/infra-official-metrology.jpg', alt: 'Metrologia EPCOS Engenharia - laboratório de inspeção dimensional e escaneamento 3D', caption: 'Laboratório de Metrologia - EPCOS Engenharia' },
 ]
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  // Fetch dynamic blog posts
+  const { getAllPublishedPosts } = await import('@/lib/db');
+  const posts = await getAllPublishedPosts();
+
+  const blogUrls: MetadataRoute.Sitemap = posts.map(post => ({
+    url: `${BASE_URL}/news/${post.slug}`,
+    lastModified: post.published_at || post.created_at,
+    changeFrequency: 'weekly',
+    priority: 0.8,
+  }));
+
   return [
     {
       url: `${BASE_URL}`,
@@ -31,6 +42,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly',
       priority: 1.0,
       images: projectImages.map(img => `${BASE_URL}${img.url}`),
+    },
+    {
+      url: `${BASE_URL}/news`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.9,
     },
     {
       url: `${BASE_URL}/downloads`,
@@ -44,5 +61,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'yearly',
       priority: 0.3,
     },
+    ...blogUrls,
   ]
 }

@@ -27,11 +27,13 @@ const ProjectCarousel = ({ images, onImageClick }: { images: string[], onImageCl
       <div className="absolute inset-0 bg-[#7B2D3B]/10 group-hover:bg-transparent transition-all duration-500 z-20 pointer-events-none"></div>
       
       {images.map((img, idx) => (
-        <img 
+        <Image 
           key={idx}
           src={img} 
-          alt={`Project Image ${idx + 1}`}
-          className={`absolute inset-0 w-full h-full object-cover transition-all duration-1000 group-hover:scale-110 ${idx === currentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0 scale-105'}`}
+          alt={`Projeto EPCOS Engenharia ${idx + 1}`}
+          fill
+          sizes="(max-width: 768px) 100vw, 50vw"
+          className={`object-cover transition-all duration-1000 group-hover:scale-110 ${idx === currentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0 scale-105'}`}
         />
       ))}
       
@@ -193,11 +195,13 @@ export default function ProjectsSection() {
           style={{ animation: "fadeIn 0.3s forwards" }}
           onClick={() => setSelectedImage(null)}
         >
-          <div className="relative max-w-6xl w-full h-full flex items-center justify-center">
-            <img 
+          <div className="relative max-w-6xl w-full h-[90vh] flex items-center justify-center">
+            <Image 
               src={selectedImage} 
               alt="Projeto Ampliado" 
-              className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl scale-95 animate-scale-up"
+              fill
+              sizes="100vw"
+              className="object-contain rounded-lg shadow-2xl scale-95 animate-scale-up"
               style={{ animation: "scaleUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards" }}
               onClick={(e) => e.stopPropagation()} // Prevent close when clicking the image itself
             />

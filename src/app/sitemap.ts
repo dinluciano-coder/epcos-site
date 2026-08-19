@@ -33,6 +33,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified: post.published_at || post.created_at,
     changeFrequency: 'weekly',
     priority: 0.8,
+    // Declara a imagem de capa do post para indexação no Google Imagens
+    ...(post.cover_url ? { images: [post.cover_url] } : {}),
   }));
 
   return [

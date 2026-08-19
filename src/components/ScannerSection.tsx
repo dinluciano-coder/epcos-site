@@ -95,7 +95,7 @@ export default function ScannerSection() {
             Engenharia Reversa <span className="text-[#7B2D3B]">com Scanner 3D de precisão 0,02 mm.</span>
           </h2>
           <p className="text-[#6B6B6B] text-base md:text-lg max-w-3xl leading-relaxed">
-            Utilizamos escaneamento 3D para transformar peças físicas em modelos digitais precisos, acelerando o desenvolvimento de projetos mecânicos.
+            Utilizamos escaneamento 3D e o software <strong>Geomagic Design X</strong> para transformar peças físicas em modelos CAD precisos — acelerando o desenvolvimento de projetos mecânicos para indústrias em Contagem, Betim e toda a região de Belo Horizonte.
           </p>
         </div>
 

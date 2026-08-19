@@ -22,11 +22,11 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://epcos.eng.br"),
 
   title: {
-    default: "EPCOS Engenharia | Projetos Mecânicos, Escaneamento 3D e Automação Industrial em Betim MG",
+    default: "EPCOS Engenharia | Projetos Mecânicos, Escaneamento 3D e Automação Industrial em Contagem e Betim MG",
     template: "%s | EPCOS Engenharia",
   },
   description:
-    "EPCOS Engenharia: especialistas em projetos mecânicos industriais, escaneamento 3D (precisão 0,02mm), engenharia reversa, detalhamento 2D/3D, automação industrial e adequação NR12 em Betim, Minas Gerais. Atendemos toda a região metropolitana de Belo Horizonte.",
+    "EPCOS Engenharia: especialistas em projetos mecânicos industriais em SolidWorks, escaneamento 3D com Geomagic Design X (precisão 0,02mm), engenharia reversa, detalhamento 2D/3D, automação industrial e adequação NR12. Atendemos Contagem, Betim e toda a região metropolitana de Belo Horizonte, Minas Gerais.",
 
   keywords: [
     // ── Marca ────────────────────────────────────────────────────────────
@@ -38,14 +38,18 @@ export const metadata: Metadata = {
     "nuvem de pontos", "scan 3D peças", "metrologia 3D",
     "inspeção dimensional", "laudo dimensional", "laudo metrológico",
     "controle dimensional", "Raptor X scanner", "scanner blue laser",
+    "Geomagic Design X", "engenharia reversa Geomagic",
     // ── Engenharia Reversa ───────────────────────────────────────────────
     "engenharia reversa", "reverse engineering", "recriação de peças",
     "modelagem de peça sem desenho", "digitalização de peça",
     "reconstrução CAD", "engenharia reversa CAD",
+    "engenharia reversa em Minas Gerais", "engenharia reversa Contagem",
+    "engenharia reversa Betim", "engenharia reversa BH",
     // ── Projetos Mecânicos ───────────────────────────────────────────────
     "projetos mecânicos", "projeto mecânico industrial",
     "detalhamento 2D", "detalhamento 3D", "projeto 3D",
     "modelagem 3D", "modelagem CAD", "CAD industrial", "SolidWorks",
+    "projetos mecânicos em SolidWorks", "projeto mecânico SolidWorks BH",
     "desenho técnico", "desenho mecânico", "normas ABNT",
     "tolerâncias dimensionais", "GD&T", "máquinas especiais",
     "gabaritos e dispositivos", "ferramentais industriais",
@@ -64,9 +68,14 @@ export const metadata: Metadata = {
     "manutenção mecânica industrial", "projeto de usinagem",
     // ── Local ────────────────────────────────────────────────────────────
     "Betim", "Betim MG", "Minas Gerais", "Belo Horizonte", "Grande BH",
-    "Contagem", "região metropolitana Belo Horizonte",
-    "engenharia mecânica Betim", "projetos mecânicos BH",
-    "automação industrial Minas Gerais"
+    "Contagem", "Contagem MG", "região metropolitana Belo Horizonte",
+    "engenharia mecânica Betim", "engenharia mecânica Contagem",
+    "projetos mecânicos BH", "projetos mecânicos Contagem",
+    "projetos mecânicos industriais em Contagem",
+    "projetos mecânicos industriais em Betim",
+    "projetos mecânicos industriais Minas Gerais",
+    "automação industrial Minas Gerais", "automação industrial Contagem",
+    "escaneamento 3D Contagem", "escaneamento 3D Minas Gerais",
   ],
 
   authors: [{ name: "EPCOS Engenharia", url: "https://epcos.eng.br" }],

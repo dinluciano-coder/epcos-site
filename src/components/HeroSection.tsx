@@ -212,7 +212,7 @@ export default function HeroSection() {
           </h1>
 
           <p ref={subtitleRef} className="text-base sm:text-lg md:text-xl max-w-xl leading-relaxed mb-8 mx-auto" style={{ color: "#6B6B6B", opacity: 0, transform: "translateY(20px)" }}>
-            Desenvolvemos projetos mecânicos, engenharia reversa e digitalização 3D para criar soluções industriais com precisão, agilidade e confiabilidade.
+            Desenvolvemos projetos mecânicos, engenharia reversa e digitalização 3D para indústrias em Contagem, Betim e toda a região de Belo Horizonte — com precisão, agilidade e confiabilidade.
           </p>
 
           <div ref={ctaRef} className="mb-16" style={{ opacity: 0, transform: "translateY(20px)" }}>

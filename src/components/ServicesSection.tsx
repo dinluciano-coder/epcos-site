@@ -58,7 +58,7 @@ export default function ServicesSection() {
   const services = [
     {
       title: "Projetos Mecânicos Industriais",
-      description: "Desenvolvimento de equipamentos, dispositivos e soluções mecânicas sob medida para aumentar a eficiência dos processos industriais.",
+      description: "Desenvolvimento de equipamentos, dispositivos e soluções mecânicas sob medida em SolidWorks para aumentar a eficiência dos processos industriais em Contagem, Betim e Minas Gerais.",
       icon: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <circle cx="12" cy="12" r="3"></circle>
@@ -68,7 +68,7 @@ export default function ServicesSection() {
     },
     {
       title: "Engenharia Reversa com Scanner 3D",
-      description: "Digitalizamos peças e componentes para reconstrução CAD e desenvolvimento de novos projetos mecânicos.",
+      description: "Digitalizamos peças e componentes com Geomagic Design X para reconstrução CAD em SolidWorks — recriar peças sem documentação técnica para indústrias em Minas Gerais.",
       icon: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M3 7V5a2 2 0 0 1 2-2h2"></path>

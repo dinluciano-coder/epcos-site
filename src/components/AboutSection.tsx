@@ -88,7 +88,7 @@ export default function AboutSection() {
             Soluções de Engenharia para os <span className="text-[#7B2D3B]">Desafios da Sua Operação.</span>
           </h2>
           <p className="about-text text-base md:text-xl text-[#6B6B6B] leading-relaxed max-w-lg mb-6">
-            Desenvolvemos projetos mecânicos e soluções industriais sob medida, combinando experiência técnica e tecnologia para transformar necessidades reais em resultados concretos.
+            Desenvolvemos projetos mecânicos e soluções industriais sob medida para empresas em Contagem, Betim e Minas Gerais, combinando experiência técnica e tecnologia para transformar necessidades reais em resultados concretos.
           </p>
         </div>
 

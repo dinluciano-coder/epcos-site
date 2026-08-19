@@ -53,6 +53,10 @@ export default function StructuredData() {
           },
           {
             "@type": "City",
+            "name": "Contagem"
+          },
+          {
+            "@type": "City",
             "name": "Belo Horizonte"
           },
           {
@@ -63,6 +67,17 @@ export default function StructuredData() {
             "@type": "AdministrativeArea",
             "name": "Região Metropolitana de Belo Horizonte"
           }
+        ],
+        "knowsAbout": [
+          "Projetos Mecânicos Industriais",
+          "SolidWorks",
+          "Geomagic Design X",
+          "Escaneamento 3D",
+          "Engenharia Reversa",
+          "Metrologia Dimensional",
+          "Automação Industrial",
+          "Adequação NR12",
+          "Análise de Elementos Finitos"
         ],
         "openingHoursSpecification": [
           {
@@ -92,7 +107,7 @@ export default function StructuredData() {
               "itemOffered": {
                 "@type": "Service",
                 "name": "Projetos Mecânicos Industriais",
-                "description": "Desenvolvimento completo de projetos mecânicos industriais com modelagem 3D CAD, detalhamento 2D, simulação e análise de elementos finitos (FEA). Projetos de máquinas especiais, gabaritos, dispositivos e ferramentais."
+                "description": "Desenvolvimento completo de projetos mecânicos industriais em SolidWorks: modelagem 3D CAD paramétrica, detalhamento 2D conforme ABNT, simulação e análise de elementos finitos (FEA). Projetos de máquinas especiais, gabaritos, dispositivos e ferramentais para indústrias em Contagem, Betim e Minas Gerais."
               }
             },
             {
@@ -100,7 +115,7 @@ export default function StructuredData() {
               "itemOffered": {
                 "@type": "Service",
                 "name": "Escaneamento 3D e Metrologia",
-                "description": "Digitalização tridimensional com scanner 3D de alta precisão (até 0,02mm). Geração de nuvem de pontos, malha 3D e modelos CAD para engenharia reversa e controle dimensional. Laudos metrológicos e inspeção dimensional de peças."
+                "description": "Digitalização tridimensional com scanner 3D de alta precisão (até 0,02mm) e processamento no Geomagic Design X. Geração de nuvem de pontos, malha 3D e modelos CAD prontos para SolidWorks. Laudos metrológicos e inspeção dimensional para indústrias em Contagem, Betim e região metropolitana de BH."
               }
             },
             {
@@ -108,7 +123,7 @@ export default function StructuredData() {
               "itemOffered": {
                 "@type": "Service",
                 "name": "Engenharia Reversa",
-                "description": "Recreação de geometrias de peças sem documentação técnica através de escaneamento 3D e modelagem CAD. Ideal para peças descontinuadas, importadas ou sem desenho técnico original."
+                "description": "Recreação de geometrias de peças sem documentação técnica: escaneamento 3D + reconstrução CAD paramétrica com Geomagic Design X e SolidWorks. Ideal para peças descontinuadas, importadas ou sem desenho original. Atendemos Contagem, Betim e toda a região de Belo Horizonte, Minas Gerais."
               }
             },
             {
@@ -116,7 +131,7 @@ export default function StructuredData() {
               "itemOffered": {
                 "@type": "Service",
                 "name": "Detalhamento Técnico 2D e 3D",
-                "description": "Elaboração de desenhos técnicos conforme normas ABNT/ISO/ASME, GD&T, tolerâncias dimensionais e geométricas. Documentação técnica completa para fabricação, usinagem e montagem."
+                "description": "Elaboração de desenhos técnicos em SolidWorks conforme normas ABNT/ISO/ASME, GD&T, tolerâncias dimensionais e geométricas. Documentação técnica completa para fabricação, usinagem e montagem em Minas Gerais."
               }
             },
             {
@@ -124,7 +139,7 @@ export default function StructuredData() {
               "itemOffered": {
                 "@type": "Service",
                 "name": "Automação Industrial e NR12",
-                "description": "Projetos de automação industrial, retrofitting de máquinas, integração de sistemas e adequação às normas de segurança NR12. Máquinas especiais e sistemas automáticos para linhas de produção."
+                "description": "Projetos de automação industrial, retrofitting de máquinas, integração de sistemas e adequação às normas de segurança NR12 em Contagem, Betim e Minas Gerais. Máquinas especiais e sistemas automáticos para linhas de produção."
               }
             },
             {
